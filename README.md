@@ -1,4 +1,4 @@
-# 🚀 EducaFast — Estude melhor, aprenda mais rápido.
+# 🚀 EducaFast 
 
 **EducaFast** é uma aplicação web desenvolvida para **facilitar, organizar e acelerar os estudos de vestibulandos**, reunindo em um único ambiente diversas ferramentas essenciais para a preparação acadêmica.
 
