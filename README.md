@@ -24,6 +24,8 @@ Link do doc com as histórias - https://docs.google.com/document/d/1Jix1gRe9eh50
 
 Link do Figma - https://www.figma.com/site/XbaBTLUpfjHO97MmAHS4wu/Projeto-Fundamentos-de-Software?node-id=19-3&t=Dp1ap5CJf9Fxkbn0-0
 
+Link do Screen Cast - https://www.youtube.com/watch?v=YGpSpBcBMO8
+
 
 - Quadro 
 
