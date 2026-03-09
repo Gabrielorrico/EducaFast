@@ -23,3 +23,10 @@ Link do Jira - https://brncluis.atlassian.net/jira/software/projects/FP/boards/3
 Link do doc com as histórias - https://docs.google.com/document/d/1Jix1gRe9eh50jNPTEm3Tdhtesbc-pbFatJFWIbshlzs/edit?usp=sharing 
 
 Link do Figma - https://www.figma.com/site/XbaBTLUpfjHO97MmAHS4wu/Projeto-Fundamentos-de-Software?node-id=19-3&t=Dp1ap5CJf9Fxkbn0-0
+
+
+
+
+<img width="1631" height="874" alt="Captura de tela 2026-03-09 194508" src="https://github.com/user-attachments/assets/f6dc45ba-119a-4ea3-ab47-e483ebaeb114" />
+
+<img width="1620" height="770" alt="Captura de tela 2026-03-09 194435" src="https://github.com/user-attachments/assets/391c87dd-71ea-44f0-af82-c47fd008fb2d" />
