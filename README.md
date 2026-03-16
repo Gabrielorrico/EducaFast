@@ -27,10 +27,10 @@ Link do Figma - https://www.figma.com/site/XbaBTLUpfjHO97MmAHS4wu/Projeto-Fundam
 Link do Screen Cast - https://www.youtube.com/watch?v=YGpSpBcBMO8
 
 
-- Quadro 
+- Quadro (Entrega 1)
 
 <img width="1631" height="874" alt="Captura de tela 2026-03-09 194508" src="https://github.com/user-attachments/assets/f6dc45ba-119a-4ea3-ab47-e483ebaeb114" />
 
-- Backlog
+- Backlog (Entrega 1)
 
 <img width="1620" height="770" alt="Captura de tela 2026-03-09 194435" src="https://github.com/user-attachments/assets/391c87dd-71ea-44f0-af82-c47fd008fb2d" />
