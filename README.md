@@ -34,3 +34,13 @@ Link do Screen Cast - https://youtu.be/4CFrkuJXHI0
 - Backlog (Entrega 1)
 
 <img width="1620" height="770" alt="Captura de tela 2026-03-09 194435" src="https://github.com/user-attachments/assets/391c87dd-71ea-44f0-af82-c47fd008fb2d" />
+
+- Quadro (Entrega 2)
+
+- <img width="2181" height="1258" alt="image" src="https://github.com/user-attachments/assets/de175f65-521c-407c-9e09-0d6e024dadea" />
+
+- Backlog (Entrega 2)
+
+- <img width="2200" height="1271" alt="image" src="https://github.com/user-attachments/assets/953f55aa-fbe8-4603-9445-a3f1a1d667c9" />
+
+
