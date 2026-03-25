@@ -37,7 +37,7 @@ Link do Screen Cast - https://youtu.be/4CFrkuJXHI0
 
 - Quadro (Entrega 2)
 
-- <img width="2181" height="1258" alt="image" src="https://github.com/user-attachments/assets/de175f65-521c-407c-9e09-0d6e024dadea" />
+- <img width="1678" height="875" alt="Captura de tela 2026-03-25 192656" src="https://github.com/user-attachments/assets/006b01a6-c405-4433-85fe-418f845531d5" />
 
 - Backlog (Entrega 2)
 
