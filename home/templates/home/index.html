@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EducaFast</title>
+
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container nav">
+            <div class="logo">
+                ✺ EDUCAFAST
+            </div>
+
+            <nav>
+                <a href="#">Sobre nós</a>
+                <a href="#" class="btn-login">Login</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>Seu estudo, finalmente organizado em um só lugar</h1>
+                <p>Organize sua rotina e acompanhe seu progresso de forma clara</p>
+                <a href="#" class="btn-primary">Começar agora</a>
+            </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="features">
+            <div class="container cards">
+
+            <article class="card">
+                <h2>Memorize</h2>
+                <p>Flashcards prontos para serem revisados a qualquer momento</p>
+            </article>
+
+            <article class="card">
+                <h2>Planeje</h2>
+                <p>Monte seu cronograma em minutos</p>
+            </article>
+
+            <article class="card">
+                <h2>Pratique</h2>
+                <p>Resolva provas e teste seu nível</p>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="showcase">
+    <div class="container showcase-grid">
+        <div class="showcase-text">
+            <span class="eyebrow">Tudo o que você precisa para estudar melhor</span>
+            <h2>Comece a estudar<br>com mais foco hoje</h2>
+            <p>
+                Organize sua rotina, acompanhe sua evolução e tenha acesso rápido
+                a tudo que importa em um só lugar
+            </p>
+
+            <div class="showcase-highlights">
+                <div class="highlight-item">Flashcards prontos</div>
+                <div class="highlight-item">Cronograma inteligente</div>
+                <div class="highlight-item">Desempenho</div>
+                <div class="highlight-item">Provas antigas</div>
+
+            </div>
+
+                <a href="#" class="btn-primary">Criar meu plano</a>
+            </div>
+
+            <figure class="showcase-mockup">
+                <div class="mockup-badge">Dashboard em tempo real</div>
+                <img src="{% static 'home/images/dashboard.png' %}" alt="Dashboard do EducaFast">
+            </figure>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
