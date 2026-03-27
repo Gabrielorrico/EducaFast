@@ -89,8 +89,18 @@
       <div class="infos-bloco">
         <div class="card-info">
           <h4>🕐 Últimas sessões</h4>
-          <p>Nenhuma sessão registrada ainda.</p>
-        </div>
+          <ul style="list-style: none; padding: 0; margin-top: 10px;">
+            {% for sessao in ultimas_sessoes %}
+          <li style="margin-bottom: 8px;">
+            {{ sessao.materia.icone }} {{ sessao.materia.nome }} 
+            — <strong>{{ sessao.duracao_formatada }}</strong> 
+            — <small>{{ sessao.iniciada_em|date:"d/m/Y H:i" }}</small>
+          </li>
+          {% empty %}
+          <li>Nenhuma sessão ainda.</li>
+          {% endfor %}
+      </ul>
+      </div>
         <div class="card-info">
           <h4>🃏 Últimos flashcards</h4>
           <p>Nenhum flashcard revisado ainda.</p>
