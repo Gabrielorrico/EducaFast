@@ -1,11 +1,12 @@
-# provas_antigas/views.py
 from django.shortcuts import render
-from .models import Prova  # ou como você nomeou o model
+from django.contrib.auth.decorators import login_required
+from .models import Prova
 
+@login_required
 def index(request):
     provas = Prova.objects.all()
 
-    # Filtros opcionais via GET
+   
     ano = request.GET.get('ano')
     edicao = request.GET.get('edicao')
     tipo = request.GET.get('tipo')
