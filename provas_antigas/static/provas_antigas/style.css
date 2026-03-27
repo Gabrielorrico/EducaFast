@@ -1,0 +1,214 @@
+/* ===== BASE ===== */
+body {
+    background: red !important;
+}
+
+.page-hero {
+    padding: 100px 0 60px;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 48px;
+    max-width: 800px;
+    margin: 0 auto 20px;
+}
+
+.page-hero p {
+    color: #2f2f2f;
+}
+
+
+/* ===== FILTROS ===== */
+
+.filters-section {
+    padding: 30px 0;
+}
+
+.filters-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-end;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.35);
+    padding: 20px;
+    border-radius: 18px;
+    backdrop-filter: blur(6px);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: rgba(0,0,0,0.7);
+}
+
+.filter-group select {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: none;
+    min-width: 150px;
+    background: #fff;
+}
+
+.btn-clear {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* ===== RESULTADOS ===== */
+
+.provas-section {
+    padding: 40px 0 70px;
+}
+
+.results-count {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+
+/* ===== GRID ===== */
+
+.provas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+
+/* ===== CARD ===== */
+
+.prova-card {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 18px;
+    padding: 24px;
+    backdrop-filter: blur(6px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.5);
+}
+
+.prova-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+
+/* HEADER */
+
+.prova-card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.prova-badge {
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.prova-badge--area {
+    background: #000;
+    color: #fff;
+}
+
+.prova-badge--tipo {
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+
+/* BODY */
+
+.prova-title {
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+.prova-edicao {
+    font-size: 14px;
+    color: rgba(0,0,0,0.7);
+    margin-bottom: 14px;
+}
+
+.prova-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.prova-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+
+/* FOOTER */
+
+.prova-card-footer {
+    margin-top: 18px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-download {
+    background: #000;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.25s;
+}
+
+.btn-download:hover {
+    transform: scale(1.05);
+}
+
+
+/* ===== EMPTY STATE ===== */
+
+.empty-state {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.empty-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+
+/* ===== RESPONSIVO ===== */
+
+@media (max-width: 768px) {
+    .filters-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .prova-card-footer {
+        flex-direction: column;
+    }
+}

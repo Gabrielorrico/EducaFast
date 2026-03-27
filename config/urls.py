@@ -24,6 +24,7 @@ urlpatterns = [
     path('cronograma/', include('cronograma.urls')),
     path('usuarios/', include('usuarios.urls')),
     path('', include('sessaodeestudos.urls', namespace='sessaodeestudos')),
+    path('provas/', include('provas_antigas.urls')),
 
 ]
     
