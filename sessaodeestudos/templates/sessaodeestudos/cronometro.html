@@ -19,19 +19,22 @@
     <div class="barra-lateral-tagline">Revisão para o enem</div>
 
     <nav aria-label="Menu principal">
-      <a class="nav-item" href="{% url 'dashboard' %}">
+      <a class="nav-item" href="{% url 'index' %}">
         <span class="nav-icone">🏠</span> Dashboard
       </a>
-      <a class="nav-item" href="{% url 'flashcards' %}">
+      <a class="nav-item" href="#">
+        {# TODO: adicionar quando o app flashcards estiver pronto #}
         <span class="nav-icone">🃏</span> Flashcards
       </a>
-      <a class="nav-item" href="{% url 'desempenho' %}">
+      <a class="nav-item" href="#">
+        {# TODO: adicionar quando o app desempenho estiver pronto #}
         <span class="nav-icone">📊</span> Desempenho
       </a>
-      <a class="nav-item" href="{% url 'cronograma' %}">
+      <a class="nav-item" href="{% url 'listar_cronogramas' %}">
         <span class="nav-icone">📅</span> Cronograma
       </a>
-      <a class="nav-item" href="{% url 'assuntos' %}">
+      <a class="nav-item" href="#">
+        {# TODO: adicionar quando o app assuntos estiver pronto #}
         <span class="nav-icone">📌</span> Assuntos recorrentes
       </a>
 
@@ -43,7 +46,8 @@
     </nav>
 
     <footer class="sidebar-footer">
-      <a href="{% url 'logout' %}" class="btn-sair">
+      {# TODO: substituir por {% url 'logout' %} quando o sistema de login estiver pronto #}
+      <a href="{% url 'home' %}" class="btn-sair">
         <span>🚪</span> Sair
       </a>
     </footer>

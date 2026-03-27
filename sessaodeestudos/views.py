@@ -3,30 +3,31 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
-from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Sum
 from django.utils import timezone
 
 from .models import Materia, SessaoDeEstudos
 
 
-
+@login_required
 def cronometro(request):
     """
     Renderiza a página principal do cronômetro de estudos.
     Lista todas as matérias disponíveis e as sessões recentes do usuário.
     """
+    usuario = request.user
+
     materias = Materia.objects.all()
 
     # Últimas 5 sessões do usuário para exibição rápida
     sessoes_recentes = SessaoDeEstudos.objects.filter(
-        usuario=request.user
+        usuario=usuario
     ).select_related('materia').order_by('-iniciada_em')[:5]
 
-    # Tempo total por matéria (em segundos) para o usuário logado
+    # Tempo total por matéria (em segundos) para o usuário
     tempo_por_materia = (
         SessaoDeEstudos.objects
-        .filter(usuario=request.user)
+        .filter(usuario=usuario)
         .values('materia__nome', 'materia__icone', 'materia__cor')
         .annotate(total_segundos=Sum('duracao_segundos'))
         .order_by('-total_segundos')
@@ -40,14 +41,16 @@ def cronometro(request):
     return render(request, 'sessaodeestudos/cronometro.html', context)
 
 
-
+@login_required
 @require_POST
 def salvar_sessao(request):
     """
-    Endpoint AJAX que recebe os dados da sessão finalizada e salva no banco.
-    Espera um JSON com: materia_id (int) e duracao_segundos (int).
-    Retorna JSON com sucesso e os dados da sessão salva.
+    Endpoint AJAX que recebe os dados da sessão finalizada e salva no banco, 
+    ele espera um JSON com: materia_id (int) e duracao_segundos (int) e 
+    retorna JSON com sucesso e os dados da sessão salva.
     """
+    usuario = request.user
+
     try:
         dados = json.loads(request.body)
         materia_id = dados.get('materia_id')
@@ -62,7 +65,7 @@ def salvar_sessao(request):
         materia = get_object_or_404(Materia, pk=materia_id)
 
         sessao = SessaoDeEstudos.objects.create(
-            usuario=request.user,
+            usuario=usuario,
             materia=materia,
             duracao_segundos=duracao_segundos,
             iniciada_em=timezone.now(),
@@ -85,15 +88,15 @@ def salvar_sessao(request):
         return JsonResponse({'erro': 'Erro interno. Tente novamente.'}, status=500)
 
 
-
+@login_required
 def tempo_total_materia(request, materia_id):
     """
     Retorna o tempo total acumulado de um usuário em uma matéria específica.
-    Útil para exibir progresso em tempo real via AJAX.
     """
+    usuario = request.user
     materia = get_object_or_404(Materia, pk=materia_id)
     resultado = SessaoDeEstudos.objects.filter(
-        usuario=request.user,
+        usuario=usuario,
         materia=materia
     ).aggregate(total=Sum('duracao_segundos'))
 
@@ -109,13 +112,14 @@ def tempo_total_materia(request, materia_id):
     })
 
 
-
+@login_required
 def ultimas_sessoes_api(request):
     """
     Retorna as últimas sessões do usuário em JSON — usado pelo dashboard.
     """
+    usuario = request.user
     sessoes = SessaoDeEstudos.objects.filter(
-        usuario=request.user
+        usuario=usuario
     ).select_related('materia').order_by('-iniciada_em')[:10]
 
     dados = [
