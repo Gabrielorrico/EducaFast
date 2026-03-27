@@ -1,0 +1,163 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Provas Antigas — EducaFast</title>
+
+    <link rel="stylesheet" href="{% static 'provas_antigas/style.css' %}">
+
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container nav">
+            <div class="logo">
+                📚 EDUCAFAST
+            </div>
+            <nav>
+                <a href="#">Sobre nós</a>
+                <a href="#" class="btn-login">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- PAGE HERO -->
+        <section class="page-hero">
+            <div class="container">
+                <span class="eyebrow">Banco de questões</span>
+                <h1>Provas Antigas</h1>
+                <p>Acesse provas completas, filtre por área e pratique no seu ritmo</p>
+            </div>
+        </section>
+
+        <!-- FILTERS -->
+        <section class="filters-section">
+            <div class="container">
+                <form class="filters-form" method="GET" action=".">
+
+                    <div class="filter-group">
+                        <label for="ano">Ano</label>
+                        <select name="ano" id="ano">
+                            <option value="">Todos</option>
+                            {% for ano in anos_disponiveis %}
+                                <option value="{{ ano }}" {% if request.GET.ano == ano|stringformat:"s" %}selected{% endif %}>
+                                    {{ ano }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="edicao">Edição</label>
+                        <select name="edicao" id="edicao">
+                            <option value="">Todas</option>
+                            <option value="1º dia" {% if request.GET.edicao == "1º dia" %}selected{% endif %}>1º dia</option>
+                            <option value="2º dia" {% if request.GET.edicao == "2º dia" %}selected{% endif %}>2º dia</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="tipo">Tipo</label>
+                        <select name="tipo" id="tipo">
+                            <option value="">Todos</option>
+                            <option value="regular"      {% if request.GET.tipo == "regular" %}selected{% endif %}>Regular</option>
+                            <option value="reaplicacao"  {% if request.GET.tipo == "reaplicacao" %}selected{% endif %}>Reaplicação</option>
+                            <option value="PPL"          {% if request.GET.tipo == "PPL" %}selected{% endif %}>PPL</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="area">Área</label>
+                        <select name="area_conhecimento" id="area">
+                            <option value="">Todas</option>
+                            {% for area in areas_disponiveis %}
+                                <option value="{{ area }}" {% if request.GET.area_conhecimento == area %}selected{% endif %}>
+                                    {{ area }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Filtrar</button>
+
+                    {% if request.GET %}
+                        <a href="." class="btn-clear">Limpar filtros</a>
+                    {% endif %}
+
+                </form>
+            </div>
+        </section>
+
+        <!-- RESULTS -->
+        <section class="provas-section">
+            <div class="container">
+
+                <p class="results-count">
+                    {% if provas %}
+                        {{ provas|length }} prova{{ provas|length|pluralize:"s" }} encontrada{{ provas|length|pluralize:"s" }}
+                    {% else %}
+                        Nenhuma prova encontrada
+                    {% endif %}
+                </p>
+
+                {% if provas %}
+                <div class="provas-grid">
+                    {% for prova in provas %}
+                    <article class="prova-card">
+
+                        <div class="prova-card-header">
+                            <span class="prova-badge prova-badge--area">{{ prova.area_conhecimento }}</span>
+                            <span class="prova-badge prova-badge--tipo">{{ prova.tipo|capfirst }}</span>
+                        </div>
+
+                        <div class="prova-card-body">
+                            <h2 class="prova-title">ENEM {{ prova.ano }}</h2>
+                            <p class="prova-edicao">{{ prova.edicao }}</p>
+
+                            <div class="prova-meta">
+                                <div class="prova-meta-item">
+                                    <span class="meta-icon">📝</span>
+                                    <span>{{ prova.total_questoes }} questões</span>
+                                </div>
+                                <div class="prova-meta-item">
+                                    <span class="meta-icon">📅</span>
+                                    <span>{{ prova.data_cadastro|date:"d/m/Y" }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="prova-card-footer">
+                            <a href="{% url 'provas:detalhe' prova.pk %}" class="btn-primary">
+                                Ver prova
+                            </a>
+                            {% if prova.pdf_prova %}
+                            <a href="{{ prova.pdf_prova.url }}" class="btn-download" target="_blank" rel="noopener">
+                                ⬇ PDF
+                            </a>
+                            {% endif %}
+                        </div>
+
+                    </article>
+                    {% endfor %}
+                </div>
+
+                {% else %}
+                <div class="empty-state">
+                    <span class="empty-icon">📂</span>
+                    <h3>Nenhuma prova encontrada</h3>
+                    <p>Tente ajustar os filtros ou <a href=".">limpar a busca</a>.</p>
+                </div>
+                {% endif %}
+
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>

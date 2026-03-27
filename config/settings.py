@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'usuarios',
     'dashboard',
     'cronograma',
+    'provas_antigas',
 ]
 
 MIDDLEWARE = [
@@ -121,6 +122,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
