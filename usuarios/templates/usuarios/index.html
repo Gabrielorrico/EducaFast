@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EducaFast — Login</title>
+
+
+    <link rel="stylesheet" href="{% static 'usuarios/style.css' %}">
+</head>
+<body>
+
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container nav">
+            <div class="logo">
+                📚 EDUCAFAST
+            </div>
+
+        </div>
+    </header>
+
+
+    <main>
+        <section class="login-section">
+            <div class="container">
+
+
+                <div class="login-card">
+                    <h1>Bem-vindo de volta</h1>
+                    <p class="login-subtitle">Acesse sua conta para continuar estudando</p>
+
+
+                    {% if erro %}
+                    <div class="login-error">
+                        ⚠️ {{ erro }}
+                    </div>
+                    {% endif %}
+
+
+                    <form method="POST" action="" class="login-form">
+                        {% csrf_token %}
+
+
+                        <div class="form-group">
+                            <label for="username">Usuário</label>
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                placeholder="Seu nome de usuário"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="password">
+                                Senha
+                                <a href="#" class="link-forgot">Esqueceu a senha?</a>
+                            </label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Sua senha"
+                                required
+                            >
+                        </div>
+
+
+                        <button type="submit" class="btn-primary btn-full">
+                            Entrar
+                        </button>
+                    </form>
+
+
+                    <p class="login-signup">
+                        Ainda não tem conta?
+                        <a href="#">Cadastre-se grátis</a>
+                    </p>
+                </div>
+
+
+            </div>
+        </section>
+    </main>
+
+
+</body>
+</html>
