@@ -22,7 +22,10 @@ urlpatterns = [
     path('', include('home.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('cronograma/', include('cronograma.urls')),
+    path('usuarios/', include('usuarios.urls')),
 ]
+    
+    
 
 
 
