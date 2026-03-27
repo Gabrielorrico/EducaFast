@@ -10,7 +10,7 @@ from django.utils import timezone
 from .models import Materia, SessaoDeEstudos
 
 
-@login_required
+
 def cronometro(request):
     """
     Renderiza a página principal do cronômetro de estudos.
@@ -40,7 +40,7 @@ def cronometro(request):
     return render(request, 'sessaodeestudos/cronometro.html', context)
 
 
-@login_required
+
 @require_POST
 def salvar_sessao(request):
     """
@@ -85,7 +85,7 @@ def salvar_sessao(request):
         return JsonResponse({'erro': 'Erro interno. Tente novamente.'}, status=500)
 
 
-@login_required
+
 def tempo_total_materia(request, materia_id):
     """
     Retorna o tempo total acumulado de um usuário em uma matéria específica.
@@ -109,7 +109,7 @@ def tempo_total_materia(request, materia_id):
     })
 
 
-@login_required
+
 def ultimas_sessoes_api(request):
     """
     Retorna as últimas sessões do usuário em JSON — usado pelo dashboard.
