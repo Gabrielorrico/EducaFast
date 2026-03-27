@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'usuarios',
     'dashboard',
     'cronograma',
+    'sessaodeestudos'
 ]
 
 MIDDLEWARE = [

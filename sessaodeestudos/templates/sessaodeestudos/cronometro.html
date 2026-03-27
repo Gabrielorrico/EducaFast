@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cronômetro de Estudos — EDUCAFAST</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'sessaodeestudos/cronometro.css' %}" />
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ===== BARRA LATERAL ===== -->
+  <aside class="barra-lateral">
+    <div class="logo-barra-lat">EDUCA<strong> FAST</strong></div>
+    <div class="barra-lateral-tagline">Revisão para o enem</div>
+
+    <nav aria-label="Menu principal">
+      <a class="nav-item" href="{% url 'dashboard' %}">
+        <span class="nav-icone">🏠</span> Dashboard
+      </a>
+      <a class="nav-item" href="{% url 'flashcards' %}">
+        <span class="nav-icone">🃏</span> Flashcards
+      </a>
+      <a class="nav-item" href="{% url 'desempenho' %}">
+        <span class="nav-icone">📊</span> Desempenho
+      </a>
+      <a class="nav-item" href="{% url 'cronograma' %}">
+        <span class="nav-icone">📅</span> Cronograma
+      </a>
+      <a class="nav-item" href="{% url 'assuntos' %}">
+        <span class="nav-icone">📌</span> Assuntos recorrentes
+      </a>
+
+      <div class="barra-lateral-label">Ferramentas</div>
+
+      <a class="nav-item active" href="{% url 'sessaodeestudos:cronometro' %}">
+        <span class="nav-icone">⏱️</span> Cronômetro
+      </a>
+    </nav>
+
+    <footer class="sidebar-footer">
+      <a href="{% url 'logout' %}" class="btn-sair">
+        <span>🚪</span> Sair
+      </a>
+    </footer>
+  </aside>
+
+  <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+  <main class="main" id="conteudo-principal">
+
+    <header class="main-header">
+      <h1>Cronômetro de Estudos</h1>
+      <span>Registre seu foco e acompanhe seu progresso</span>
+    </header>
+
+    <div class="cronometro-grid">
+
+      <!-- ===== PAINEL DO CRONÔMETRO ===== -->
+      <section class="painel-cronometro" aria-label="Cronômetro">
+
+        <!-- Seleção de Matéria -->
+        <div class="selecao-materia">
+          <label for="selecionar-materia" class="label-selecao">
+            📚 Escolha a matéria que vai estudar
+          </label>
+          <div class="grade-materias" role="radiogroup" aria-label="Matérias disponíveis">
+            {% for materia in materias %}
+            <button
+              class="btn-materia"
+              role="radio"
+              aria-checked="false"
+              data-materia-id="{{ materia.id }}"
+              data-materia-nome="{{ materia.nome }}"
+              data-materia-icone="{{ materia.icone }}"
+              data-materia-cor="{{ materia.cor }}"
+              type="button"
+            >
+              <span class="materia-icone">{{ materia.icone }}</span>
+              <span class="materia-nome">{{ materia.nome }}</span>
+            </button>
+            {% empty %}
+            <p class="aviso-sem-materias">Nenhuma matéria cadastrada ainda. Acesse o admin para criar.</p>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Display do Cronômetro -->
+        <div class="display-cronometro" id="display-cronometro" aria-live="polite">
+          <div class="materia-ativa" id="materia-ativa" aria-label="Matéria selecionada">
+            <span id="icone-materia-ativa">⏱️</span>
+            <span id="nome-materia-ativa">Selecione uma matéria</span>
+          </div>
+
+          <time class="relogio" id="relogio" datetime="PT0S">
+            <span id="horas">00</span><span class="sep">:</span><span id="minutos">00</span><span class="sep">:</span><span id="segundos">00</span>
+          </time>
+
+          <p class="status-cronometro" id="status-cronometro">Aguardando início</p>
+        </div>
+
+        <!-- Controles -->
+        <div class="controles-cronometro" role="group" aria-label="Controles do cronômetro">
+          <button class="btn-controle btn-iniciar" id="btn-iniciar" type="button" disabled>
+            ▶ Iniciar
+          </button>
+          <button class="btn-controle btn-pausar" id="btn-pausar" type="button" disabled hidden>
+            ⏸ Pausar
+          </button>
+          <button class="btn-controle btn-retomar" id="btn-retomar" type="button" disabled hidden>
+            ▶ Retomar
+          </button>
+          <button class="btn-controle btn-parar" id="btn-parar" type="button" disabled hidden>
+            ⏹ Finalizar sessão
+          </button>
+        </div>
+
+        <!-- Mensagem de feedback após salvar -->
+        <div class="feedback-sessao" id="feedback-sessao" role="alert" aria-live="assertive" hidden>
+          <span class="feedback-icone">✅</span>
+          <span class="feedback-texto" id="feedback-texto"></span>
+        </div>
+
+      </section>
+
+      <!-- ===== PAINEL LATERAL: SESSÕES E TEMPO TOTAL ===== -->
+      <aside class="painel-lateral" aria-label="Histórico de estudos">
+
+        <!-- Últimas sessões -->
+        <section class="card-historico">
+          <h2 class="card-titulo">⏳ Últimas sessões</h2>
+          {% if sessoes_recentes %}
+          <ul class="lista-sessoes" id="lista-sessoes">
+            {% for sessao in sessoes_recentes %}
+            <li class="item-sessao">
+              <span class="sessao-icone">{{ sessao.materia.icone }}</span>
+              <div class="sessao-info">
+                <strong class="sessao-materia">{{ sessao.materia.nome }}</strong>
+                <time class="sessao-data">{{ sessao.iniciada_em|date:"d/m/Y H:i" }}</time>
+              </div>
+              <span class="sessao-duracao">{{ sessao.duracao_formatada }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p class="aviso-vazio" id="aviso-sem-sessoes">Nenhuma sessão registrada ainda. Comece agora! 🚀</p>
+          {% endif %}
+        </section>
+
+        <!-- Tempo total por matéria -->
+        <section class="card-historico">
+          <h2 class="card-titulo">📊 Tempo total por matéria</h2>
+          {% if tempo_por_materia %}
+          <ul class="lista-tempo-total">
+            {% for item in tempo_por_materia %}
+            <li class="item-tempo-total">
+              <span class="tempo-icone">{{ item.materia__icone }}</span>
+              <div class="tempo-info">
+                <strong>{{ item.materia__nome }}</strong>
+                <div class="barra-progresso-wrap">
+                  <div
+                    class="barra-progresso"
+                    style="background: {{ item.materia__cor }}; width: {{ item.total_segundos|divisibleby:3600|yesno:'100%,50%' }}"
+                    aria-hidden="true"
+                  ></div>
+                </div>
+              </div>
+              <span class="tempo-total-valor">
+                {% with h=item.total_segundos|divisibleby:3600 %}
+                  {{ item.total_segundos|floatformat:0 }}s
+                {% endwith %}
+              </span>
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p class="aviso-vazio">Estude para ver seu progresso aqui! 📚</p>
+          {% endif %}
+        </section>
+
+      </aside>
+
+    </div><!-- fim .cronometro-grid -->
+
+  </main>
+</div>
+
+<!-- CSRF token para requisições AJAX -->
+<meta name="csrf-token" content="{{ csrf_token }}" />
+
+<!-- URL da API para salvar sessão (acessível pelo JS) -->
+<script>
+  const URL_SALVAR_SESSAO = "{% url 'sessaodeestudos:salvar_sessao' %}";
+  const URL_ULTIMAS_SESSOES = "{% url 'sessaodeestudos:ultimas_sessoes_api' %}";
+</script>
+
+<script src="{% static 'sessaodeestudos/cronometro.js' %}"></script>
+</body>
+</html>

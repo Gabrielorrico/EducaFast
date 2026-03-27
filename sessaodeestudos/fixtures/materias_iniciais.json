@@ -1,0 +1,10 @@
+[
+  {"model": "sessaodeestudos.materia", "pk": 1, "fields": {"nome": "Matemática",  "icone": "📐", "cor": "#4a90e2"}},
+  {"model": "sessaodeestudos.materia", "pk": 2, "fields": {"nome": "Português",   "icone": "📖", "cor": "#e74c3c"}},
+  {"model": "sessaodeestudos.materia", "pk": 3, "fields": {"nome": "História",    "icone": "📜", "cor": "#8e44ad"}},
+  {"model": "sessaodeestudos.materia", "pk": 4, "fields": {"nome": "Geografia",   "icone": "🌍", "cor": "#27ae60"}},
+  {"model": "sessaodeestudos.materia", "pk": 5, "fields": {"nome": "Biologia",    "icone": "🌿", "cor": "#16a085"}},
+  {"model": "sessaodeestudos.materia", "pk": 6, "fields": {"nome": "Física",      "icone": "⚡", "cor": "#f39c12"}},
+  {"model": "sessaodeestudos.materia", "pk": 7, "fields": {"nome": "Química",     "icone": "⚗️", "cor": "#2980b9"}},
+  {"model": "sessaodeestudos.materia", "pk": 8, "fields": {"nome": "Inglês",      "icone": "🗣️", "cor": "#c0392b"}}
+]

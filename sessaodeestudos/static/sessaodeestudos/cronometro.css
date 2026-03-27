@@ -1,0 +1,549 @@
+/* ============================================================
+   EDUCAFAST — Cronômetro de Estudos
+   sessaodeestudos/static/sessaodeestudos/cronometro.css
+   ============================================================ */
+
+/* ---------- Variáveis (mantém o design system do projeto) ---------- */
+:root {
+  --sidebar-bg: #fff;
+  --main-bg: #7f8fdc;
+  --card-bg: #f3f3f3;
+  --accent: #000;
+  --sidebar-active: #000;
+  --sidebar-active-text: #fff;
+  --text: #000;
+  --text-muted: rgba(0, 0, 0, 0.6);
+  --radius: 14px;
+  --sidebar-w: 200px;
+
+  /* Extras do cronômetro */
+  --cronometro-bg: #fff;
+  --btn-iniciar: #2d6a4f;
+  --btn-pausar: #e07b00;
+  --btn-retomar: #2d6a4f;
+  --btn-parar: #c0392b;
+  --btn-text: #fff;
+  --sombra-card: 0 4px 24px rgba(0, 0, 0, 0.10);
+}
+
+/* ---------- Reset & base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--main-bg);
+  color: var(--text);
+  font-family: 'Sora', Arial, sans-serif;
+}
+
+/* ---------- Layout geral ---------- */
+.layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* ---------- Barra lateral ---------- */
+.barra-lateral {
+  width: var(--sidebar-w);
+  min-width: var(--sidebar-w);
+  background: var(--sidebar-bg);
+  border-right: 1px solid #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 14px 20px;
+  gap: 2px;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.logo-barra-lat {
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: -0.3px;
+  padding-left: 8px;
+  margin-bottom: 2px;
+}
+
+.barra-lateral-tagline {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  padding-left: 8px;
+  margin-bottom: 22px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  transition: background 0.12s;
+}
+
+.nav-item:hover { background: #f2f2f2; }
+
+.nav-item.active {
+  background: var(--sidebar-active);
+  color: var(--sidebar-active-text);
+}
+
+.nav-icone { font-size: 0.95rem; width: 18px; text-align: center; flex-shrink: 0; }
+
+.barra-lateral-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 14px 8px 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.sidebar-footer { margin-top: auto; }
+
+.btn-sair {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #f2f2f2;
+  border: none;
+  padding: 9px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #333;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  transition: background 0.12s;
+}
+
+.btn-sair:hover { background: #e4e4e4; }
+
+/* ---------- Conteúdo principal ---------- */
+.main {
+  flex: 1;
+  background: var(--main-bg);
+  padding: 36px 40px;
+  overflow-y: auto;
+  min-width: 0;
+}
+
+.main-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.main-header h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.main-header span {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ---------- Grid do cronômetro ---------- */
+.cronometro-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ---------- Painel central do cronômetro ---------- */
+.painel-cronometro {
+  background: var(--cronometro-bg);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  box-shadow: var(--sombra-card);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* --- Seleção de matéria --- */
+.label-selecao {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.grade-materias {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 10px;
+}
+
+.btn-materia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 8px;
+  border: 2px solid #e8e8e8;
+  border-radius: 12px;
+  background: var(--card-bg);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.1s;
+  font-family: 'Sora', sans-serif;
+}
+
+.btn-materia:hover {
+  border-color: #bbb;
+  background: #eaeaea;
+  transform: translateY(-2px);
+}
+
+.btn-materia.selecionada {
+  border-color: var(--accent);
+  background: #000;
+  color: #fff;
+}
+
+.btn-materia.selecionada .materia-nome { color: #fff; }
+
+.materia-icone { font-size: 1.6rem; line-height: 1; }
+
+.materia-nome {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.aviso-sem-materias {
+  grid-column: 1 / -1;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding: 12px;
+}
+
+/* --- Display do cronômetro --- */
+.display-cronometro {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.materia-ativa {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(0,0,0,0.06);
+  padding: 6px 16px;
+  border-radius: 999px;
+}
+
+#icone-materia-ativa { font-size: 1.1rem; }
+
+/* Relógio com JetBrains Mono para dígitos bem alinhados */
+.relogio {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 4.5rem;
+  font-weight: 700;
+  letter-spacing: -2px;
+  color: var(--text);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  user-select: none;
+}
+
+.relogio .sep {
+  opacity: 0.3;
+  animation: piscar 1s step-start infinite;
+}
+
+@keyframes piscar {
+  50% { opacity: 0; }
+}
+
+/* Para quando o cronômetro está pausado, os separadores param de piscar */
+.relogio.pausado .sep { animation: none; opacity: 0.3; }
+
+.status-cronometro {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* --- Controles --- */
+.controles-cronometro {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-controle {
+  padding: 13px 28px;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  letter-spacing: 0.3px;
+}
+
+.btn-controle:disabled { opacity: 0.35; cursor: not-allowed; }
+.btn-controle:not(:disabled):hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-controle:not(:disabled):active { transform: translateY(0); }
+
+.btn-iniciar  { background: var(--btn-iniciar);  color: var(--btn-text); }
+.btn-pausar   { background: var(--btn-pausar);   color: var(--btn-text); }
+.btn-retomar  { background: var(--btn-retomar);  color: var(--btn-text); }
+.btn-parar    { background: var(--btn-parar);    color: var(--btn-text); }
+
+/* --- Feedback após salvar --- */
+.feedback-sessao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #d4edda;
+  border: 1px solid #a3d5b0;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #155724;
+  animation: entrar 0.3s ease;
+}
+
+@keyframes entrar {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.feedback-icone { font-size: 1.2rem; }
+
+/* ---------- Painel lateral ---------- */
+.painel-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-historico {
+  background: var(--cronometro-bg);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  box-shadow: var(--sombra-card);
+}
+
+.card-titulo {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+/* --- Lista de últimas sessões --- */
+.lista-sessoes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item-sessao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--card-bg);
+  border-radius: 10px;
+}
+
+.sessao-icone { font-size: 1.4rem; flex-shrink: 0; }
+
+.sessao-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.sessao-materia {
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sessao-data {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.sessao-duracao {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  background: #000;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+/* --- Tempo total por matéria --- */
+.lista-tempo-total {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item-tempo-total {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tempo-icone { font-size: 1.2rem; flex-shrink: 0; }
+
+.tempo-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tempo-info strong { font-size: 0.8rem; font-weight: 700; }
+
+.barra-progresso-wrap {
+  height: 5px;
+  background: #e8e8e8;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.barra-progresso {
+  height: 100%;
+  border-radius: 99px;
+  min-width: 8px;
+  transition: width 0.4s ease;
+}
+
+.tempo-total-valor {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+/* --- Aviso de lista vazia --- */
+.aviso-vazio {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 12px 0;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   RESPONSIVIDADE
+   ============================================================ */
+
+/* Tablet (≤ 900px): sidebar fica menor, grid vira coluna única */
+@media (max-width: 900px) {
+  :root { --sidebar-w: 56px; }
+
+  .logo-barra-lat,
+  .barra-lateral-tagline,
+  .barra-lateral-label,
+  .nav-item span:not(.nav-icone),
+  .btn-sair span:last-child { display: none; }
+
+  .nav-item { justify-content: center; padding: 10px; }
+  .nav-icone { width: auto; font-size: 1.1rem; }
+  .btn-sair { justify-content: center; }
+
+  .main { padding: 24px 20px; }
+
+  .cronometro-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .painel-lateral {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .card-historico { flex: 1 1 260px; }
+}
+
+/* Mobile (≤ 600px): sidebar desaparece no topo como barra horizontal */
+@media (max-width: 600px) {
+  .layout { flex-direction: column; }
+
+  .barra-lateral {
+    width: 100%;
+    min-width: unset;
+    height: auto;
+    flex-direction: row;
+    padding: 10px 12px;
+    border-right: none;
+    border-bottom: 1px solid #e8e8e8;
+    overflow-x: auto;
+    gap: 4px;
+  }
+
+  .logo-barra-lat,
+  .barra-lateral-tagline,
+  .barra-lateral-label,
+  .sidebar-footer { display: none; }
+
+  .nav-item { flex-direction: column; gap: 3px; padding: 6px 10px; font-size: 0.65rem; }
+  .nav-icone { font-size: 1.1rem; width: auto; }
+
+  .main { padding: 20px 14px; overflow-y: auto; height: calc(100vh - 60px); }
+
+  .main-header { flex-direction: column; gap: 4px; margin-bottom: 18px; }
+  .main-header h1 { font-size: 1.2rem; }
+
+  .relogio { font-size: 3rem; }
+
+  .painel-lateral { flex-direction: column; }
+
+  .controles-cronometro { gap: 8px; }
+  .btn-controle { padding: 11px 18px; font-size: 0.85rem; }
+}
