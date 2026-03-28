@@ -46,7 +46,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
   Link do Jira - https://brncluis.atlassian.net/jira/software/projects/FP/boards/3/backlog?atlOrigin=eyJwIjoiaiIsImkiOiI2MzgxM2Y3MzhmMTk0MGFkOTU1YTcxMjlmYzQ1NWE5YiJ9&cloudId=6667f141-24e7-42aa-8d15-3ede3e8d3b08&selectedIssue=FP-18
 
-  Relate Programação em Par - https://docs.google.com/document/d/1Jix1gRe9eh50jNPTEm3Tdhtesbc-pbFatJFWIbshlzs/edit?usp=sharing 
+  Relate Programação em Par - https://docs.google.com/document/d/1fdD-QaiXSmVtaeB57ypChtCTnbF1S1TEWM8AG5SRYdY/edit?usp=sharing
 
   Link do Screen Cast - 
 
