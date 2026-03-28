@@ -10,169 +10,104 @@ body {
     background: #7f8fdc;
 }
 
-/* CONTAINER */
-.page {
-    max-width: 1100px;
-    margin: auto;
-    padding: 40px 20px;
-}
-
-/* HEADER */
-.page-header {
-    margin-bottom: 30px;
-}
-
-.page-header h1 {
-    font-size: 36px;
-}
-
-.page-header p {
-    color: #2f2f2f;
-    margin-top: 5px;
-}
-
-/* POPULARES */
-.populares {
-    margin-bottom: 40px;
-}
-
-.populares h2 {
-    margin-bottom: 15px;
-}
-
-.populares-grid {
+/* SIDEBAR (herda padrão do dashboard) */
+.barra-lateral {
+    width: var(--sidebar-w);
+    background: var(--sidebar-bg);
+    border-right: 1px solid #e8e8e8;
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    padding: 28px 14px 20px;
+    gap: 2px;
 }
 
-.popular-card {
-    background: #fff;
-    padding: 18px;
-    border-radius: 16px;
-    width: 200px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    transition: 0.2s;
+.logo-barra-lat {
+    font-weight: 800;
+    font-size: 1rem;
+    padding-left: 8px;
+    margin-bottom: 2px;
 }
 
-.popular-card:hover {
-    transform: translateY(-6px);
-}
-
-.popular-card h3 {
-    font-size: 18px;
-}
-
-.popular-card p {
-    font-size: 13px;
-    color: #555;
-    margin: 8px 0 12px;
+.barra-lateral-tagline {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    padding-left: 8px;
+    margin-bottom: 22px;
 }
 
 /* FILTROS */
-.filters {
-    margin-bottom: 30px;
-}
-
 .filters-form {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
 .filters-form select {
-    padding: 10px 12px;
-    border-radius: 10px;
-    border: none;
     min-width: 120px;
-}
-
-/* BOTÕES */
-.btn {
-    background: #000;
-    color: #fff;
-    padding: 10px 16px;
-    border-radius: 10px;
+    border-radius: 8px;
     border: none;
-    cursor: pointer;
-    transition: 0.2s;
+    padding: 8px;
 }
 
-.btn:hover {
-    transform: scale(1.05);
-}
-
-.btn-outline {
-    border: 1px solid #000;
-    padding: 10px 16px;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #000;
-    background: #fff;
-}
-
-/* GRID */
-.grid {
-    display: grid;
-    gap: 25px;
-}
-
-/* CARD PRINCIPAL */
-.card {
-    background: #fff;
-    border-radius: 20px;
-    padding: 25px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-}
-
-/* HEADER DO CARD */
-.card-top {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
-
-.badge {
-    font-size: 12px;
-    padding: 6px 12px;
-    border-radius: 999px;
-}
-
-.badge.black {
+/* BOTÃO FILTRO */
+.filters-form button {
     background: #000;
     color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
-.badge.light {
-    background: #eee;
+/* CARDS (igual dashboard) */
+.card-info {
+    background: #f3f3f3;
+    border-radius: 14px;
+    padding: 18px;
+    min-width: 220px;
+    max-width: 260px;
+    flex: 1;
 }
 
 /* TÍTULO */
-.card h2 {
-    font-size: 28px;
+.card-info h4 {
+    font-size: 16px;
+    margin-bottom: 6px;
 }
 
-.card p {
-    margin-top: 5px;
-    color: #333;
+/* TEXTO */
+.card-info p {
+    font-size: 13px;
+    color: #444;
 }
 
-/* META */
-.meta {
-    margin: 15px 0;
+/* BOTÃO DOWNLOAD (NOVO PADRÃO) */
+.btn-download {
+    background: #000;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 8px;
+    transition: 0.2s;
+}
+
+.btn-download:hover {
+    transform: scale(1.05);
+}
+
+/* GRID RESPONSIVO */
+.btns-rapidos,
+.infos-bloco {
     display: flex;
-    gap: 20px;
-    font-size: 14px;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
-/* BOTÕES */
-.card-actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 10px;
-}
-
-/* EMPTY */
+/* EMPTY STATE */
 .empty {
     text-align: center;
-    margin-top: 60px;
+    margin-top: 40px;
 }

@@ -5,56 +5,67 @@
     <meta charset="UTF-8">
     <title>Provas Antigas — EducaFast</title>
 
+    <link rel="stylesheet" href="{% static 'dashboard/style.css' %}">
     <link rel="stylesheet" href="{% static 'provas_antigas/style.css' %}">
 </head>
 
 <body>
 
-    <!-- HEADER SIMPLES -->
-    <header class="topbar">
-        <div class="container">
-            <h2>📚 EDUCAFAST</h2>
-            <a href="/usuarios/logout/" class="btn-outline">Sair</a>
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="barra-lateral">
+        <div class="logo-barra-lat">EDUCA<strong> FAST</strong></div>
+        <div class="barra-lateral-tagline">Revisão para o enem</div>
+
+        <a class="nav-item" href="/dashboard/">
+            <span class="nav-icone">🏠</span> Dashboard
+        </a>
+
+        <a class="nav-item" href="#">
+            <span class="nav-icone">🃏</span> Flashcards
+        </a>
+
+        <a class="nav-item" href="#">
+            <span class="nav-icone">📊</span> Desempenho
+        </a>
+
+        <a class="nav-item" href="#">
+            <span class="nav-icone">📅</span> Cronograma
+        </a>
+
+        <a class="nav-item" href="#">
+            <span class="nav-icone">📌</span> Assuntos recorrentes
+        </a>
+
+        <div class="barra-lateral-label">Ferramentas</div>
+
+        <a class="nav-item" href="#">
+            <span class="nav-icone">⏱️</span> Cronômetro
+        </a>
+
+        <a class="nav-item active" href="/provas/">
+            <span class="nav-icone">📚</span> Provas Antigas
+        </a>
+
+        <div class="sidebar-footer">
+            <a href="{% url 'logout' %}" class="btn-sair">
+                <span>🚪</span> Sair
+            </a>
         </div>
-    </header>
+    </aside>
 
-    <main class="page">
+    <!-- MAIN -->
+    <main class="main">
 
-        <!-- HEADER DA PÁGINA -->
-        <section class="page-header">
+        <div class="main-header">
             <h1>Provas Antigas</h1>
-            <p>Filtre e pratique com provas reais</p>
-        </section>
-
-        <section class="populares">
-            <h2>🔥 Provas populares</h2>
-
-            <div class="populares-grid">
-                {% for prova in provas_populares %}
-                <div class="popular-card">
-
-                    <h3>ENEM {{ prova.ano }}</h3>
-                    <p>{{ prova.area_conhecimento }}</p>
-
-                    <a href="{% url 'provas_antigas:detalhe' prova.pk %}" class="btn-small">
-                        Ver
-                    </a>
-
-                </div>
-                {% endfor %}
-            </div>
-        </section>
-
-        <h1>Prova {{ prova.ano }}
-            <p>{{ prova.area_conhecimento }}</p>
-            <p>{{ prova.edicao }}</p>
-
-            <a href="{{ prova.pdf_prova.url }}">Ver PDF</a>
-        </h1>
+            <span>Filtre e pratique com provas reais</span>
+        </div>
 
         <!-- FILTROS -->
-        <section class="filters">
-            <form method="GET" class="filters-form">
+        <div class="estatisticas" style="flex-wrap: wrap;">
+            <form method="GET" class="filters-form" style="width: 100%; display:flex; gap:10px; flex-wrap:wrap;">
 
                 <select name="ano">
                     <option value="">Ano</option>
@@ -65,15 +76,16 @@
 
                 <select name="edicao">
                     <option value="">Edição</option>
-                    <option value="1º dia">1º dia</option>
-                    <option value="2º dia">2º dia</option>
+                    {% for ed in edicoes_disponiveis %}
+                        <option value="{{ ed }}">{{ ed }}</option>
+                    {% endfor %}
                 </select>
 
                 <select name="tipo">
                     <option value="">Tipo</option>
-                    <option value="regular">Regular</option>
-                    <option value="reaplicacao">Reaplicação</option>
-                    <option value="PPL">PPL</option>
+                    {% for tipo in tipos_disponiveis %}
+                        <option value="{{ tipo }}">{{ tipo }}</option>
+                    {% endfor %}
                 </select>
 
                 <select name="area_conhecimento">
@@ -84,47 +96,63 @@
                 </select>
 
                 <button type="submit" class="btn">Filtrar</button>
+
             </form>
-        </section>
+        </div>
 
-        <!-- RESULTADOS -->
-        {% if provas %}
-        <section class="grid">
-            {% for prova in provas %}
-            <div class="card">
+        {% if not request.GET %}
+        <!-- POPULARES -->
+        <div class="sessao-titulo">🔥 Provas populares</div>
 
-                <div class="card-top">
-                    <span class="badge black">{{ prova.area_conhecimento }}</span>
-                    <span class="badge light">{{ prova.tipo }}</span>
-                </div>
-
-                <h2>ENEM {{ prova.ano }}</h2>
+        <div class="btns-rapidos">
+            {% for prova in provas_populares %}
+            <div class="card-info">
+                <h4>ENEM {{ prova.ano }}</h4>
+                <p>{{ prova.area_conhecimento }} • {{ prova.tipo }}</p>
                 <p>{{ prova.edicao }}</p>
-
-                <div class="meta">
-                    <span>📝 {{ prova.total_questoes }} questões</span>
-                    <span>📅 {{ prova.data_cadastro|date:"d/m/Y" }}</span>
-                </div>
-
-                <div class="card-actions">
-                    <a href="{% url 'provas_antigas:detalhe' prova.pk %}" class="btn">Ver</a>
-
-                    {% if prova.pdf_prova %}
-                    <a href="{{ prova.pdf_prova.url }}" class="btn-outline">PDF</a>
-                    {% endif %}
-                </div>
-
             </div>
             {% endfor %}
-        </section>
-
-        {% else %}
-        <div class="empty">
-            <p>Nenhuma prova encontrada</p>
         </div>
         {% endif %}
 
+        {% if request.GET %}
+        <!-- RESULTADOS -->
+        <div class="sessao-titulo">Resultados</div>
+
+        {% if provas %}
+        <div class="infos-bloco">
+
+            {% for prova in provas %}
+            <div class="card-info">
+
+                <h4>ENEM {{ prova.ano }}</h4>
+                <p>{{ prova.area_conhecimento }} • {{ prova.tipo }}</p>
+                <p>{{ prova.edicao }}</p>
+
+                <p>📝 {{ prova.total_questoes }} questões</p>
+
+                {% if prova.pdf_prova %}
+                <a href="{{ prova.pdf_prova.url }}" class="btn-download" download>
+                    📥 PDF
+                </a>
+                {% endif %}
+
+            </div>
+            {% endfor %}
+
+            {% else %}
+            <div class="card-info">
+                <p>Nenhuma prova encontrada</p>
+            </div>
+            {% endif %}
+            
+        </div>
+        {% endif %}
+
+
     </main>
+
+</div>
 
 </body>
 </html>
