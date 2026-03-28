@@ -6,11 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EducaFast — Login</title>
 
-
     <link rel="stylesheet" href="{% static 'usuarios/style.css' %}">
 </head>
 <body>
-
 
     <!-- HEADER -->
     <header class="header">
@@ -18,20 +16,16 @@
             <div class="logo">
                 📚 EDUCAFAST
             </div>
-
         </div>
     </header>
-
 
     <main>
         <section class="login-section">
             <div class="container">
 
-
                 <div class="login-card">
                     <h1>Bem-vindo de volta</h1>
                     <p class="login-subtitle">Acesse sua conta para continuar estudando</p>
-
 
                     {% if erro %}
                     <div class="login-error">
@@ -39,10 +33,9 @@
                     </div>
                     {% endif %}
 
-
-                    <form method="POST" action="" class="login-form">
+                    <!-- FORM CORRETO -->
+                    <form method="POST">
                         {% csrf_token %}
-
 
                         <div class="form-group">
                             <label for="username">Usuário</label>
@@ -54,7 +47,6 @@
                                 required
                             >
                         </div>
-
 
                         <div class="form-group">
                             <label for="password">
@@ -70,12 +62,10 @@
                             >
                         </div>
 
-
                         <button type="submit" class="btn-primary btn-full">
                             Entrar
                         </button>
                     </form>
-
 
                     <p class="login-signup">
                         Ainda não tem conta?
@@ -83,11 +73,9 @@
                     </p>
                 </div>
 
-
             </div>
         </section>
     </main>
-
 
 </body>
 </html>

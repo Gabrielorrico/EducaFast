@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,155 +6,123 @@
     <title>Provas Antigas — EducaFast</title>
 
     <link rel="stylesheet" href="{% static 'provas_antigas/style.css' %}">
-
 </head>
+
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container nav">
-            <div class="logo">
-                📚 EDUCAFAST
-            </div>
-            <nav>
-                <a href="#">Sobre nós</a>
-                <a href="#" class="btn-login">Login</a>
-            </nav>
+    <!-- HEADER SIMPLES -->
+    <header class="topbar">
+        <div class="container">
+            <h2>📚 EDUCAFAST</h2>
+            <a href="/usuarios/logout/" class="btn-outline">Sair</a>
         </div>
     </header>
 
-    <main>
+    <main class="page">
 
-        <!-- PAGE HERO -->
-        <section class="page-hero">
-            <div class="container">
-                <span class="eyebrow">Banco de questões</span>
-                <h1>Provas Antigas</h1>
-                <p>Acesse provas completas, filtre por área e pratique no seu ritmo</p>
+        <!-- HEADER DA PÁGINA -->
+        <section class="page-header">
+            <h1>Provas Antigas</h1>
+            <p>Filtre e pratique com provas reais</p>
+        </section>
+
+        <section class="populares">
+            <h2>🔥 Provas populares</h2>
+
+            <div class="populares-grid">
+                {% for prova in provas_populares %}
+                <div class="popular-card">
+
+                    <h3>ENEM {{ prova.ano }}</h3>
+                    <p>{{ prova.area_conhecimento }}</p>
+
+                    <a href="{% url 'provas_antigas:detalhe' prova.pk %}" class="btn-small">
+                        Ver
+                    </a>
+
+                </div>
+                {% endfor %}
             </div>
         </section>
 
-        <!-- FILTERS -->
-        <section class="filters-section">
-            <div class="container">
-                <form class="filters-form" method="GET" action=".">
+        <h1>Prova {{ prova.ano }}
+            <p>{{ prova.area_conhecimento }}</p>
+            <p>{{ prova.edicao }}</p>
 
-                    <div class="filter-group">
-                        <label for="ano">Ano</label>
-                        <select name="ano" id="ano">
-                            <option value="">Todos</option>
-                            {% for ano in anos_disponiveis %}
-                                <option value="{{ ano }}" {% if request.GET.ano == ano|stringformat:"s" %}selected{% endif %}>
-                                    {{ ano }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </div>
+            <a href="{{ prova.pdf_prova.url }}">Ver PDF</a>
+        </h1>
 
-                    <div class="filter-group">
-                        <label for="edicao">Edição</label>
-                        <select name="edicao" id="edicao">
-                            <option value="">Todas</option>
-                            <option value="1º dia" {% if request.GET.edicao == "1º dia" %}selected{% endif %}>1º dia</option>
-                            <option value="2º dia" {% if request.GET.edicao == "2º dia" %}selected{% endif %}>2º dia</option>
-                        </select>
-                    </div>
+        <!-- FILTROS -->
+        <section class="filters">
+            <form method="GET" class="filters-form">
 
-                    <div class="filter-group">
-                        <label for="tipo">Tipo</label>
-                        <select name="tipo" id="tipo">
-                            <option value="">Todos</option>
-                            <option value="regular"      {% if request.GET.tipo == "regular" %}selected{% endif %}>Regular</option>
-                            <option value="reaplicacao"  {% if request.GET.tipo == "reaplicacao" %}selected{% endif %}>Reaplicação</option>
-                            <option value="PPL"          {% if request.GET.tipo == "PPL" %}selected{% endif %}>PPL</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label for="area">Área</label>
-                        <select name="area_conhecimento" id="area">
-                            <option value="">Todas</option>
-                            {% for area in areas_disponiveis %}
-                                <option value="{{ area }}" {% if request.GET.area_conhecimento == area %}selected{% endif %}>
-                                    {{ area }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn-primary">Filtrar</button>
-
-                    {% if request.GET %}
-                        <a href="." class="btn-clear">Limpar filtros</a>
-                    {% endif %}
-
-                </form>
-            </div>
-        </section>
-
-        <!-- RESULTS -->
-        <section class="provas-section">
-            <div class="container">
-
-                <p class="results-count">
-                    {% if provas %}
-                        {{ provas|length }} prova{{ provas|length|pluralize:"s" }} encontrada{{ provas|length|pluralize:"s" }}
-                    {% else %}
-                        Nenhuma prova encontrada
-                    {% endif %}
-                </p>
-
-                {% if provas %}
-                <div class="provas-grid">
-                    {% for prova in provas %}
-                    <article class="prova-card">
-
-                        <div class="prova-card-header">
-                            <span class="prova-badge prova-badge--area">{{ prova.area_conhecimento }}</span>
-                            <span class="prova-badge prova-badge--tipo">{{ prova.tipo|capfirst }}</span>
-                        </div>
-
-                        <div class="prova-card-body">
-                            <h2 class="prova-title">ENEM {{ prova.ano }}</h2>
-                            <p class="prova-edicao">{{ prova.edicao }}</p>
-
-                            <div class="prova-meta">
-                                <div class="prova-meta-item">
-                                    <span class="meta-icon">📝</span>
-                                    <span>{{ prova.total_questoes }} questões</span>
-                                </div>
-                                <div class="prova-meta-item">
-                                    <span class="meta-icon">📅</span>
-                                    <span>{{ prova.data_cadastro|date:"d/m/Y" }}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="prova-card-footer">
-                            <a href="{% url 'provas:detalhe' prova.pk %}" class="btn-primary">
-                                Ver prova
-                            </a>
-                            {% if prova.pdf_prova %}
-                            <a href="{{ prova.pdf_prova.url }}" class="btn-download" target="_blank" rel="noopener">
-                                ⬇ PDF
-                            </a>
-                            {% endif %}
-                        </div>
-
-                    </article>
+                <select name="ano">
+                    <option value="">Ano</option>
+                    {% for ano in anos_disponiveis %}
+                        <option value="{{ ano }}">{{ ano }}</option>
                     {% endfor %}
+                </select>
+
+                <select name="edicao">
+                    <option value="">Edição</option>
+                    <option value="1º dia">1º dia</option>
+                    <option value="2º dia">2º dia</option>
+                </select>
+
+                <select name="tipo">
+                    <option value="">Tipo</option>
+                    <option value="regular">Regular</option>
+                    <option value="reaplicacao">Reaplicação</option>
+                    <option value="PPL">PPL</option>
+                </select>
+
+                <select name="area_conhecimento">
+                    <option value="">Área</option>
+                    {% for area in areas_disponiveis %}
+                        <option value="{{ area }}">{{ area }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit" class="btn">Filtrar</button>
+            </form>
+        </section>
+
+        <!-- RESULTADOS -->
+        {% if provas %}
+        <section class="grid">
+            {% for prova in provas %}
+            <div class="card">
+
+                <div class="card-top">
+                    <span class="badge black">{{ prova.area_conhecimento }}</span>
+                    <span class="badge light">{{ prova.tipo }}</span>
                 </div>
 
-                {% else %}
-                <div class="empty-state">
-                    <span class="empty-icon">📂</span>
-                    <h3>Nenhuma prova encontrada</h3>
-                    <p>Tente ajustar os filtros ou <a href=".">limpar a busca</a>.</p>
+                <h2>ENEM {{ prova.ano }}</h2>
+                <p>{{ prova.edicao }}</p>
+
+                <div class="meta">
+                    <span>📝 {{ prova.total_questoes }} questões</span>
+                    <span>📅 {{ prova.data_cadastro|date:"d/m/Y" }}</span>
                 </div>
-                {% endif %}
+
+                <div class="card-actions">
+                    <a href="{% url 'provas_antigas:detalhe' prova.pk %}" class="btn">Ver</a>
+
+                    {% if prova.pdf_prova %}
+                    <a href="{{ prova.pdf_prova.url }}" class="btn-outline">PDF</a>
+                    {% endif %}
+                </div>
 
             </div>
+            {% endfor %}
         </section>
+
+        {% else %}
+        <div class="empty">
+            <p>Nenhuma prova encontrada</p>
+        </div>
+        {% endif %}
 
     </main>
 
