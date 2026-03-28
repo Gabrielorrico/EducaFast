@@ -1,12 +1,19 @@
 {% load static %}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3fee19203b858c0b36dd4e7f93243c113f0e2fcb
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>EducaFast Cronograma</title>
+<<<<<<< HEAD
     <link rel="stylesheet"  href="{% static 'cronograma/cronograma.css' %}">
+=======
+    <link rel="stylesheet" href="{% static 'cronogramacronograma.css %}">
+>>>>>>> 3fee19203b858c0b36dd4e7f93243c113f0e2fcb
 </head>
 <body>
         <div class="layout">
@@ -52,7 +59,10 @@
                 <div class="dia-coluna">QUINTA-FEIRA</div>
                 <div class="dia-coluna">SEXTA-FEIRA</div>
 
+<<<<<<< HEAD
                 
+=======
+>>>>>>> 3fee19203b858c0b36dd4e7f93243c113f0e2fcb
                 <div class="slot-vazio" onclick="abrirModal(this)"></div>
                 <div class="slot-vazio" onclick="abrirModal(this)"></div>
                 <div class="slot-vazio" onclick="abrirModal(this)"></div>
@@ -84,6 +94,7 @@
             <h3>Nova sessão de estudo</h3>
             <label>Disciplina</label>
             <select id="selectDisciplina">
+<<<<<<< HEAD
                 <option value="Matemática">Matemática</option>
                 <option value="Biologia">Biologia</option>
                 <option value="Redacao">Redação</option>
@@ -92,15 +103,33 @@
                 <option value="Linguagens">Linguagens</option>
                 <option value="Historia">História</option>
                 <option value="Geografia">Geografia</option>
+=======
+                <option value="matematica">Matemática</option>
+                <option value="biologia">Biologia</option>
+                <option value="redacao">Redação</option>
+                <option value="fisic">Física</option>
+                <option value="quimica">Química</option>
+                <option value="linguagens">Linguagens</option>
+                <option value="historia">História</option>
+                <option value="geografia">Geografia</option>
+>>>>>>> 3fee19203b858c0b36dd4e7f93243c113f0e2fcb
             </select>
 
             <label>Tipo</label>
             <select id="selectTipo">
+<<<<<<< HEAD
                 <option value="Exercicio">Exercício</option>
                 <option value="Revisao">Revisão</option>
                 <option value="Simulado">Simulado</option>
                 <option value="Leitura">Leitura</option>
                 <option value="Pratica">Prática</option>
+=======
+                <option value="exercicio">Exercício</option>
+                <option value="revisao">Revisão</option>
+                <option value="simulado">Simulado</option>
+                <option value="leitura">Leitura</option>
+                <option value="pratica">Prática</option>
+>>>>>>> 3fee19203b858c0b36dd4e7f93243c113f0e2fcb
             </select>
             
             <label>Atividade</label>
@@ -112,6 +141,7 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <div id="modalConfirmar" class="modal-overlay">
     <div class="modal-content">
         <h3>Apagar sessão</h3>
@@ -152,12 +182,40 @@
             `;
 
         fecharModal();}
+=======
+    <script>
+        let slotSelecionado = null;
+        function abrirModal(elemento) {
+            slotSelecionado = elemento;
+            document.getElementById('modalMateria').style.display = 'flex';
+        }
+        function fecharModal() {
+            document.getElementById('modalMateria').style.display = 'none';
+        }
+        window.onclick = function(event) {
+        if (event.target == document.getElementById('modalMateria')) fecharModal();}
+
+        function adicionarMateria(disciplina, tipo, atividade) {
+            if (!slotSelecionado) return;
+
+            slotSelecionado.classList.remove("slot-vazio");
+            slotSelecionado.classList.add("slot-materia");
+
+            slotSelecionado.innerHTML = `
+                <div class="materia-nome">${disciplina}</div>
+                <div class="materia-detalhe">${atividade}</div>
+                <div class="tag-tipo">${tipo}</div>
+            `;
+
+    fecharModal();}
+>>>>>>> 3fee19203b858c0b36dd4e7f93243c113f0e2fcb
     
     document.getElementById("btnSalvar").onclick = function() {
         let disciplina = document.getElementById("selectDisciplina").value;
         let tipo = document.getElementById("selectTipo").value;
         let atividade = document.getElementById("inputAtividade").value;
 
+<<<<<<< HEAD
         adicionarMateria(disciplina, tipo, atividade);
     }
 
@@ -196,5 +254,11 @@
 }
 
 </script>
+=======
+        adicionarMateria(disciplina, tipo, atividade);}
+
+        
+    </script>
+>>>>>>> 3fee19203b858c0b36dd4e7f93243c113f0e2fcb
 </body>
 </html>
