@@ -1,0 +1,253 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>EducaFast Cronograma</title>
+    <link rel="stylesheet"  href="{% static 'cronograma/cronograma.css' %}">
+</head>
+
+<body>
+        <div class="layout">
+    <aside class="barra-lateral">
+        <div class="logo-barra-lat">EDUCA<strong> FAST</strong></div>
+        <div class="barra-lateral-tagline">Revisão para o enem</div>
+
+        <a class="nav-item" data-page="dashboard"  onclick="navigate(this, 'dashboard')">
+        <span class="nav-icone">🏠</span> Dashboard
+        </a>
+        <a class="nav-item" data-page="flashcards" onclick="navigate(this, 'flashcards')">
+        <span class="nav-icone">🃏</span> Flashcards
+        </a>
+        <a class="nav-item" data-page="desempenho" onclick="navigate(this, 'desempenho')">
+        <span class="nav-icone">📊</span> Desempenho
+        </a>
+        <a class="nav-item active" data-page="cronograma" href="{% url 'cronograma:listar' %}">
+        <span class="nav-icone">📅</span> Cronograma
+        </a>
+        <a class="nav-item" data-page="assuntos" onclick="navigate(this, 'assuntos')">
+        <span class="nav-icone">📌</span> Assuntos recorrentes
+        </a>
+        <a class="nav-item active" href="/provas/">
+            <span class="nav-icone">📚</span> Provas Antigas
+        </a>
+
+        <div class="barra-lateral-label">Ferramentas</div>
+
+        <a class="nav-item" data-page="cronometro" onclick="navigate(this, 'cronometro')">
+        <span class="nav-icone">⏱️</span> Cronômetro
+        </a>
+
+        <div class="sidebar-footer">
+        <a href="/" class="btn-sair">
+            <span>🚪</span> Sair
+        </a>
+        </div>
+    </aside>
+
+    <main class="conteudo-principal">
+            <header class="header-pagina"><h1>Cronograma</h1></header>
+
+            <section class="grade-cronograma">
+
+
+                {% for dia in dias_semana %}
+                    <div class="dia-coluna">{{ dia|upper }}</div>
+                {% endfor %}
+
+
+                {% for linha in grade %}
+                    {% for sessao in linha.celulas %}
+                        {% if sessao %}
+                            <div class="slot-materia"
+                                data-id="{{ sessao.id }}"
+                                data-dia="{{ forloop.counter0 }}"
+                                data-slot="{{ linha.slot }}"
+                                onclick="abrirConfirmacao(this)">
+                                <div class="materia-nome">{{ sessao.disciplina.nome|upper }}</div>
+                                <div class="materia-detalhe">{{ sessao.descricao_atividade }}</div>
+                                <div class="tag-tipo">{{ sessao.get_tipo_display }}</div>
+                            </div>
+                        {% else %}
+                            <div class="slot-vazio"
+                                data-slot="{{ linha.slot }}"
+                                data-dia="{{ forloop.counter0 }}"
+                                onclick="abrirModal(this)">
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+
+            </section>
+        </main>
+    </div>
+
+    <div id="modalMateria" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Nova sessão de estudo</h3>
+
+            <label>Disciplina</label>
+            <select id="selectDisciplina">
+                {% for disciplina in disciplinas %}
+                    <option value="{{ disciplina.id }}">{{ disciplina.nome }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Tipo</label>
+            <select id="selectTipo">
+                {% for value, label in tipo_choices %}
+                    <option value="{{ value }}">{{ label }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Atividade</label>
+            <input type="text" id="inputAtividade" placeholder="Ex: Simulado ENEM / Conteúdo">
+
+            <div id="erroModal" style="color:red; font-size:0.8rem; margin-bottom:10px; display:none;"></div>
+
+            <div class="modal-actions">
+                <button class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
+                <button class="btn-adicionar" id="btnSalvar">Adicionar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modalConfirmar" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Apagar sessão</h3>
+            <p>Deseja apagar este bloco?</p>
+            <div class="modal-actions">
+                <button class="btn-cancelar" onclick="fecharConfirmacao()">Cancelar</button>
+                <button class="btn-adicionar" onclick="confirmarExclusao()">Apagar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const CRONOGRAMA_ID = {{ cronograma.id }};
+        const CSRF_TOKEN = '{{ csrf_token }}';
+
+        let slotSelecionado = null;
+        let slotParaExcluir = null;
+
+
+
+        function abrirModal(elemento) {
+            slotSelecionado = elemento;
+            document.getElementById('erroModal').style.display = 'none';
+            document.getElementById('inputAtividade').value = '';
+            document.getElementById('modalMateria').style.display = 'flex';
+        }
+
+        function fecharModal() {
+            document.getElementById('modalMateria').style.display = 'none';
+            slotSelecionado = null;
+        }
+
+        document.getElementById('btnSalvar').onclick = async function () {
+            if (!slotSelecionado) return;
+
+            const dia  = parseInt(slotSelecionado.dataset.dia);
+            const slot = parseInt(slotSelecionado.dataset.slot);
+            const disciplinaId = parseInt(document.getElementById('selectDisciplina').value);
+            const tipo     = document.getElementById('selectTipo').value;
+            const atividade = document.getElementById('inputAtividade').value.trim();
+            const erroEl   = document.getElementById('erroModal');
+            erroEl.style.display = 'none';
+
+            try {
+                const res = await fetch(`/cronograma/${CRONOGRAMA_ID}/sessao/criar/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': CSRF_TOKEN,
+                    },
+                    body: JSON.stringify({
+                        dia_semana: dia,
+                        slot_horario: slot,
+                        disciplina_id: disciplinaId,
+                        tipo: tipo,
+                        descricao_atividade: atividade,
+                    }),
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    
+                    slotSelecionado.classList.remove('slot-vazio');
+                    slotSelecionado.classList.add('slot-materia');
+                    slotSelecionado.dataset.id = data.id;
+                    slotSelecionado.onclick = function () { abrirConfirmacao(this); };
+                    slotSelecionado.innerHTML = `
+                        <div class="materia-nome">${data.disciplina.toUpperCase()}</div>
+                        <div class="materia-detalhe">${data.descricao_atividade}</div>
+                        <div class="tag-tipo">${data.tipo}</div>
+                    `;
+                    fecharModal();
+                } else {
+                    erroEl.textContent = data.erro || 'Erro ao criar sessão.';
+                    erroEl.style.display = 'block';
+                }
+            } catch (e) {
+                erroEl.textContent = 'Erro de conexão.';
+                erroEl.style.display = 'block';
+            }
+        };
+
+        
+
+        function abrirConfirmacao(slot) {
+            slotParaExcluir = slot;
+            document.getElementById('modalConfirmar').style.display = 'flex';
+        }
+
+        function fecharConfirmacao() {
+            document.getElementById('modalConfirmar').style.display = 'none';
+            slotParaExcluir = null;
+        }
+
+        async function confirmarExclusao() {
+            if (!slotParaExcluir) return;
+
+            const sessaoId = slotParaExcluir.dataset.id;
+
+            try {
+                const res = await fetch(`/cronograma/sessao/${sessaoId}/deletar/`, {
+                    method: 'DELETE',
+                    headers: { 'X-CSRFToken': CSRF_TOKEN },
+                });
+
+                if (res.ok) {
+                    
+                    const dia  = slotParaExcluir.dataset.dia;
+                    const slot = slotParaExcluir.dataset.slot;
+                    slotParaExcluir.innerHTML = '';
+                    slotParaExcluir.classList.remove('slot-materia');
+                    slotParaExcluir.classList.add('slot-vazio');
+                    slotParaExcluir.dataset.dia  = dia;
+                    slotParaExcluir.dataset.slot = slot;
+                    delete slotParaExcluir.dataset.id;
+                    slotParaExcluir.onclick = function () { abrirModal(this); };
+                    fecharConfirmacao();
+                } else {
+                    alert('Erro ao apagar sessão.');
+                }
+            } catch (e) {
+                alert('Erro de conexão.');
+            }
+        }
+
+        
+        window.onclick = function (event) {
+            const modal        = document.getElementById('modalMateria');
+            const modalConfirm = document.getElementById('modalConfirmar');
+            if (event.target === modal)        fecharModal();
+            if (event.target === modalConfirm) fecharConfirmacao();
+        };
+    </script>
+</body>
+</html>
