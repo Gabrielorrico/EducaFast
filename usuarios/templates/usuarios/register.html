@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EducaFast — Cadastro</title>
+    <link rel="stylesheet" href="{% static 'usuarios/style.css' %}">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container nav">
+            <div class="logo">📚 EDUCAFAST</div>
+        </div>
+    </header>
+
+    <main>
+        <section class="login-section">
+            <div class="container">
+                <div class="login-card">
+                    <h1>Crie sua conta</h1>
+                    <p class="login-subtitle">É grátis e leva menos de 1 minuto</p>
+
+                    {% if erro %}
+                    <div class="login-error">
+                        ⚠️ {{ erro }}
+                    </div>
+                    {% endif %}
+
+                    <form method="POST" action="" class="login-form">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="username">Usuário</label>
+                            <input type="text" id="username" name="username"
+                                   placeholder="Escolha um nome de usuário" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email"
+                                   placeholder="Seu e-mail" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password1">Senha</label>
+                            <input type="password" id="password1" name="password1"
+                                   placeholder="Crie uma senha" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password2">Confirme a senha</label>
+                            <input type="password" id="password2" name="password2"
+                                   placeholder="Repita a senha" required>
+                        </div>
+
+                        <button type="submit" class="btn-primary btn-full">
+                            Criar conta
+                        </button>
+                    </form>
+
+                    <p class="login-signup">
+                        Já tem conta?
+                        <a href="{% url 'login' %}">Entrar</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

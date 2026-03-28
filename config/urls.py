@@ -27,8 +27,3 @@ urlpatterns = [
     path('provas/', include('provas_antigas.urls')),
 
 ]
-    
-    
-
-
-
