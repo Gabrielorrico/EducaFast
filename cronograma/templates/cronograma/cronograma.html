@@ -1,11 +1,12 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>EducaFast Cronograma</title>
-    <link rel="stylesheet" href="{% static 'cronogramacronograma.css %}">
+    <link rel="stylesheet"  href="{% static 'cronograma/cronograma.css' %}">
 </head>
 
 <body>
@@ -52,6 +53,7 @@
                 <div class="dia-coluna">QUINTA-FEIRA</div>
                 <div class="dia-coluna">SEXTA-FEIRA</div>
 
+                
                 <div class="slot-vazio" onclick="abrirModal(this)"></div>
                 <div class="slot-vazio" onclick="abrirModal(this)"></div>
                 <div class="slot-vazio" onclick="abrirModal(this)"></div>
@@ -83,23 +85,23 @@
             <h3>Nova sessão de estudo</h3>
             <label>Disciplina</label>
             <select id="selectDisciplina">
-                <option value="matematica">Matemática</option>
-                <option value="biologia">Biologia</option>
-                <option value="redacao">Redação</option>
-                <option value="fisic">Física</option>
-                <option value="quimica">Química</option>
-                <option value="linguagens">Linguagens</option>
-                <option value="historia">História</option>
-                <option value="geografia">Geografia</option>
+                <option value="Matemática">Matemática</option>
+                <option value="Biologia">Biologia</option>
+                <option value="Redacao">Redação</option>
+                <option value="Fisic">Física</option>
+                <option value="Quimica">Química</option>
+                <option value="Linguagens">Linguagens</option>
+                <option value="Historia">História</option>
+                <option value="Geografia">Geografia</option>
             </select>
 
             <label>Tipo</label>
             <select id="selectTipo">
-                <option value="exercicio">Exercício</option>
-                <option value="revisao">Revisão</option>
-                <option value="simulado">Simulado</option>
-                <option value="leitura">Leitura</option>
-                <option value="pratica">Prática</option>
+                <option value="Exercicio">Exercício</option>
+                <option value="Revisao">Revisão</option>
+                <option value="Simulado">Simulado</option>
+                <option value="Leitura">Leitura</option>
+                <option value="Pratica">Prática</option>
             </select>
             
             <label>Atividade</label>
@@ -111,40 +113,89 @@
         </div>
     </div>
 
-    <script>
-        let slotSelecionado = null;
-        function abrirModal(elemento) {
-            slotSelecionado = elemento;
-            document.getElementById('modalMateria').style.display = 'flex';
+    <div id="modalConfirmar" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Apagar sessão</h3>
+        <p>Deseja apagar este bloco?</p>
+
+        <div class="modal-actions">
+            <button class="btn-cancelar" onclick="fecharConfirmacao()">Cancelar</button>
+            <button class="btn-adicionar" onclick="confirmarExclusao()">Apagar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let slotSelecionado = null;
+    function abrirModal(elemento) {
+        slotSelecionado = elemento;
+        document.getElementById('modalMateria').style.display = 'flex';
         }
-        function fecharModal() {
-            document.getElementById('modalMateria').style.display = 'none';
+
+    function fecharModal() {
+        document.getElementById('modalMateria').style.display = 'none';
         }
-        window.onclick = function(event) {
-        if (event.target == document.getElementById('modalMateria')) fecharModal();}
 
-        function adicionarMateria(disciplina, tipo, atividade) {
-            if (!slotSelecionado) return;
+    window.onclick = function(event) {
+    if (event.target == document.getElementById('modalMateria')) fecharModal();
+        }
 
-            slotSelecionado.classList.remove("slot-vazio");
-            slotSelecionado.classList.add("slot-materia");
+    function adicionarMateria(disciplina, tipo, atividade) {
+        if (!slotSelecionado) return;
 
-            slotSelecionado.innerHTML = `
-                <div class="materia-nome">${disciplina}</div>
-                <div class="materia-detalhe">${atividade}</div>
-                <div class="tag-tipo">${tipo}</div>
+        slotSelecionado.classList.remove("slot-vazio");
+        slotSelecionado.classList.add("slot-materia");
+
+        slotSelecionado.innerHTML = `
+            <div class="materia-nome">${disciplina}</div>
+            <div class="materia-detalhe">${atividade}</div>
+            <div class="tag-tipo">${tipo}</div>
             `;
 
-    fecharModal();}
+        fecharModal();}
     
     document.getElementById("btnSalvar").onclick = function() {
         let disciplina = document.getElementById("selectDisciplina").value;
         let tipo = document.getElementById("selectTipo").value;
         let atividade = document.getElementById("inputAtividade").value;
 
-        adicionarMateria(disciplina, tipo, atividade);}
+        adicionarMateria(disciplina, tipo, atividade);
+    }
 
-        
-    </script>
+    let slotParaExcluir = null;
+
+    function abrirConfirmacao(slot) {
+        slotParaExcluir = slot;
+        document.getElementById('modalConfirmar').style.display = 'flex';
+    }
+
+    function fecharConfirmacao() {
+        document.getElementById('modalConfirmar').style.display = 'none';
+    }
+
+    function confirmarExclusao() {
+        if (!slotParaExcluir) return;
+
+        slotParaExcluir.innerHTML = '';
+        slotParaExcluir.classList.remove('slot-materia');
+        slotParaExcluir.classList.add('slot-vazio');
+
+        fecharConfirmacao();
+    }
+    window.onclick = function(event) {
+
+    const modal = document.getElementById('modalMateria');
+    const modalConfirm = document.getElementById('modalConfirmar');
+
+    if (event.target == modal) fecharModal();
+    if (event.target == modalConfirm) fecharConfirmacao();
+    const slot = event.target.closest('.slot-materia');
+
+    if (slot) {
+        abrirConfirmacao(slot);
+    }
+}
+
+</script>
 </body>
 </html>
