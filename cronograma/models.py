@@ -11,7 +11,7 @@ class Disciplina(models.Model):
     ]
 
     nome = models.CharField(max_length=100)
-    cor_hex = models.CharField(max_length=7, default='#888888')  
+    cor_hex = models.CharField(max_length=7, default='#888888')  # ex: '#3B82F6'
     area = models.CharField(max_length=20, choices=AREA_CHOICES)
 
     class Meta:
@@ -41,17 +41,6 @@ class Cronograma(models.Model):
 
 
 class SessaoEstudo(models.Model):
-
-    TIPO_CHOICES = [
-    ('exercicio', 'Exercício'),
-    ('revisao', 'Revisão'),
-    ('simulado', 'Simulado'),
-    ('pratica', 'Prática'),
-    ('leitura', 'Leitura'),
-    ]
-
-    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES, default='exercicio')
-    
     DIA_SEMANA_CHOICES = [
         (0, 'Segunda-feira'),
         (1, 'Terça-feira'),
@@ -68,10 +57,15 @@ class SessaoEstudo(models.Model):
     disciplina = models.ForeignKey(
         Disciplina, on_delete=models.SET_NULL, null=True, blank=True
     )
-
     dia_semana = models.IntegerField(choices=DIA_SEMANA_CHOICES)
-    slot_horario = models.PositiveSmallIntegerField(help_text='Posição do bloco na grade (0 = primeiro slot do dia)')
-    descricao_atividade = models.CharField(max_length=200,blank=True,help_text='Ex: Lista de Exercícios 04 - P.A e P.G')
+    slot_horario = models.PositiveSmallIntegerField(
+        help_text='Posição do bloco na grade (0 = primeiro slot do dia)'
+    )
+    descricao_atividade = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text='Ex: Lista de Exercícios 04 - P.A e P.G'
+    )
     concluida = models.BooleanField(default=False)
     criado_em = models.DateTimeField(auto_now_add=True)
 
