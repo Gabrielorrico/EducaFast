@@ -1,0 +1,178 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #7f8fdc;
+}
+
+/* CONTAINER */
+.page {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+/* HEADER */
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    font-size: 36px;
+}
+
+.page-header p {
+    color: #2f2f2f;
+    margin-top: 5px;
+}
+
+/* POPULARES */
+.populares {
+    margin-bottom: 40px;
+}
+
+.populares h2 {
+    margin-bottom: 15px;
+}
+
+.populares-grid {
+    display: flex;
+    gap: 20px;
+}
+
+.popular-card {
+    background: #fff;
+    padding: 18px;
+    border-radius: 16px;
+    width: 200px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: 0.2s;
+}
+
+.popular-card:hover {
+    transform: translateY(-6px);
+}
+
+.popular-card h3 {
+    font-size: 18px;
+}
+
+.popular-card p {
+    font-size: 13px;
+    color: #555;
+    margin: 8px 0 12px;
+}
+
+/* FILTROS */
+.filters {
+    margin-bottom: 30px;
+}
+
+.filters-form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filters-form select {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: none;
+    min-width: 120px;
+}
+
+/* BOTÕES */
+.btn {
+    background: #000;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-outline {
+    border: 1px solid #000;
+    padding: 10px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #000;
+    background: #fff;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    gap: 25px;
+}
+
+/* CARD PRINCIPAL */
+.card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+/* HEADER DO CARD */
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.badge {
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+}
+
+.badge.black {
+    background: #000;
+    color: #fff;
+}
+
+.badge.light {
+    background: #eee;
+}
+
+/* TÍTULO */
+.card h2 {
+    font-size: 28px;
+}
+
+.card p {
+    margin-top: 5px;
+    color: #333;
+}
+
+/* META */
+.meta {
+    margin: 15px 0;
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+}
+
+/* BOTÕES */
+.card-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+/* EMPTY */
+.empty {
+    text-align: center;
+    margin-top: 60px;
+}
