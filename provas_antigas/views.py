@@ -8,13 +8,12 @@ from .models import Prova
 def index(request):
     provas = Prova.objects.all()
 
-    # PEGAR FILTROS
+    # FILTROS
     ano = request.GET.get('ano')
     edicao = request.GET.get('edicao')
     tipo = request.GET.get('tipo')
     area = request.GET.get('area_conhecimento')
 
-    # APLICAR FILTROS
     if ano:
         provas = provas.filter(ano=ano)
 
@@ -27,13 +26,13 @@ def index(request):
     if area:
         provas = provas.filter(area_conhecimento=area)
 
-    # ORDENAÇÃO (importante para UX)
+    # ORDENAÇÃO
     provas = provas.order_by('-ano')
 
-    # PROVAS POPULARES (simples por enquanto)
+    # PROVAS POPULARES
     provas_populares = Prova.objects.order_by('-ano')[:4]
 
-    # DADOS PARA FILTROS
+    # FILTROS DISPONÍVEIS
     anos_disponiveis = (
         Prova.objects
         .values_list('ano', flat=True)
@@ -41,9 +40,24 @@ def index(request):
         .order_by('-ano')
     )
 
+    tipos_disponiveis = (
+        Prova.objects
+        .order_by('tipo')
+        .values_list('tipo', flat=True)
+        .distinct()
+    )
+
     areas_disponiveis = (
         Prova.objects
+        .order_by('area_conhecimento')
         .values_list('area_conhecimento', flat=True)
+        .distinct()
+    )
+
+    edicoes_disponiveis = (
+        Prova.objects
+        .order_by('edicao')
+        .values_list('edicao', flat=True)
         .distinct()
     )
 
@@ -52,6 +66,8 @@ def index(request):
         'provas_populares': provas_populares,
         'anos_disponiveis': anos_disponiveis,
         'areas_disponiveis': areas_disponiveis,
+        'edicoes_disponiveis': edicoes_disponiveis,
+        'tipos_disponiveis': tipos_disponiveis,
     }
 
     return render(request, 'provas_antigas/index.html', context)
@@ -66,7 +82,7 @@ def detalhe(request, pk):
     })
 
 
-# 🔥 OPCIONAL (recomendado): DOWNLOAD CONTROLADO
+# DOWNLOAD CONTROLADO
 @login_required
 def baixar_prova(request, pk):
     prova = get_object_or_404(Prova, pk=pk)
