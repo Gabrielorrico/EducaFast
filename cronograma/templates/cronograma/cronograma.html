@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>EducaFast Cronograma</title>
+    <link rel="stylesheet" href="{% static 'cronogramacronograma.css %}">
+</head>
+<body>
+        <div class="layout">
+    <aside class="barra-lateral">
+        <div class="logo-barra-lat">EDUCA<strong> FAST</strong></div>
+        <div class="barra-lateral-tagline">Revisão para o enem</div>
+
+        <a class="nav-item" data-page="dashboard" onclick="navigate(this, 'dashboard')">
+        <span class="nav-icone">🏠</span> Dashboard
+        </a>
+        <a class="nav-item" data-page="flashcards" onclick="navigate(this, 'flashcards')">
+        <span class="nav-icone">🃏</span> Flashcards
+        </a>
+        <a class="nav-item" data-page="desempenho" onclick="navigate(this, 'desempenho')">
+        <span class="nav-icone">📊</span> Desempenho
+        </a>
+        <a class="nav-item active" data-page="cronograma" onclick="navigate(this, 'cronograma')">
+        <span class="nav-icone">📅</span> Cronograma
+        </a>
+        <a class="nav-item" data-page="assuntos" onclick="navigate(this, 'assuntos')">
+        <span class="nav-icone">📌</span> Assuntos recorrentes
+        </a>
+
+        <div class="barra-lateral-label">Ferramentas</div>
+
+        <a class="nav-item" data-page="cronometro" onclick="navigate(this, 'cronometro')">
+        <span class="nav-icone">⏱️</span> Cronômetro
+        </a>
+
+        <div class="sidebar-footer">
+        <a href="/" class="btn-sair">
+            <span>🚪</span> Sair
+        </a>
+        </div>
+    </aside>
+
+        <main class="conteudo-principal">
+            <header class="header-pagina"><h1>Cronograma</h1></header>
+            <section class="grade-cronograma">
+                <div class="dia-coluna">SEGUNDA-FEIRA</div>
+                <div class="dia-coluna">TERÇA-FEIRA</div>
+                <div class="dia-coluna">QUARTA-FEIRA</div>
+                <div class="dia-coluna">QUINTA-FEIRA</div>
+                <div class="dia-coluna">SEXTA-FEIRA</div>
+
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                <div class="slot-vazio" onclick="abrirModal(this)"></div>
+                
+
+            </section>
+        </main>
+    </div>
+
+    <div id="modalMateria" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Nova sessão de estudo</h3>
+            <label>Disciplina</label>
+            <select id="selectDisciplina">
+                <option value="matematica">Matemática</option>
+                <option value="biologia">Biologia</option>
+                <option value="redacao">Redação</option>
+                <option value="fisic">Física</option>
+                <option value="quimica">Química</option>
+                <option value="linguagens">Linguagens</option>
+                <option value="historia">História</option>
+                <option value="geografia">Geografia</option>
+            </select>
+
+            <label>Tipo</label>
+            <select id="selectTipo">
+                <option value="exercicio">Exercício</option>
+                <option value="revisao">Revisão</option>
+                <option value="simulado">Simulado</option>
+                <option value="leitura">Leitura</option>
+                <option value="pratica">Prática</option>
+            </select>
+            
+            <label>Atividade</label>
+            <input type="text" id="inputAtividade" placeholder="Ex: Simulado ENEM / Conteúdo">
+            <div class="modal-actions">
+                <button class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
+                <button class="btn-adicionar" id="btnSalvar">Adicionar</button> 
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let slotSelecionado = null;
+        function abrirModal(elemento) {
+            slotSelecionado = elemento;
+            document.getElementById('modalMateria').style.display = 'flex';
+        }
+        function fecharModal() {
+            document.getElementById('modalMateria').style.display = 'none';
+        }
+        window.onclick = function(event) {
+        if (event.target == document.getElementById('modalMateria')) fecharModal();}
+
+        function adicionarMateria(disciplina, tipo, atividade) {
+            if (!slotSelecionado) return;
+
+            slotSelecionado.classList.remove("slot-vazio");
+            slotSelecionado.classList.add("slot-materia");
+
+            slotSelecionado.innerHTML = `
+                <div class="materia-nome">${disciplina}</div>
+                <div class="materia-detalhe">${atividade}</div>
+                <div class="tag-tipo">${tipo}</div>
+            `;
+
+    fecharModal();}
+    
+    document.getElementById("btnSalvar").onclick = function() {
+        let disciplina = document.getElementById("selectDisciplina").value;
+        let tipo = document.getElementById("selectTipo").value;
+        let atividade = document.getElementById("inputAtividade").value;
+
+        adicionarMateria(disciplina, tipo, atividade);}
+
+        
+    </script>
+</body>
+</html>
