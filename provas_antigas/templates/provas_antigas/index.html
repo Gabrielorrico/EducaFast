@@ -100,6 +100,7 @@
             </form>
         </div>
 
+        {% if not request.GET %}
         <!-- POPULARES -->
         <div class="sessao-titulo">🔥 Provas populares</div>
 
@@ -112,7 +113,9 @@
             </div>
             {% endfor %}
         </div>
+        {% endif %}
 
+        {% if request.GET %}
         <!-- RESULTADOS -->
         <div class="sessao-titulo">Resultados</div>
 
@@ -137,13 +140,15 @@
             </div>
             {% endfor %}
 
-        </div>
-
-        {% else %}
-        <div class="card-info">
-            <p>Nenhuma prova encontrada</p>
+            {% else %}
+            <div class="card-info">
+                <p>Nenhuma prova encontrada</p>
+            </div>
+            {% endif %}
+            
         </div>
         {% endif %}
+
 
     </main>
 
