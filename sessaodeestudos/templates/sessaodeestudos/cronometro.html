@@ -43,11 +43,16 @@
       <a class="nav-item active" href="{% url 'sessaodeestudos:cronometro' %}">
         <span class="nav-icone">⏱️</span> Cronômetro
       </a>
+      
+      <a class="nav-item active" href="/provas/">
+          <span class="nav-icone">📚</span> Provas Antigas
+      </a>
+
+      
     </nav>
 
     <footer class="sidebar-footer">
-      {# TODO: substituir por {% url 'logout' %} quando o sistema de login estiver pronto #}
-      <a href="{% url 'home' %}" class="btn-sair">
+      <a href="{% url 'logout' %}" class="btn-sair">
         <span>🚪</span> Sair
       </a>
     </footer>
