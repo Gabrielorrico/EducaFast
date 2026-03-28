@@ -1,0 +1,74 @@
+[
+  {
+    "model": "cronograma.disciplina",
+    "pk": 1,
+    "fields": {
+      "nome": "Matemática",
+      "cor_hex": "#e17055",
+      "area": "exatas"
+    }
+  },
+  {
+    "model": "cronograma.disciplina",
+    "pk": 2,
+    "fields": {
+      "nome": "Biologia",
+      "cor_hex": "#00b894",
+      "area": "exatas"
+    }
+  },
+  {
+    "model": "cronograma.disciplina",
+    "pk": 3,
+    "fields": {
+      "nome": "Física",
+      "cor_hex": "#0984e3",
+      "area": "exatas"
+    }
+  },
+  {
+    "model": "cronograma.disciplina",
+    "pk": 4,
+    "fields": {
+      "nome": "Química",
+      "cor_hex": "#fdcb6e",
+      "area": "exatas"
+    }
+  },
+  {
+    "model": "cronograma.disciplina",
+    "pk": 5,
+    "fields": {
+      "nome": "Geografia",
+      "cor_hex": "#55efc4",
+      "area": "humanas"
+    }
+  },
+  {
+    "model": "cronograma.disciplina",
+    "pk": 6,
+    "fields": {
+      "nome": "História",
+      "cor_hex": "#fd79a8",
+      "area": "humanas"
+    }
+  },
+  {
+    "model": "cronograma.disciplina",
+    "pk": 7,
+    "fields": {
+      "nome": "Linguagens",
+      "cor_hex": "#a29bfe",
+      "area": "linguagens"
+    }
+  },
+  {
+    "model": "cronograma.disciplina",
+    "pk": 8,
+    "fields": {
+      "nome": "Redação",
+      "cor_hex": "#ff7675",
+      "area": "redacao"
+    }
+  }
+]

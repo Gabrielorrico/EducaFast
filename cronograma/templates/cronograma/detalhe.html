@@ -24,7 +24,7 @@
         <a class="nav-item" data-page="desempenho" onclick="navigate(this, 'desempenho')">
         <span class="nav-icone">📊</span> Desempenho
         </a>
-        <a class="nav-item active" data-page="cronograma" onclick="navigate(this, 'cronograma')">
+        <a class="nav-item active" data-page="cronograma" href="{% url 'cronograma:listar' %}">
         <span class="nav-icone">📅</span> Cronograma
         </a>
         <a class="nav-item" data-page="assuntos" onclick="navigate(this, 'assuntos')">
