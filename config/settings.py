@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'usuarios',
     'dashboard',
     'cronograma',
+    'provas_antigas',
 ]
 
 MIDDLEWARE = [
@@ -84,6 +85,7 @@ DATABASES = {
     }
 }
 
+LOGIN_URL = '/usuarios/login/'
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -103,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_URL = 'login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/

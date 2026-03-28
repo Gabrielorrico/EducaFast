@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Provas Antigas — EducaFast</title>
+
+    <link rel="stylesheet" href="{% static 'provas_antigas/style.css' %}">
+</head>
+
+<body>
+
+    <!-- HEADER SIMPLES -->
+    <header class="topbar">
+        <div class="container">
+            <h2>📚 EDUCAFAST</h2>
+            <a href="/usuarios/logout/" class="btn-outline">Sair</a>
+        </div>
+    </header>
+
+    <main class="page">
+
+        <!-- HEADER DA PÁGINA -->
+        <section class="page-header">
+            <h1>Provas Antigas</h1>
+            <p>Filtre e pratique com provas reais</p>
+        </section>
+
+        <section class="populares">
+            <h2>🔥 Provas populares</h2>
+
+            <div class="populares-grid">
+                {% for prova in provas_populares %}
+                <div class="popular-card">
+
+                    <h3>ENEM {{ prova.ano }}</h3>
+                    <p>{{ prova.area_conhecimento }}</p>
+
+                    <a href="{% url 'provas_antigas:detalhe' prova.pk %}" class="btn-small">
+                        Ver
+                    </a>
+
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <h1>Prova {{ prova.ano }}
+            <p>{{ prova.area_conhecimento }}</p>
+            <p>{{ prova.edicao }}</p>
+
+            <a href="{{ prova.pdf_prova.url }}">Ver PDF</a>
+        </h1>
+
+        <!-- FILTROS -->
+        <section class="filters">
+            <form method="GET" class="filters-form">
+
+                <select name="ano">
+                    <option value="">Ano</option>
+                    {% for ano in anos_disponiveis %}
+                        <option value="{{ ano }}">{{ ano }}</option>
+                    {% endfor %}
+                </select>
+
+                <select name="edicao">
+                    <option value="">Edição</option>
+                    <option value="1º dia">1º dia</option>
+                    <option value="2º dia">2º dia</option>
+                </select>
+
+                <select name="tipo">
+                    <option value="">Tipo</option>
+                    <option value="regular">Regular</option>
+                    <option value="reaplicacao">Reaplicação</option>
+                    <option value="PPL">PPL</option>
+                </select>
+
+                <select name="area_conhecimento">
+                    <option value="">Área</option>
+                    {% for area in areas_disponiveis %}
+                        <option value="{{ area }}">{{ area }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit" class="btn">Filtrar</button>
+            </form>
+        </section>
+
+        <!-- RESULTADOS -->
+        {% if provas %}
+        <section class="grid">
+            {% for prova in provas %}
+            <div class="card">
+
+                <div class="card-top">
+                    <span class="badge black">{{ prova.area_conhecimento }}</span>
+                    <span class="badge light">{{ prova.tipo }}</span>
+                </div>
+
+                <h2>ENEM {{ prova.ano }}</h2>
+                <p>{{ prova.edicao }}</p>
+
+                <div class="meta">
+                    <span>📝 {{ prova.total_questoes }} questões</span>
+                    <span>📅 {{ prova.data_cadastro|date:"d/m/Y" }}</span>
+                </div>
+
+                <div class="card-actions">
+                    <a href="{% url 'provas_antigas:detalhe' prova.pk %}" class="btn">Ver</a>
+
+                    {% if prova.pdf_prova %}
+                    <a href="{{ prova.pdf_prova.url }}" class="btn-outline">PDF</a>
+                    {% endif %}
+                </div>
+
+            </div>
+            {% endfor %}
+        </section>
+
+        {% else %}
+        <div class="empty">
+            <p>Nenhuma prova encontrada</p>
+        </div>
+        {% endif %}
+
+    </main>
+
+</body>
+</html>
