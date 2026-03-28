@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'usuarios',
     'dashboard',
     'cronograma',
+    'provas_antigas',
 ]
 
 MIDDLEWARE = [
