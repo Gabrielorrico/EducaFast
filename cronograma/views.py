@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_http_methods, require_POST
+from datetime import date
 
 from .models import Cronograma, Disciplina, SessaoEstudo
 
@@ -17,10 +18,16 @@ def listar_cronogramas(request):
         aluno=request.user, ativo=True
     ).first()
 
-    if cronograma_ativo:
-        return redirect('cronograma:detalhe', cronograma_id=cronograma_ativo.id)
+    if not cronograma_ativo:
+        cronograma_ativo = Cronograma.objects.create(
+            aluno=request.user,
+            titulo='Meu Cronograma',
+            data_inicio=date.today(),
+            data_fim=date.today().replace(month=12, day=31),
+            ativo=True,
+        )
 
-    return render(request, 'cronograma/sem_cronograma.html')
+    return redirect('cronograma:detalhe', cronograma_id=cronograma_ativo.id)
 
 
 @login_required

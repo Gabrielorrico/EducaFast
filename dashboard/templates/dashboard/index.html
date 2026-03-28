@@ -24,9 +24,10 @@
     <a class="nav-item" data-page="desempenho" onclick="navigate(this, 'desempenho')">
       <span class="nav-icone">📊</span> Desempenho
     </a>
-    <a class="nav-item" data-page="cronograma" onclick="navigate(this, 'cronograma')">
-      <span class="nav-icone">📅</span> Cronograma
-    </a>
+      <a class="nav-item" href="{% url 'cronograma:listar' %}">
+        <span class="nav-icone">📅</span> Cronograma
+      </a>
+
     <a class="nav-item" data-page="assuntos" onclick="navigate(this, 'assuntos')">
       <span class="nav-icone">📌</span> Assuntos recorrentes
     </a>
@@ -37,7 +38,7 @@
       <span class="nav-icone">⏱️</span> Cronômetro
     </a>
 
-    <a class="nav-item" href="/provas/">
+    <a class="nav-item" href="{% url 'provas_antigas:index' %}">
       <span class="nav-icone">📚</span> Provas Antigas
     </a>
 
@@ -53,13 +54,13 @@
     <div id="page-dashboard" class="page active">
       <div class="main-header">
         <h1>Dashboard</h1>
-        <span>Olá, usuário!</span>
+        <span>Olá, {{ user.first_name|default:user.username }}!</span>
       </div>
 
       <div class="estatisticas">
         <div class="estats-card">
           <div class="estats-icon">⏰</div>
-          <div class="estats-dados">0h 0m</div>
+          <div class="estats-dados">{{ tempo_total }}</div>
           <div class="estats-label">Tempo total estudado</div>
         </div>
         <div class="estats-card">
@@ -80,10 +81,12 @@
           <h4>Flashcards</h4>
           <p>Técnica de repetição espaçada</p>
         </div>
-        <div class="btn-rpd" onclick="navigate(document.querySelector('[data-page=cronometro]'), 'cronometro')">
+        
+        <a class="btn-rpd" href="{% url 'sessaodeestudos:cronometro' %}">
           <h4>Cronômetro</h4>
-          <p>Registre seu tempo de estudo</p>
-        </div>
+          <span class="nav-icone">⏱️</span> Acompanhar cronômetro
+        </a>
+        
         <div class="btn-rpd" onclick="navigate(document.querySelector('[data-page=desempenho]'), 'desempenho')">
           <h4>Desempenho</h4>
           <p>Acompanhe seu desempenho</p>

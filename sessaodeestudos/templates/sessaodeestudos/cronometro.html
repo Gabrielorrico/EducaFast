@@ -30,9 +30,11 @@
         {# TODO: adicionar quando o app desempenho estiver pronto #}
         <span class="nav-icone">📊</span> Desempenho
       </a>
-      <a class="nav-item" href="{% url 'listar_cronogramas' %}">
+
+      <a class="nav-item" href="{% url 'cronograma:listar' %}">
         <span class="nav-icone">📅</span> Cronograma
       </a>
+
       <a class="nav-item" href="#">
         {# TODO: adicionar quando o app assuntos estiver pronto #}
         <span class="nav-icone">📌</span> Assuntos recorrentes
@@ -44,7 +46,7 @@
         <span class="nav-icone">⏱️</span> Cronômetro
       </a>
       
-      <a class="nav-item" href="/provas/">
+      <a class="nav-item" href="{% url 'provas_antigas:index' %}">
           <span class="nav-icone">📚</span> Provas Antigas
       </a>
 

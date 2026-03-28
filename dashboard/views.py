@@ -1,27 +1,27 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from sessaodeestudos.models import SessaoDeEstudos
 from django.db.models import Sum
-
-@login_required
-def index(request):
-    return render(request, 'dashboard/index.html')
+from sessaodeestudos.models import SessaoDeEstudos
 
 def dashboard(request):
-    # Últimas sessões de estudo
+    # últimas sessões (já ordenado no model, mas garantimos)
     ultimas_sessoes = SessaoDeEstudos.objects.filter(
         usuario=request.user
-    ).select_related('materia').order_by('-iniciada_em')[:5]
+    ).order_by('-iniciada_em')[:5]
 
-    # Tempo total geral estudado pelo usuário
-    tempo_total = SessaoDeEstudos.objects.filter(
+    # soma total de tempo estudado
+    total_segundos = SessaoDeEstudos.objects.filter(
         usuario=request.user
     ).aggregate(total=Sum('duracao_segundos'))['total'] or 0
 
-    context = {
-        # contexto existente 
-        'ultimas_sessoes': ultimas_sessoes,
-        'tempo_total_estudo': tempo_total,
-    }
-    return render(request, 'dashboard/dashboard.html', context)
+    # converter para horas/minutos
+    horas = total_segundos // 3600
+    minutos = (total_segundos % 3600) // 60
 
+    tempo_formatado = f"{horas}h {minutos}m"
+
+    context = {
+        'ultimas_sessoes': ultimas_sessoes,
+        'tempo_total': tempo_formatado,
+    }
+
+    return render(request, 'dashboard/index.html', context)

@@ -1,3 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
 :root {
   --sidebar-bg: #fff;
   --main-bg: #7f8fdc;
@@ -38,7 +46,6 @@ html, body {
   flex-direction: column;
   padding: 28px 14px 20px;
   gap: 2px;
-  box-sizing: border-box;
 }
 
 .logo-barra-lat {
@@ -131,8 +138,8 @@ html, body {
   background: var(--main-bg);
   padding: 36px 40px;
   overflow-y: auto;
-  box-sizing: border-box;
 }
+
 
 /* páginas internas */
 .page {
@@ -211,10 +218,15 @@ html, body {
   flex: 1;
   cursor: pointer;
   transition: background 0.12s;
+
+  display: block;      
+  text-decoration: none;   
+  color: inherit;
 }
 
 .btn-rpd:hover {
   background: #c8c8c8;
+  color: inherit;
 }
 
 .btn-rpd h4 {
