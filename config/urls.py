@@ -25,6 +25,6 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     path('cronograma/', include('cronograma.urls')),
     path('usuarios/', include('usuarios.urls')),
-    path('', include('sessaodeestudos.urls', namespace='sessaodeestudos')),
+    path('estudos/', include('sessaodeestudos.urls', namespace='sessaodeestudos')),
     path('provas/', include('provas_antigas.urls')),
 ]   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

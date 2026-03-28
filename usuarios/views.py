@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
     
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('dashboard:index')
 
     erro = None
 
@@ -17,7 +17,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
 
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('dashboard:index')
 
     erro = None
 
@@ -29,7 +29,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
 
-            return redirect('index')
+            return redirect('dashboard:index')
         else:
             erro = 'Usuário ou senha inválidos.'
 
@@ -52,7 +52,7 @@ def register_view(request):
         else:
             user = User.objects.create_user(username=username, email=email, password=password1)
             login(request, user)
-            return redirect('index')
+            return redirect('dashboard:index')
 
     return render(request, 'usuarios/register.html', {'erro': erro})
 
