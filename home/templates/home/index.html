@@ -20,7 +20,7 @@
 
             <nav>
                 <a href="#">Sobre nós</a>
-                <a href="/usuarios/login/" class="btn-login">Login</a>
+                <a href="{% url 'login' %}" class="btn-login">Login</a>
             </nav>
         </div>
     </header>
@@ -31,7 +31,7 @@
             <div class="container hero-content">
                 <h1>Seu estudo, finalmente organizado em um só lugar</h1>
                 <p>Organize sua rotina e acompanhe seu progresso de forma clara</p>
-                <a href="#" class="btn-primary">Começar agora</a>
+                <a href="{% url 'register' %}" class="btn-primary">Começar agora</a>
             </div>
         </section>
 
@@ -75,7 +75,7 @@
 
             </div>
 
-                <a href="#" class="btn-primary">Criar meu plano</a>
+                <a href="{% url 'register' %}" class="btn-primary">Criar meu plano</a>
             </div>
 
             <figure class="showcase-mockup">

@@ -25,8 +25,3 @@ urlpatterns = [
     path('usuarios/', include('usuarios.urls')),
     path('provas/', include('provas_antigas.urls')),
 ]
-    
-    
-
-
-
