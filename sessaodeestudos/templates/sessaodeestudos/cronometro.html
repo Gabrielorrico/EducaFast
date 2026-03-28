@@ -5,49 +5,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cronômetro de Estudos — EDUCAFAST</title>
+
+  {# CSS base do layout/dashboard, com .layout, .barra-lateral, .main etc. #}
+  <link rel="stylesheet" href="{% static 'dashboard/style.css' %}">
+  {# CSS específico do cronômetro #}
+  <link rel="stylesheet" href="{% static 'sessaodeestudos/cronometro.css' %}" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{% static 'sessaodeestudos/cronometro.css' %}" />
 </head>
 <body>
 
 <div class="layout">
 
-  <!-- ===== BARRA LATERAL ===== -->
+  <!-- SIDEBAR (mesma de Provas Antigas, só muda o active) -->
   <aside class="barra-lateral">
     <div class="logo-barra-lat">EDUCA<strong> FAST</strong></div>
     <div class="barra-lateral-tagline">Revisão para o enem</div>
 
-    <nav aria-label="Menu principal">
-      <a class="nav-item" href="{% url 'dashboard:index' %}">
-        <span class="nav-icone">🏠</span> Dashboard
-      </a>
-      <a class="nav-item" href="#">
-        {# TODO: adicionar quando o app flashcards estiver pronto #}
-        <span class="nav-icone">🃏</span> Flashcards
-      </a>
-      <a class="nav-item" href="#">
-        {# TODO: adicionar quando o app desempenho estiver pronto #}
-        <span class="nav-icone">📊</span> Desempenho
-      </a>
-      <a class="nav-item" href="{% url 'listar_cronogramas' %}">
-        <span class="nav-icone">📅</span> Cronograma
-      </a>
-      <a class="nav-item" href="#">
-        {# TODO: adicionar quando o app assuntos estiver pronto #}
-        <span class="nav-icone">📌</span> Assuntos recorrentes
-      </a>
+    <a class="nav-item" href="{% url 'index' %}">
+      <span class="nav-icone">🏠</span> Dashboard
+    </a>
 
-      <div class="barra-lateral-label">Ferramentas</div>
+    <a class="nav-item" href="#">
+      <span class="nav-icone">🃏</span> Flashcards
+    </a>
 
-      <a class="nav-item active" href="{% url 'sessaodeestudos:cronometro' %}">
-        <span class="nav-icone">⏱️</span> Cronômetro
-      </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icone">📊</span> Desempenho
+    </a>
 
-      <a class="nav-item" href="/provas/">
+    <a class="nav-item" href="{% url 'listar_cronogramas' %}">
+      <span class="nav-icone">📅</span> Cronograma
+    </a>
+
+    <a class="nav-item" href="#">
+      <span class="nav-icone">📌</span> Assuntos recorrentes
+    </a>
+
+    <div class="barra-lateral-label">Ferramentas</div>
+
+    <a class="nav-item" href="/provas/">
       <span class="nav-icone">📚</span> Provas Antigas
-      </a>
+    </a>
 
+    <a class="nav-item active" href="{% url 'sessaodeestudos:cronometro' %}">
+      <span class="nav-icone">⏱️</span> Cronômetro
+    </a>
 
     </nav>
 
@@ -55,10 +59,10 @@
       <a href="{% url 'logout' %}" class="btn-sair">
         <span>🚪</span> Sair
       </a>
-    </footer>
+    </div>
   </aside>
 
-  <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+  <!-- CONTEÚDO PRINCIPAL -->
   <main class="main" id="conteudo-principal">
 
     <header class="main-header">
@@ -191,16 +195,13 @@
         </section>
 
       </aside>
-
     </div><!-- fim .cronometro-grid -->
 
   </main>
 </div>
 
-<!-- CSRF token para requisições AJAX -->
 <meta name="csrf-token" content="{{ csrf_token }}" />
 
-<!-- URL da API para salvar sessão (acessível pelo JS) -->
 <script>
   const URL_SALVAR_SESSAO = "{% url 'sessaodeestudos:salvar_sessao' %}";
   const URL_ULTIMAS_SESSOES = "{% url 'sessaodeestudos:ultimas_sessoes_api' %}";

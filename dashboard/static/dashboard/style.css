@@ -19,11 +19,13 @@
     }
 
     .layout {
-      display: flex;
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
-    }
+  display: flex;
+  height: 100vh;
+  width: 100%;       /* garante que ocupa toda largura */
+  margin: 0;         /* sem margem */
+  padding: 0;        /* sem padding */
+  overflow: hidden;
+}
 
     .barra-lateral {
       width: var(--sidebar-w);
