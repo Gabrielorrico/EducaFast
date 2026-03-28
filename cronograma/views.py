@@ -5,6 +5,6 @@ from .models import Cronograma
 @login_required
 def listar_cronogramas(request):
     cronogramas = Cronograma.objects.all()
-    return render(request, 'cronograma/cronograma.html', {
+    return render(request, 'cronograma/detalhe.html', {
         'cronogramas': cronogramas
     })
