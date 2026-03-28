@@ -76,15 +76,16 @@
 
                 <select name="edicao">
                     <option value="">Edição</option>
-                    <option value="1º dia">Dia 1</option>
-                    <option value="2º dia">Dia 2</option>
+                    {% for ed in edicoes_disponiveis %}
+                        <option value="{{ ed }}">{{ ed }}</option>
+                    {% endfor %}
                 </select>
 
                 <select name="tipo">
                     <option value="">Tipo</option>
-                    <option value="regular">Regular</option>
-                    <option value="reaplicacao">Reaplicação</option>
-                    <option value="PPL">PPL</option>
+                    {% for tipo in tipos_disponiveis %}
+                        <option value="{{ tipo }}">{{ tipo }}</option>
+                    {% endfor %}
                 </select>
 
                 <select name="area_conhecimento">
@@ -105,17 +106,9 @@
         <div class="btns-rapidos">
             {% for prova in provas_populares %}
             <div class="card-info">
-
                 <h4>ENEM {{ prova.ano }}</h4>
                 <p>{{ prova.area_conhecimento }} • {{ prova.tipo }}</p>
                 <p>{{ prova.edicao }}</p>
-
-                <div style="margin-top:10px;">
-                    <a href="{% url 'provas_antigas:detalhe' prova.pk %}" class="btn">
-                        Ver
-                    </a>
-                </div>
-
             </div>
             {% endfor %}
         </div>
@@ -124,7 +117,7 @@
         <div class="sessao-titulo">Resultados</div>
 
         {% if provas %}
-        <div class="infos-bloco" style="flex-wrap: wrap;">
+        <div class="infos-bloco">
 
             {% for prova in provas %}
             <div class="card-info">
@@ -135,17 +128,11 @@
 
                 <p>📝 {{ prova.total_questoes }} questões</p>
 
-                <div style="margin-top:10px;">
-                    <a href="{% url 'provas_antigas:detalhe' prova.pk %}" class="btn">
-                        Ver
-                    </a>
-
-                    {% if prova.pdf_prova %}
-                    <a href="{{ prova.pdf_prova.url }}" class="btn" download>
-                        Baixar PDF
-                    </a>
-                    {% endif %}
-                </div>
+                {% if prova.pdf_prova %}
+                <a href="{{ prova.pdf_prova.url }}" class="btn-download" download>
+                    📥 PDF
+                </a>
+                {% endif %}
 
             </div>
             {% endfor %}
