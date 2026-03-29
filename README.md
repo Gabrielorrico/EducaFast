@@ -62,6 +62,6 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
 - Bug Tracker (Entrega 2)
 
-xxxxxx
+<img width="1914" height="920" alt="image" src="https://github.com/user-attachments/assets/617d7d94-abff-4a37-a506-7e5ee2ed37a7" />
 
 </details>
