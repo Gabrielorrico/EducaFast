@@ -58,7 +58,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
 - Backlog (Entrega 2)
 
-<img width="1678" height="872" alt="Captura de tela 2026-03-25 192710" src="https://github.com/user-attachments/assets/a4b562b0-ed11-4be6-8fdb-3e29a623b4e3" />
+<img width="1678" height="866" alt="image" src="https://github.com/user-attachments/assets/dc2c10a7-352b-4532-931d-30ddf7fdbaff" />
 
 - Bug Tracker (Entrega 2)
 
