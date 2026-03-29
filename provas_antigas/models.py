@@ -7,9 +7,9 @@ from django.db import models
 
 class Prova(models.Model):
     ano = models.PositiveIntegerField()
-    edicao = models.CharField(max_length=20)          # ex: 1º dia, 2º dia
-    tipo = models.CharField(max_length=20)            # ex: regular, reaplicacao, PPL
-    area_conhecimento = models.CharField(max_length=50)  # ex: Ciências Humanas, Matemática
+    edicao = models.CharField(max_length=20)          
+    tipo = models.CharField(max_length=20)            
+    area_conhecimento = models.CharField(max_length=50)  
     total_questoes = models.PositiveIntegerField()
     pdf_prova = models.FileField(upload_to='provas_pdf/', blank=True, null=True)
     data_cadastro = models.DateTimeField(auto_now_add=True)
