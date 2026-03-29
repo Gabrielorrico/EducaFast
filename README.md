@@ -54,7 +54,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
 - Quadro (Entrega 2)
 
-<img width="1678" height="875" alt="Captura de tela 2026-03-25 192656" src="https://github.com/user-attachments/assets/006b01a6-c405-4433-85fe-418f845531d5" />
+<img width="1679" height="864" alt="Captura de tela 2026-03-29 001145" src="https://github.com/user-attachments/assets/b74c6b94-313c-43ba-92b1-1d884cd61162" />
 
 - Backlog (Entrega 2)
 
