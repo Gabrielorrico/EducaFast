@@ -52,7 +52,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
   Link Deploy - https://educafast.onrender.com
 
-- Quadro (Entrega 2)
+- Sprint 2 (Entrega 2)
 
 <img width="1679" height="864" alt="Captura de tela 2026-03-29 001145" src="https://github.com/user-attachments/assets/b74c6b94-313c-43ba-92b1-1d884cd61162" />
 
