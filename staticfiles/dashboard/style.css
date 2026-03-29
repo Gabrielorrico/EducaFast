@@ -1,0 +1,286 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+:root {
+  --sidebar-bg: #fff;
+  --main-bg: #7f8fdc;
+  --card-bg: #f3f3f3;
+  --accent: #000;
+  --sidebar-active: #000;
+  --sidebar-active-text: #fff;
+  --text: #000;
+  --text-muted: rgba(0, 0, 0, 0.6);
+  --radius: 14px;
+  --sidebar-w: 200px;
+}
+
+/* ocupa tela toda e remove margens padrão */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--main-bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+
+/* container: sidebar + conteúdo */
+.layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* SIDEBAR */
+.barra-lateral {
+  width: var(--sidebar-w);
+  background: var(--sidebar-bg);
+  border-right: 1px solid #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 14px 20px;
+  gap: 2px;
+}
+
+.logo-barra-lat {
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: -0.3px;
+  padding-left: 8px;
+  margin-bottom: 2px;
+}
+
+.barra-lateral-tagline {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  padding-left: 8px;
+  margin-bottom: 22px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  transition: background 0.12s;
+}
+
+.nav-item:hover {
+  background: #f2f2f2;
+}
+
+.nav-item.active {
+  background: var(--sidebar-active);
+  color: var(--sidebar-active-text);
+}
+
+.nav-icone {
+  font-size: 0.95rem;
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.barra-lateral-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 14px 8px 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+}
+
+.btn-sair {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #f2f2f2;
+  border: none;
+  padding: 9px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #333;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  transition: background 0.12s;
+}
+
+.btn-sair:hover {
+  background: #e4e4e4;
+}
+
+/* CONTEÚDO PRINCIPAL */
+.main {
+  flex: 1;
+  background: var(--main-bg);
+  padding: 36px 40px;
+  overflow-y: auto;
+}
+
+
+/* páginas internas */
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.main-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.main-header h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.main-header span {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.estatisticas {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.estats-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.estats-icon {
+  font-size: 1.7rem;
+}
+
+.estats-dados {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.estats-label {
+  font-size: 0.72rem;
+  color: #555;
+}
+
+.sessao-titulo {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.btns-rapidos {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.btn-rpd {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px 18px;
+  flex: 1;
+  cursor: pointer;
+  transition: background 0.12s;
+
+  display: block;      
+  text-decoration: none;   
+  color: inherit;
+}
+
+.btn-rpd:hover {
+  background: #c8c8c8;
+  color: inherit;
+}
+
+.btn-rpd h4 {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.btn-rpd p {
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.infos-bloco {
+  display: flex;
+  gap: 16px;
+}
+
+.card-info {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px 18px;
+  flex: 1;
+  min-height: 120px;
+}
+
+.card-info h4 {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.card-info p {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.centro-tela {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  gap: 14px;
+  color: #000000;
+}
+
+.centro-tela span {
+  font-size: 3.5rem;
+}
+
+.centro-tela p {
+  font-size: 1rem;
+  font-weight: 500;
+}

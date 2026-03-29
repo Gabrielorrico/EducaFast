@@ -1,0 +1,278 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #7f8fdc;
+    color: #000;
+}
+
+/* CONTAINER */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* HEADER */
+.header {
+    padding: 20px 0;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #000;
+}
+
+.btn-login {
+    background: #000;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 100px 0 60px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    max-width: 800px;
+    margin: 0 auto 20px;
+}
+
+.hero p {
+    color: #2f2f2f;
+    margin-bottom: 25px;
+}
+
+/* BOTÃO */
+.btn-primary {
+    background: #000;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.25s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+/* CARDS */
+.features {
+    padding: 40px 0 60px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.card {
+    background: #f3f3f3;
+    padding: 28px 22px;
+    border-radius: 18px;
+    text-align: center;
+    flex: 1;
+    min-height: 150px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.card h2 {
+    font-size: 28px;
+    margin-bottom: 14px;
+}
+
+.card p {
+    font-size: 14px;
+    line-height: 1.4;
+    max-width: 210px;
+    margin: 0 auto;
+}
+
+/* CTA */
+.cta {
+    padding: 40px 0 0;
+}
+
+.cta-content {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-height: 340px;
+    overflow: hidden;
+}
+
+.cta-text {
+    padding-top: 90px;
+    z-index: 2;
+}
+
+.cta-text h2 {
+    font-size: 34px;
+    line-height: 1;
+    max-width: 310px;
+    margin-bottom: 18px;
+}
+
+.cta-text .btn-primary {
+    margin-top: 4px;
+}
+
+
+.showcase {
+    padding: 40px 0 70px;
+}
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    align-items: center;
+    gap: 40px;
+    min-height: 420px;
+}
+
+.showcase-text {
+    padding-top: 10px;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: rgba(0, 0, 0, 0.65);
+    margin-bottom: 16px;
+}
+
+.showcase-text h2 {
+    font-size: 44px;
+    line-height: 0.98;
+    max-width: 420px;
+    margin-bottom: 18px;
+}
+
+.showcase-text p {
+    max-width: 420px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.72);
+    margin-bottom: 22px;
+}
+
+.showcase-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.highlight-item {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(6px);
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+}
+
+.showcase-mockup {
+    position: relative;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.showcase-mockup img {
+    width: min(100%, 760px);
+    display: block;
+    border-radius: 28px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    transform: translateX(28px);
+}
+
+.mockup-badge {
+    position: absolute;
+    top: -18px;
+    left: 36px;
+    background: #000;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 14px;
+    border-radius: 999px;
+    z-index: 2;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+@media (max-width: 900px) {
+    .showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        min-height: auto;
+    }
+
+    .showcase-text {
+        text-align: center;
+    }
+
+    .showcase-text h2,
+    .showcase-text p {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .showcase-highlights {
+        justify-content: center;
+    }
+
+    .showcase-mockup {
+        justify-content: center;
+    }
+
+    .showcase-mockup img {
+        transform: none;
+        width: 100%;
+    }
+
+    .mockup-badge {
+        left: 18px;
+    }
+}
