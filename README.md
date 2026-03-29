@@ -48,7 +48,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
   Relate Programação em Par - https://docs.google.com/document/d/1fdD-QaiXSmVtaeB57ypChtCTnbF1S1TEWM8AG5SRYdY/edit?usp=sharing
 
-  Link do Screen Cast - 
+  Link do Screen Cast - https://youtu.be/RZ7JmgbHMCY
 
   Link Deploy - https://educafast.onrender.com
 
