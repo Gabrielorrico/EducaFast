@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Provas Antigas — EducaFast</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'dashboard/style.css' %}">
     <link rel="stylesheet" href="{% static 'provas_antigas/style.css' %}">
@@ -12,45 +11,33 @@
 
 <body>
 <div class="layout">
-
-    <!-- ===== BARRA LATERAL ===== -->
   <aside class="barra-lateral">
     <div class="logo-barra-lat">EDUCA<strong> FAST</strong></div>
     <div class="barra-lateral-tagline">Revisão para o enem</div>
-
     <nav aria-label="Menu principal">
       <a class="nav-item" href="{% url 'dashboard:index' %}">
         <span class="nav-icone">🏠</span> Dashboard
       </a>
       <a class="nav-item" href="#">
-        {# TODO: adicionar quando o app flashcards estiver pronto #}
         <span class="nav-icone">🃏</span> Flashcards
       </a>
       <a class="nav-item" href="#">
-        {# TODO: adicionar quando o app desempenho estiver pronto #}
         <span class="nav-icone">📊</span> Desempenho
       </a>
       <a class="nav-item" href="{% url 'cronograma:listar' %}">
         <span class="nav-icone">📅</span> Cronograma
       </a>
       <a class="nav-item" href="#">
-        {# TODO: adicionar quando o app assuntos estiver pronto #}
         <span class="nav-icone">📌</span> Assuntos recorrentes
       </a>
-
       <div class="barra-lateral-label">Ferramentas</div>
-
       <a class="nav-item" href="{% url 'sessaodeestudos:cronometro' %}">
         <span class="nav-icone">⏱️</span> Cronômetro
       </a>
-      
       <a class="nav-item active" href="{% url 'provas_antigas:index' %}">
-          <span class="nav-icone">📚</span> Provas Antigas
+        <span class="nav-icone">📚</span> Provas Antigas
       </a>
-
-      
     </nav>
-
     <footer class="sidebar-footer">
       <a href="{% url 'logout' %}" class="btn-sair">
         <span>🚪</span> Sair
@@ -69,46 +56,33 @@
                 <select name="ano">
                     <option value="">Ano</option>
                     {% for ano in anos_disponiveis %}
-                        <option value="{{ ano }}" {% if request.GET.ano == ano|stringformat:"s" %}selected{% endif %}>
-                            {{ ano }}
-                        </option>
+                        <option value="{{ ano }}" {% if request.GET.ano == ano|stringformat:"s" %}selected{% endif %}>{{ ano }}</option>
                     {% endfor %}
                 </select>
-
                 <select name="edicao">
                     <option value="">Edição</option>
                     {% for ed in edicoes_disponiveis %}
-                        <option value="{{ ed }}" {% if request.GET.edicao == ed %}selected{% endif %}>
-                            {{ ed }}
-                        </option>
+                        <option value="{{ ed }}" {% if request.GET.edicao == ed %}selected{% endif %}>{{ ed }}</option>
                     {% endfor %}
                 </select>
-
                 <select name="tipo">
                     <option value="">Tipo</option>
                     {% for tipo in tipos_disponiveis %}
-                        <option value="{{ tipo }}" {% if request.GET.tipo == tipo %}selected{% endif %}>
-                            {{ tipo }}
-                        </option>
+                        <option value="{{ tipo }}" {% if request.GET.tipo == tipo %}selected{% endif %}>{{ tipo }}</option>
                     {% endfor %}
                 </select>
-
                 <select name="area_conhecimento">
                     <option value="">Área</option>
                     {% for area in areas_disponiveis %}
-                        <option value="{{ area }}" {% if request.GET.area_conhecimento == area %}selected{% endif %}>
-                            {{ area }}
-                        </option>
+                        <option value="{{ area }}" {% if request.GET.area_conhecimento == area %}selected{% endif %}>{{ area }}</option>
                     {% endfor %}
                 </select>
-
                 <button type="submit" class="btn">Filtrar</button>
             </form>
         </div>
 
         {% if not request.GET %}
             <div class="sessao-titulo">🔥 Provas populares</div>
-
             <div class="btns-rapidos">
                 {% for prova in provas_populares %}
                     <div class="card-info">
@@ -116,9 +90,8 @@
                         <p>{{ prova.area_conhecimento }} • {{ prova.tipo }}</p>
                         <p>{{ prova.edicao }}</p>
                         <p>📝 {{ prova.total_questoes }} questões</p>
-
-                        {% if prova.pdf_prova %}
-                            <a href="{{ prova.pdf_prova.url }}" class="btn-download" target="_blank" rel="noopener noreferrer">
+                        {% if prova.pdf_url %}
+                            <a href="{{ prova.pdf_url }}" class="btn-download" target="_blank" rel="noopener noreferrer">
                                 📄 Abrir arquivo
                             </a>
                         {% else %}
@@ -126,16 +99,13 @@
                         {% endif %}
                     </div>
                 {% empty %}
-                    <div class="card-info">
-                        <p>Nenhuma prova cadastrada.</p>
-                    </div>
+                    <div class="card-info"><p>Nenhuma prova cadastrada.</p></div>
                 {% endfor %}
             </div>
         {% endif %}
 
         {% if request.GET %}
             <div class="sessao-titulo">Resultados</div>
-
             {% if provas %}
                 <div class="infos-bloco">
                     {% for prova in provas %}
@@ -144,9 +114,8 @@
                             <p>{{ prova.area_conhecimento }} • {{ prova.tipo }}</p>
                             <p>{{ prova.edicao }}</p>
                             <p>📝 {{ prova.total_questoes }} questões</p>
-
-                            {% if prova.pdf_prova %}
-                                <a href="{{ prova.pdf_prova.url }}" class="btn-download" target="_blank" rel="noopener noreferrer">
+                            {% if prova.pdf_url %}
+                                <a href="{{ prova.pdf_url }}" class="btn-download" target="_blank" rel="noopener noreferrer">
                                     📄 Abrir arquivo
                                 </a>
                             {% else %}
@@ -154,19 +123,14 @@
                             {% endif %}
                         </div>
                     {% empty %}
-                        <div class="card-info">
-                            <p>Nenhuma prova encontrada</p>
-                        </div>
+                        <div class="card-info"><p>Nenhuma prova encontrada</p></div>
                     {% endfor %}
                 </div>
             {% else %}
-                <div class="card-info">
-                    <p>Nenhuma prova encontrada</p>
-                </div>
+                <div class="card-info"><p>Nenhuma prova encontrada</p></div>
             {% endif %}
         {% endif %}
     </main>
-
 </div>
 </body>
 </html>
