@@ -50,7 +50,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
   Link do Screen Cast - 
 
-  Link Deploy - 
+  Link Deploy - https://educafast.onrender.com
 
 - Quadro (Entrega 2)
 
