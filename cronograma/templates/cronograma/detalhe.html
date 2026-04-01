@@ -122,6 +122,13 @@
             <label>Atividade</label>
             <input type="text" id="inputAtividade" placeholder="Ex: Simulado ENEM / Conteúdo">
 
+            <label>Prioridade</label>
+            <select id="selectPrioridade">
+                {% for prioridade in prioridades %}
+                    <option value="{{ prioridade.id }}">{{ prioridade.nome }}</option>
+                {% endfor %}
+            </select>
+
             <div id="erroModal" style="color:red; font-size:0.8rem; margin-bottom:10px; display:none;"></div>
 
             <div class="modal-actions">
