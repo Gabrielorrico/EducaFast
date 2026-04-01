@@ -78,6 +78,7 @@ class SessaoEstudo(models.Model):
         help_text='Ex: Lista de Exercícios 04 - P.A e P.G'
     )
     concluida = models.BooleanField(default=False)
+    prioritaria = models.BooleanField(default=False) 
     criado_em = models.DateTimeField(auto_now_add=True)
 
     class Meta:
