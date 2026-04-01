@@ -60,6 +60,7 @@ def detalhe_cronograma(request, cronograma_id):
         'disciplinas': Disciplina.objects.all().order_by('nome'),
         'num_slots': range(NUM_SLOTS),
         'tipo_choices': SessaoEstudo.TIPO_CHOICES,
+        'prioridade_choices': SessaoEstudo.PRIORIDADE_CHOICES,
     })
 
 
@@ -88,6 +89,7 @@ def criar_sessao(request, cronograma_id):
         slot_horario=slot,
         descricao_atividade=data.get('descricao_atividade', ''),
         tipo=data.get('tipo', 'exercicio'),
+        prioridade=data.get('prioridade'), 
     )
 
     return JsonResponse({

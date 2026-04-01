@@ -124,8 +124,9 @@
 
             <label>Prioridade</label>
             <select id="selectPrioridade">
-                {% for prioridade in prioridades %}
-                    <option value="{{ prioridade.id }}">{{ prioridade.nome }}</option>
+                <option value="">Sem prioridade</option>
+                {% for value,label in prioridade_choices %}
+                    <option value="{{ value }}">{{ label }}</option>
                 {% endfor %}
             </select>
 
@@ -195,6 +196,7 @@
                         disciplina_id: disciplinaId,
                         tipo: tipo,
                         descricao_atividade: atividade,
+                        prioridade: document.getElementById('selectPrioridade').value || null,
                     }),
                 });
 
