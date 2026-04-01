@@ -248,7 +248,7 @@ html, body {
     border-radius: 10px;
 }
 
-.btn-estrela {
+.btn-check {
     position: absolute;
     top: 8px;
     right: 10px;
@@ -262,11 +262,11 @@ html, body {
     transition: color 0.2s ease, transform 0.15s ease;
 }
 
-.btn-estrela:hover {
-    color: #f5c518;
+.btn-check:hover {
+    color: green;
     transform: scale(1.2);
 }
 
-.btn-estrela.ativa {
-    color: #f5c518;
+.btn-check.ativa {
+    color: green;
 }

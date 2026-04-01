@@ -40,7 +40,7 @@
         <div class="barra-lateral-label">Ferramentas</div>
 
         <a class="nav-item" href="{% url 'sessaodeestudos:cronometro' %}">
-             <span class="nav-icone">⏱️</span> Cronômetro
+            <span class="nav-icone">⏱️</span> Cronômetro
         </a>
 
         <a class="nav-item" href="{% url 'provas_antigas:index' %}">
@@ -74,12 +74,12 @@
                                 data-slot="{{ linha.slot }}"
                                 onclick="abrirConfirmacao(this)">
 
-                                <button class="btn-estrela {{ sessao.prioritaria|yesno:'ativa,' }}"
+                                <button class="btn-check {{ sessao.prioritaria|yesno:'ativa,' }}"
                                     data-id="{{ sessao.id }}"
                                     onclick="togglePrioridade(event, this)"
                                     title="Marcar como prioritária"
                                     aria-label="Prioridade">
-                                    ★
+                                    ✔
                                 </button>
 
                                 <div class="materia-nome">{{ sessao.disciplina.nome|upper }}</div>
@@ -200,12 +200,12 @@
                     slotSelecionado.dataset.id = data.id;
                     slotSelecionado.onclick = function () { abrirConfirmacao(this); };
                     slotSelecionado.innerHTML = `
-                        <button class="btn-estrela"
+                        <button class="btn-check"
                             data-id="${data.id}"
                             onclick="togglePrioridade(event, this)"
                             title="Marcar como prioritária"
                             aria-label="Prioridade">
-                            ★
+                            ✔
                         </button>
                         <div class="materia-nome">${data.disciplina.toUpperCase()}</div>
                         <div class="materia-detalhe">${data.descricao_atividade}</div>
