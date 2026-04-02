@@ -18,9 +18,9 @@
     <a class="nav-item active" data-page="dashboard" onclick="navigate(this, 'dashboard')">
       <span class="nav-icone">🏠</span> Dashboard
     </a>
-    <a class="nav-item" data-page="flashcards" onclick="navigate(this, 'flashcards')">
-      <span class="nav-icone">🃏</span> Flashcards
-    </a>
+    <a class="nav-item" href="{% url 'flashcards:index' %}">
+        <span class="nav-icone">🃏</span> Flashcards
+      </a>
     <a class="nav-item" data-page="desempenho" onclick="navigate(this, 'desempenho')">
       <span class="nav-icone">📊</span> Desempenho
     </a>
