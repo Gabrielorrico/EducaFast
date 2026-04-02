@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -39,7 +40,7 @@
         <div class="barra-lateral-label">Ferramentas</div>
 
         <a class="nav-item" href="{% url 'sessaodeestudos:cronometro' %}">
-             <span class="nav-icone">⏱️</span> Cronômetro
+            <span class="nav-icone">⏱️</span> Cronômetro
         </a>
 
         <a class="nav-item" href="{% url 'provas_antigas:index' %}">
@@ -72,10 +73,20 @@
                                 data-dia="{{ forloop.counter0 }}"
                                 data-slot="{{ linha.slot }}"
                                 onclick="abrirConfirmacao(this)">
+
+                                <button class="btn-check {{ sessao.prioritaria|yesno:'ativa,' }}"
+                                    data-id="{{ sessao.id }}"
+                                    onclick="togglePrioridade(event, this)"
+                                    title="Marcar como prioritária"
+                                    aria-label="Prioridade">
+                                    ✔
+                                </button>
+
                                 <div class="materia-nome">{{ sessao.disciplina.nome|upper }}</div>
                                 <div class="materia-detalhe">{{ sessao.descricao_atividade }}</div>
                                 <div class="tag-tipo">{{ sessao.get_tipo_display }}</div>
                             </div>
+                            
                         {% else %}
                             <div class="slot-vazio"
                                 data-slot="{{ linha.slot }}"
@@ -110,6 +121,14 @@
 
             <label>Atividade</label>
             <input type="text" id="inputAtividade" placeholder="Ex: Simulado ENEM / Conteúdo">
+
+            <label>Prioridade</label>
+            <select id="selectPrioridade">
+                <option value="">Sem prioridade</option>
+                {% for value,label in prioridade_choices %}
+                    <option value="{{ value }}">{{ label }}</option>
+                {% endfor %}
+            </select>
 
             <div id="erroModal" style="color:red; font-size:0.8rem; margin-bottom:10px; display:none;"></div>
 
@@ -177,6 +196,7 @@
                         disciplina_id: disciplinaId,
                         tipo: tipo,
                         descricao_atividade: atividade,
+                        prioridade: document.getElementById('selectPrioridade').value || null,
                     }),
                 });
 
@@ -189,6 +209,13 @@
                     slotSelecionado.dataset.id = data.id;
                     slotSelecionado.onclick = function () { abrirConfirmacao(this); };
                     slotSelecionado.innerHTML = `
+                        <button class="btn-check"
+                            data-id="${data.id}"
+                            onclick="togglePrioridade(event, this)"
+                            title="Marcar como prioritária"
+                            aria-label="Prioridade">
+                            ✔
+                        </button>
                         <div class="materia-nome">${data.disciplina.toUpperCase()}</div>
                         <div class="materia-detalhe">${data.descricao_atividade}</div>
                         <div class="tag-tipo">${data.tipo}</div>
@@ -253,7 +280,35 @@
             const modalConfirm = document.getElementById('modalConfirmar');
             if (event.target === modal)        fecharModal();
             if (event.target === modalConfirm) fecharConfirmacao();
-        };
+        }; 
+
+        function togglePrioridade(event, btn) {
+            event.stopPropagation();
+
+            const sessaoId = btn.dataset.id;
+            const estaAtiva = btn.classList.contains('ativa');
+
+            btn.classList.toggle('ativa');
+            btn.title = estaAtiva ? 'Marcar como prioritária' : 'Remover prioridade';
+
+            fetch(`/sessao/${sessaoId}/prioridade/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ prioritaria: !estaAtiva })
+            })
+            .catch(() => {
+                btn.classList.toggle('ativa');
+            });
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
     </script>
 </body>
 </html>

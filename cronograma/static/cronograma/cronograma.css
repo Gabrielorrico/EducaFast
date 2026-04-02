@@ -149,6 +149,7 @@ html, body {
     display: flex;
     flex-direction: column;
     transition: 0.2s;
+    position: relative;
 }
 
 .slot-materia:hover {
@@ -245,4 +246,27 @@ html, body {
     flex: 1;
     padding: 10px;
     border-radius: 10px;
+}
+
+.btn-check {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #c8c8d8;          
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-check:hover {
+    color: green;
+    transform: scale(1.2);
+}
+
+.btn-check.ativa {
+    color: green;
 }

@@ -48,6 +48,12 @@ class SessaoEstudo(models.Model):
         ('simulado', 'Simulado'),
         ('pratica', 'Prática'),
         ('leitura', 'Leitura'),
+    ]
+
+    PRIORIDADE_CHOICES = [
+        ('alta', 'Alta'),
+        ('media', 'Média'),
+        ('baixa', 'Baixa'),
     ]   
     
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES, default='exercicio')
@@ -78,6 +84,7 @@ class SessaoEstudo(models.Model):
         help_text='Ex: Lista de Exercícios 04 - P.A e P.G'
     )
     concluida = models.BooleanField(default=False)
+    prioridade = models.CharField(max_length=10, choices=PRIORIDADE_CHOICES, null=True, blank=True,) 
     criado_em = models.DateTimeField(auto_now_add=True)
 
     class Meta:
