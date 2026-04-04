@@ -28,4 +28,5 @@ urlpatterns = [
     path('estudos/', include('sessaodeestudos.urls', namespace='sessaodeestudos')),
     path('provas/', include('provas_antigas.urls')),
     path('flashcards/', include('flashcards.urls')),
+    path('perfil/', include('perfil.urls')),
 ]   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
