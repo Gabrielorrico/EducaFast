@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'sessaodeestudos',
     'provas_antigas',
     'flashcards',
+    'perfil',
 ]
 
 MIDDLEWARE = [
