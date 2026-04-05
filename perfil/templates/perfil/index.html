@@ -6,7 +6,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Perfil — EducaFast</title>
-  <link rel="stylesheet" href="{% static 'perfil/style.css' %}">
+  <link rel="stylesheet" href="{% static 'perfil/style.css' %}?v=1">
 </head>
 <body>
 
@@ -41,7 +41,7 @@
     </a>
 
     <div class="sidebar-footer">
-      <a href="{% url 'perfil:perfil' %}" class="nav-item active">
+      <a href="{% url 'perfil:perfil' %}" class="nav-item perfil-link active">
         <span class="nav-icone">👤</span> Perfil
       </a>
       <a href="{% url 'logout' %}" class="btn-sair">

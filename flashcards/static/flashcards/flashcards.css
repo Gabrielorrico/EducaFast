@@ -47,6 +47,11 @@ html, body {
   flex-shrink: 0;
 }
 
+.perfil-link {
+  position: relative;
+  top: -10px;
+}
+
 .logo-barra-lat {
   font-weight: 800;
   font-size: 1rem;

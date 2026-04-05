@@ -34,6 +34,12 @@ body {
     flex-direction: column;
     padding: 28px 14px 20px;
     gap: 2px;
+    flex-shrink: 0;
+}
+
+.perfil-link {
+    position: relative;
+    top: -10px;
 }
 
 .logo-barra-lat {
