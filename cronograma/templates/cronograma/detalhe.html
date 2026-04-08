@@ -90,6 +90,9 @@
                                 <div class="materia-nome">{{ sessao.disciplina.nome|upper }}</div>
                                 <div class="materia-detalhe">{{ sessao.descricao_atividade }}</div>
                                 <div class="tag-tipo">{{ sessao.get_tipo_display }}</div>
+                                {% if sessao.prioridade %}
+                                    <div class="tag-prioridade p-{{ sessao.prioridade }}">{{ sessao.get_prioridade_display }}</div>
+                                {% endif %}
                             </div>
                             
                         {% else %}
@@ -224,6 +227,7 @@
                         <div class="materia-nome">${data.disciplina.toUpperCase()}</div>
                         <div class="materia-detalhe">${data.descricao_atividade}</div>
                         <div class="tag-tipo">${data.tipo}</div>
+                        ${data.prioridade ? `<div class="tag-prioridade p-${data.prioridade}">${{alta:'Alta', media:'Média', baixa:'Baixa'}[data.prioridade]}</div>` : ''}
                     `;
                     fecharModal();
                 } else {
