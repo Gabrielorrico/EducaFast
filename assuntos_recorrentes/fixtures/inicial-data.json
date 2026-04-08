@@ -1,0 +1,84 @@
+[
+  {
+    "model": "assuntos_recorrentes.materia",
+    "pk": 1,
+    "fields": {
+      "nome": "Matemática",
+      "icone": "📐",
+      "classe_css": "mat-matematica",
+      "ordem": 1
+    }
+  },
+  {
+    "model": "assuntos_recorrentes.materia",
+    "pk": 2,
+    "fields": {
+      "nome": "Língua Portuguesa",
+      "icone": "📖",
+      "classe_css": "mat-portugues",
+      "ordem": 2
+    }
+  },
+  {
+    "model": "assuntos_recorrentes.materia",
+    "pk": 3,
+    "fields": {
+      "nome": "Redação",
+      "icone": "✍️",
+      "classe_css": "mat-redacao",
+      "ordem": 3
+    }
+  },
+  {
+    "model": "assuntos_recorrentes.materia",
+    "pk": 4,
+    "fields": {
+      "nome": "Ciências Humanas",
+      "icone": "🌎",
+      "classe_css": "mat-humanas",
+      "ordem": 4
+    }
+  },
+  {
+    "model": "assuntos_recorrentes.materia",
+    "pk": 5,
+    "fields": {
+      "nome": "Ciências da Natureza",
+      "icone": "🔬",
+      "classe_css": "mat-natureza",
+      "ordem": 5
+    }
+  },
+
+  { "model": "assuntos_recorrentes.topico", "pk": 1,  "fields": { "materia": 1, "nome": "Funções",             "ordem": 1 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 2,  "fields": { "materia": 1, "nome": "Geometria Plana",     "ordem": 2 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 3,  "fields": { "materia": 1, "nome": "Geometria Espacial",  "ordem": 3 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 4,  "fields": { "materia": 1, "nome": "Probabilidade",       "ordem": 4 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 5,  "fields": { "materia": 1, "nome": "Progressões (PA e PG)", "ordem": 5 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 6,  "fields": { "materia": 1, "nome": "Trigonometria",       "ordem": 6 } },
+
+  { "model": "assuntos_recorrentes.topico", "pk": 7,  "fields": { "materia": 2, "nome": "Interpretação de Texto",  "ordem": 1 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 8,  "fields": { "materia": 2, "nome": "Gramática e Morfologia",  "ordem": 2 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 9,  "fields": { "materia": 2, "nome": "Literatura Brasileira",   "ordem": 3 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 10, "fields": { "materia": 2, "nome": "Figuras de Linguagem",    "ordem": 4 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 11, "fields": { "materia": 2, "nome": "Variação Linguística",    "ordem": 5 } },
+
+  { "model": "assuntos_recorrentes.topico", "pk": 12, "fields": { "materia": 3, "nome": "Introdução",              "ordem": 1 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 13, "fields": { "materia": 3, "nome": "Desenvolvimento",         "ordem": 2 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 14, "fields": { "materia": 3, "nome": "Conclusão",               "ordem": 3 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 15, "fields": { "materia": 3, "nome": "Proposta de Intervenção", "ordem": 4 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 16, "fields": { "materia": 3, "nome": "Repertório Cultural",     "ordem": 5 } },
+
+  { "model": "assuntos_recorrentes.topico", "pk": 17, "fields": { "materia": 4, "nome": "História do Brasil", "ordem": 1 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 18, "fields": { "materia": 4, "nome": "História Geral",     "ordem": 2 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 19, "fields": { "materia": 4, "nome": "Geografia",          "ordem": 3 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 20, "fields": { "materia": 4, "nome": "Filosofia",          "ordem": 4 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 21, "fields": { "materia": 4, "nome": "Sociologia",         "ordem": 5 } },
+
+  { "model": "assuntos_recorrentes.topico", "pk": 22, "fields": { "materia": 5, "nome": "Genética e Evolução",  "ordem": 1 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 23, "fields": { "materia": 5, "nome": "Ecologia",             "ordem": 2 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 24, "fields": { "materia": 5, "nome": "Termoquímica",         "ordem": 3 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 25, "fields": { "materia": 5, "nome": "Eletroquímica",        "ordem": 4 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 26, "fields": { "materia": 5, "nome": "Óptica e Ondas",       "ordem": 5 } },
+  { "model": "assuntos_recorrentes.topico", "pk": 27, "fields": { "materia": 5, "nome": "Eletromagnetismo",     "ordem": 6 } }
+]

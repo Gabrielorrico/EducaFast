@@ -15,28 +15,37 @@
     <div class="logo-barra-lat">EDUCA<strong> FAST</strong></div>
     <div class="barra-lateral-tagline">Revisão para o enem</div>
     <nav aria-label="Menu principal">
-      <a class="nav-item" href="{% url 'dashboard:index' %}">
+        
+    <a class="nav-item" href="{% url 'dashboard:index' %}">
         <span class="nav-icone">🏠</span> Dashboard
-      </a>
-      <a class="nav-item" href="{% url 'flashcards:index' %}">
+    </a>
+
+    <a class="nav-item" href="{% url 'flashcards:index' %}">
         <span class="nav-icone">🃏</span> Flashcards
-      </a>
-      <a class="nav-item" href="#">
+    </a>
+
+    <a class="nav-item" href="#">
         <span class="nav-icone">📊</span> Desempenho
-      </a>
-      <a class="nav-item" href="{% url 'cronograma:listar' %}">
+    </a>
+
+    <a class="nav-item" href="{% url 'cronograma:listar' %}">
         <span class="nav-icone">📅</span> Cronograma
-      </a>
-      <a class="nav-item" href="#">
+    </a>
+
+    <a class="nav-item" href="{% url 'assuntos_recorrentes:index' %}">
         <span class="nav-icone">📌</span> Assuntos recorrentes
-      </a>
-      <div class="barra-lateral-label">Ferramentas</div>
-      <a class="nav-item" href="{% url 'sessaodeestudos:cronometro' %}">
+    </a>
+
+    <div class="barra-lateral-label">Ferramentas</div>
+
+    <a class="nav-item" href="{% url 'sessaodeestudos:cronometro' %}">
         <span class="nav-icone">⏱️</span> Cronômetro
-      </a>
-      <a class="nav-item active" href="{% url 'provas_antigas:index' %}">
+    </a>
+
+    <a class="nav-item active" href="{% url 'provas_antigas:index' %}">
         <span class="nav-icone">📚</span> Provas Antigas
-      </a>
+    </a>
+
     </nav>
     <footer class="sidebar-footer">
 
