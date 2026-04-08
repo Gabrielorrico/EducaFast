@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'provas_antigas',
     'flashcards',
     'perfil',
+    'assuntos_recorrentes',
 ]
 
 MIDDLEWARE = [

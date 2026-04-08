@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assuntos Recorrentes – Educa Fast</title>
+  <link rel="stylesheet" href="{% static 'assuntos_recorrentes/style.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <nav class="barra-lateral">
+    <span class="logo-barra-lat">EDUCA FAST</span>
+    <span class="barra-lateral-tagline">Revisão para o enem</span>
+
+    <a class="nav-item" href="{% url 'dashboard:index' %}">
+      <span class="nav-icone">🏠</span> Dashboard
+    </a>
+    <a class="nav-item" href="{% url 'flashcards:index' %}">
+      <span class="nav-icone">🃏</span> Flashcards
+    </a>
+    <a class="nav-item" data-page="desempenho" onclick="navigate(this, 'desempenho')">
+      <span class="nav-icone">📊</span> Desempenho
+    </a>
+    <a class="nav-item" href="{% url 'cronograma:listar' %}">
+      <span class="nav-icone">📅</span> Cronograma
+    </a>
+    <a class="nav-item active" href="{% url 'assuntos_recorrentes:index' %}">
+      <span class="nav-icone">📌</span> Assuntos recorrentes
+    </a>
+
+    <span class="barra-lateral-label">Ferramentas</span>
+    <a class="nav-item" href="{% url 'sessaodeestudos:cronometro' %}">
+      <span class="nav-icone">⏱️</span> Cronômetro
+    </a>
+    <a class="nav-item" href="{% url 'provas_antigas:index' %}">
+      <span class="nav-icone">📚</span> Provas Antigas
+    </a>
+
+    <div class="sidebar-footer">
+    <a href="{% url 'perfil:perfil' %}" class="nav-item">
+      <span class="nav-icone">👤</span> Perfil
+
+    </a>
+    <a href="{% url 'logout' %}" class="btn-sair">
+      <span>🚪</span> Sair
+    </a>
+
+    </div>
+  </nav>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="conteudo-principal">
+    <h1 class="page-title">Assuntos Recorrentes</h1>
+
+    <div class="fluxo-lista">
+
+      {% for materia in materias %}
+      <div class="fluxo-item {{ materia.classe_css }}">
+
+        {# Card da matéria — clique expande/recolhe os tópicos #}
+        <div class="materia-card" onclick="toggleFluxo(this)">
+          <div class="materia-icon">{{ materia.icone }}</div>
+          <div class="materia-info">
+            <div class="materia-nome">{{ materia.nome }}</div>
+            <div class="materia-sub">{{ materia.subtitulo }}</div>
+          </div>
+          <span class="chevron">▼</span>
+        </div>
+
+        {# Tópicos expansíveis #}
+        <div class="fluxo-expansivel">
+          <div class="fluxo-expansivel-inner">
+            <div class="conector-vertical"></div>
+            <div class="trilho-wrapper">
+              <div class="trilho-linha"></div>
+              <div class="topicos-row">
+
+                {% for topico in materia.topicos.all %}
+                <div
+                  class="topico-card {% if topico.id in ids_marcados %}marcado{% endif %}"
+                  data-id="{{ topico.id }}"
+                  onclick="toggleMarcado(event, this)"
+                >
+                  {{ topico.nome }}
+                </div>
+                {% empty %}
+                  <p class="sem-topicos">Nenhum tópico cadastrado.</p>
+                {% endfor %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      {% empty %}
+        <p class="sem-topicos">Nenhuma matéria cadastrada.</p>
+      {% endfor %}
+
+    </div>{# /fluxo-lista #}
+  </main>
+
+</div>{# /layout #}
+
+{# Token CSRF disponível para o fetch #}
+<script>
+  const CSRF_TOKEN = "{{ csrf_token }}";
+  const TOGGLE_URL = "{% url 'assuntos_recorrentes:toggle_topico' %}";
+
+  /* ── Expansão / recolhimento da matéria ── */
+  function toggleFluxo(card) {
+    const item = card.closest('.fluxo-item');
+    item.classList.toggle('aberto');
+  }
+
+  /* ── Marca / desmarca tópico com persistência no banco ── */
+  function toggleMarcado(event, el) {
+    event.stopPropagation();
+
+    const topicoId = el.dataset.id;
+
+    fetch(TOGGLE_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": CSRF_TOKEN,
+      },
+      body: JSON.stringify({ topico_id: topicoId }),
+    })
+      .then(response => {
+        if (!response.ok) throw new Error("Erro na requisição");
+        return response.json();
+      })
+      .then(data => {
+        // Atualiza o visual de acordo com o estado retornado pelo servidor
+        el.classList.toggle("marcado", data.marcado);
+      })
+      .catch(err => {
+        console.error("Falha ao salvar marcação:", err);
+      });
+  }
+</script>
+</body>
+</html>
