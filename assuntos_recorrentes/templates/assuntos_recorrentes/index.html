@@ -59,7 +59,7 @@
     <div class="filtro-anos">
       <span class="filtro-label">Frequência por ano:</span>
       <div class="anos-botoes">
-        <button class="ano-btn" data-ano="2019" onclick="selecionarAno(this)">2019</button>
+        <button class="ano-btn ano-btn-indisponivel" data-ano="2019" onclick="selecionarAno(this)">2019</button>
         <button class="ano-btn" data-ano="2020" onclick="selecionarAno(this)">2020</button>
         <button class="ano-btn" data-ano="2021" onclick="selecionarAno(this)">2021</button>
         <button class="ano-btn" data-ano="2022" onclick="selecionarAno(this)">2022</button>
@@ -171,8 +171,11 @@
     document.querySelectorAll('.ano-btn').forEach(b => b.classList.remove('ativo'));
     btn.classList.add('ativo');
 
-    if (ano === 2025) {
+    if (ano === 2025 || ano === 2019) {
       ocultarPorcentagens();
+      erro.textContent = ano === 2025
+        ? 'Ainda não há dados disponíveis para 2025.'
+        : 'Não foi possível filtrar as porcentagens para 2019.';
       erro.style.display = 'inline-flex';
       return;
     }
