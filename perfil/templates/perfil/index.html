@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perfil — EducaFast</title>
+  <link rel="stylesheet" href="{% static 'perfil/style.css' %}">
+</head>
+<body>
+
+<div class="layout">
+  <aside class="barra-lateral">
+    <div class="logo-barra-lat">EDUCA<strong> FAST</strong></div>
+    <div class="barra-lateral-tagline">Revisão para o enem</div>
+
+    <a class="nav-item" href="{% url 'dashboard:index' %}">
+      <span class="nav-icone">🏠</span> Dashboard
+    </a>
+    <a class="nav-item" href="{% url 'flashcards:index' %}">
+      <span class="nav-icone">🃏</span> Flashcards
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icone">📊</span> Desempenho
+    </a>
+    <a class="nav-item" href="{% url 'cronograma:listar' %}">
+      <span class="nav-icone">📅</span> Cronograma
+    </a>
+    <a class="nav-item" href="{% url 'assuntos_recorrentes:index' %}">
+      <span class="nav-icone">📌</span> Assuntos recorrentes
+    </a>
+
+    <div class="barra-lateral-label">Ferramentas</div>
+
+    <a class="nav-item" href="{% url 'sessaodeestudos:cronometro' %}">
+      <span class="nav-icone">⏱️</span> Cronômetro
+    </a>
+    <a class="nav-item" href="{% url 'provas_antigas:index' %}">
+      <span class="nav-icone">📚</span> Provas Antigas
+    </a>
+
+    <div class="sidebar-footer">
+      <a href="{% url 'perfil:perfil' %}" class="nav-item active">
+        <span class="nav-icone">👤</span> Perfil
+      </a>
+      <a href="{% url 'logout' %}" class="btn-sair">
+        <span>🚪</span> Sair
+      </a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="main-header">
+      <h1>Perfil</h1>
+    </div>
+
+    <div class="perfil-card">
+
+      <div class="perfil-topo">
+        <div class="perfil-avatar">
+          {{ user.first_name|default:user.username|slice:":1"|upper }}
+        </div>
+        <div class="perfil-topo-info">
+          <h2>{{ perfil.nome_social|default:user.get_full_name|default:user.username }}</h2>
+          <div class="perfil-username">@{{ user.username }}</div>
+          {% if materia_preferida %}
+          <div class="perfil-materia-tag">
+            {{ materia_preferida.materia__icone }} {{ materia_preferida.materia__nome }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if messages %}
+        {% for msg in messages %}
+          <div class="perfil-sucesso">✅ {{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="perfil-campo">
+          <label>Usuário</label>
+          <div class="perfil-readonly">@{{ user.username }}</div>
+        </div>
+
+        <div class="perfil-campo">
+          <label>Nome social</label>
+          {{ form.nome_social }}
+        </div>
+
+        <div class="perfil-campo">
+          <label>Biografia</label>
+          {{ form.biografia }}
+        </div>
+
+        <hr class="perfil-divider">
+
+        <div class="perfil-campo">
+          <label>Matéria preferida</label>
+          <div class="perfil-readonly">
+            {% if materia_preferida %}
+              {{ materia_preferida.materia__icone }} {{ materia_preferida.materia__nome }}
+            {% else %}
+              Nenhuma sessão registrada ainda.
+            {% endif %}
+          </div>
+        </div>
+
+        <button type="submit" class="btn-salvar">💾 Salvar alterações</button>
+      </form>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

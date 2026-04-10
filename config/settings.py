@@ -22,6 +22,9 @@ INSTALLED_APPS = [
     'cronograma',
     'sessaodeestudos',
     'provas_antigas',
+    'flashcards',
+    'perfil',
+    'assuntos_recorrentes',
 ]
 
 MIDDLEWARE = [

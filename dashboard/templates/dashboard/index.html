@@ -18,9 +18,9 @@
     <a class="nav-item active" data-page="dashboard" onclick="navigate(this, 'dashboard')">
       <span class="nav-icone">🏠</span> Dashboard
     </a>
-    <a class="nav-item" data-page="flashcards" onclick="navigate(this, 'flashcards')">
-      <span class="nav-icone">🃏</span> Flashcards
-    </a>
+    <a class="nav-item" href="{% url 'flashcards:index' %}">
+        <span class="nav-icone">🃏</span> Flashcards
+      </a>
     <a class="nav-item" data-page="desempenho" onclick="navigate(this, 'desempenho')">
       <span class="nav-icone">📊</span> Desempenho
     </a>
@@ -28,7 +28,7 @@
         <span class="nav-icone">📅</span> Cronograma
       </a>
 
-    <a class="nav-item" data-page="assuntos" onclick="navigate(this, 'assuntos')">
+    <a class="nav-item" href="{% url 'assuntos_recorrentes:index' %}">
       <span class="nav-icone">📌</span> Assuntos recorrentes
     </a>
 
@@ -43,6 +43,11 @@
     </a>
 
     <div class="sidebar-footer">
+
+    <a href="{% url 'perfil:perfil' %}" class="nav-item">
+      <span class="nav-icone">👤</span> Perfil
+    </a>
+
       <a href="{% url 'logout' %}" class="btn-sair">
         <span>🚪</span> Sair
       </a>

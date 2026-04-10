@@ -20,20 +20,20 @@
             <span class="nav-icone">🏠</span> Dashboard
         </a>
 
-        <a class="nav-item" data-page="flashcards" onclick="navigate(this, 'flashcards')">
-        <span class="nav-icone">🃏</span> Flashcards
+        <a class="nav-item" href="{% url 'flashcards:index' %}">
+            <span class="nav-icone">🃏</span> Flashcards
         </a>
 
         <a class="nav-item" data-page="desempenho" onclick="navigate(this, 'desempenho')">
-        <span class="nav-icone">📊</span> Desempenho
+            <span class="nav-icone">📊</span> Desempenho
         </a>
 
         <a class="nav-item active" data-page="cronograma" href="{% url 'cronograma:listar' %}">
-        <span class="nav-icone">📅</span> Cronograma
+            <span class="nav-icone">📅</span> Cronograma
         </a>
 
-        <a class="nav-item" data-page="assuntos" onclick="navigate(this, 'assuntos')">
-        <span class="nav-icone">📌</span> Assuntos recorrentes
+        <a class="nav-item" href="{% url 'assuntos_recorrentes:index' %}">
+            <span class="nav-icone">📌</span> Assuntos recorrentes
         </a>
         
 
@@ -48,6 +48,11 @@
         </a>
 
         <div class="sidebar-footer">
+
+        <a href="{% url 'perfil:perfil' %}" class="nav-item">
+            <span class="nav-icone">👤</span> Perfil
+        </a>
+
         <a href="/" class="btn-sair">
             <span>🚪</span> Sair
         </a>
@@ -85,6 +90,9 @@
                                 <div class="materia-nome">{{ sessao.disciplina.nome|upper }}</div>
                                 <div class="materia-detalhe">{{ sessao.descricao_atividade }}</div>
                                 <div class="tag-tipo">{{ sessao.get_tipo_display }}</div>
+                                {% if sessao.prioridade %}
+                                    <div class="tag-prioridade p-{{ sessao.prioridade }}">{{ sessao.get_prioridade_display }}</div>
+                                {% endif %}
                             </div>
                             
                         {% else %}
@@ -219,6 +227,7 @@
                         <div class="materia-nome">${data.disciplina.toUpperCase()}</div>
                         <div class="materia-detalhe">${data.descricao_atividade}</div>
                         <div class="tag-tipo">${data.tipo}</div>
+                        ${data.prioridade ? `<div class="tag-prioridade p-${data.prioridade}">${{alta:'Alta', media:'Média', baixa:'Baixa'}[data.prioridade]}</div>` : ''}
                     `;
                     fecharModal();
                 } else {

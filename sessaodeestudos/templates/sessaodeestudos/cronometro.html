@@ -22,8 +22,7 @@
       <a class="nav-item" href="{% url 'dashboard:index' %}">
         <span class="nav-icone">🏠</span> Dashboard
       </a>
-      <a class="nav-item" href="#">
-        {# TODO: adicionar quando o app flashcards estiver pronto #}
+      <a class="nav-item" href="{% url 'flashcards:index' %}">
         <span class="nav-icone">🃏</span> Flashcards
       </a>
       <a class="nav-item" href="#">
@@ -35,8 +34,7 @@
         <span class="nav-icone">📅</span> Cronograma
       </a>
 
-      <a class="nav-item" href="#">
-        {# TODO: adicionar quando o app assuntos estiver pronto #}
+      <a class="nav-item" href="{% url 'assuntos_recorrentes:index' %}">
         <span class="nav-icone">📌</span> Assuntos recorrentes
       </a>
 
@@ -54,6 +52,11 @@
     </nav>
 
     <footer class="sidebar-footer">
+
+      <a href="{% url 'perfil:perfil' %}" class="nav-item">
+        <span class="nav-icone">👤</span> Perfil
+      </a>
+
       <a href="{% url 'logout' %}" class="btn-sair">
         <span>🚪</span> Sair
       </a>

@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flashcards — EDUCAFAST</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'flashcards/flashcards.css' %}" />
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ===== BARRA LATERAL ===== -->
+  <aside class="barra-lateral">
+    <div class="logo-barra-lat">EDUCA<strong>FAST</strong></div>
+    <div class="barra-lateral-tagline">Revisão para o ENEM</div>
+
+    <nav aria-label="Menu principal">
+      <a class="nav-item" href="{% url 'dashboard:index' %}">
+        <span class="nav-icone">🏠</span> Dashboard
+      </a>
+
+      <a class="nav-item active" href="{% url 'flashcards:index' %}">
+        <span class="nav-icone">🃏</span> Flashcards
+      </a>
+
+      <a class="nav-item" href="#">
+        <span class="nav-icone">📊</span> Desempenho
+      </a>
+
+      <a class="nav-item" href="{% url 'cronograma:listar' %}">
+        <span class="nav-icone">📅</span> Cronograma
+      </a>
+
+      <a class="nav-item" href="{% url 'assuntos_recorrentes:index' %}">
+        <span class="nav-icone">📌</span> Assuntos recorrentes
+      </a>
+
+      <div class="barra-lateral-label">Ferramentas</div>
+
+      <a class="nav-item" href="{% url 'sessaodeestudos:cronometro' %}">
+        <span class="nav-icone">⏱️</span> Cronômetro
+      </a>
+
+      <a class="nav-item" href="{% url 'provas_antigas:index' %}">
+        <span class="nav-icone">📚</span> Provas Antigas
+      </a>
+    </nav>
+
+    <footer class="sidebar-footer">
+
+      <a href="{% url 'perfil:perfil' %}" class="nav-item">
+        <span class="nav-icone">👤</span> Perfil
+      </a>
+
+      <a href="{% url 'logout' %}" class="btn-sair">
+        <span>🚪</span> Sair
+      </a>
+    </footer>
+  </aside>
+
+  <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+  <main class="main" id="conteudo-principal">
+
+    <header class="main-header">
+      <h1>Flashcards</h1>
+      <span>Memorize e revise os conteúdos do ENEM</span>
+    </header>
+
+    <!-- ===== ETAPA 1: SELEÇÃO DE MATÉRIA ===== -->
+    <section class="secao-selecao" aria-label="Seleção de matéria">
+      <label class="label-selecao">
+        📚 Escolha a matéria para ver os flashcards
+      </label>
+
+      <div class="grade-materias" role="radiogroup" aria-label="Matérias disponíveis">
+        {% for materia in materias %}
+        <button
+          class="btn-materia"
+          role="radio"
+          aria-checked="false"
+          data-materia-id="{{ materia.id }}"
+          data-materia-nome="{{ materia.nome }}"
+          data-materia-icone="{{ materia.icone }}"
+          data-materia-cor="{{ materia.cor }}"
+          type="button"
+          aria-label="{{ materia.nome }}"
+        >
+          <span class="materia-icone">{{ materia.icone }}</span>
+          <span class="materia-nome">{{ materia.nome }}</span>
+        </button>
+        {% empty %}
+        {# CASO NEGATIVO: nenhuma matéria cadastrada #}
+        <div class="aviso-estado" role="status" style="grid-column:1/-1">
+          <span class="aviso-icone">📭</span>
+          <p>
+            <strong>Nenhuma matéria cadastrada.</strong><br>
+            Acesse o painel admin para adicionar matérias e flashcards.
+          </p>
+        </div>
+        {% endfor %}
+      </div>
+
+      {# Aviso de seleção obrigatória — visível antes de escolher matéria #}
+      {% if materias %}
+      <p
+        id="aviso-selecione-materia"
+        style="margin-top:16px;font-size:0.82rem;color:rgba(0,0,0,0.45);text-align:center;"
+        role="status"
+        aria-live="polite"
+      >
+        ⬆ Selecione uma matéria acima para visualizar os flashcards disponíveis.
+      </p>
+      {% endif %}
+    </section>
+
+    {# As seções de assuntos e flashcards são injetadas dinamicamente pelo JS #}
+
+  </main>
+</div>
+
+<!-- CSRF para requisições AJAX -->
+<meta name="csrf-token" content="{{ csrf_token }}" />
+
+<!-- URLs das APIs acessíveis pelo JS -->
+<script>
+  // Substitui o ID 0 pelo ID real em runtime
+  const URL_API_ASSUNTOS   = "{% url 'flashcards:api_assuntos' 0 %}";
+  const URL_API_FLASHCARDS = "{% url 'flashcards:api_flashcards' 0 %}";
+</script>
+
+<script src="{% static 'flashcards/flashcards.js' %}"></script>
+</body>
+</html>

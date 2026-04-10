@@ -270,3 +270,35 @@ html, body {
 .btn-check.ativa {
     color: green;
 }
+.tag-tipo {
+    align-self: flex-start;
+    font-size: 0.6rem;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 8px;
+    margin-top: 12px;
+    display: inline-block;
+    line-height: 1;
+}
+
+.tag-prioridade {
+    align-self: flex-start;
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 8px;
+    margin-top: 4px;
+    display: inline-block;
+}
+.tag-prioridade.p-alta  { 
+    background: #FCEBEB; 
+    color: #A32D2D; 
+}
+.tag-prioridade.p-media { 
+    background: #FAEEDA; 
+    color: #854F0B; 
+}
+.tag-prioridade.p-baixa { 
+    background: #EAF3DE; 
+    color: #3B6D11; 
+}

@@ -101,6 +101,7 @@ def criar_sessao(request, cronograma_id):
         'descricao_atividade': sessao.descricao_atividade,
         'tipo': sessao.get_tipo_display(),
         'concluida': sessao.concluida,
+        'prioridade': sessao.prioridade,
     }, status=201)
 
 
