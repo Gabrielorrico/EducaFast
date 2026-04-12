@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SECRET_KEY: 'chave-falsa'
+      SECRET_KEY: 'chave-falsa-para-testes'
       DEBUG: 'True'
 
     steps:
