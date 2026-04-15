@@ -21,7 +21,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
   <summary><b>Entrega 1</b></summary>
   <br>
 
-  Link do Jira - https://brncluis.atlassian.net/jira/software/projects/FP/boards/3/backlog?atlOrigin=eyJwIjoiaiIsImkiOiI2MzgxM2Y3MzhmMTk0MGFkOTU1YTcxMjlmYzQ1NWE5YiJ9&cloudId=6667f141-24e7-42aa-8d15-3ede3e8d3b08&selectedIssue=FP-18
+  Link do Jira - https://cesar-team-y9y8vgfm.atlassian.net/?continue=https%3A%2F%2Fcesar-team-y9y8vgfm.atlassian.net%2Fwelcome%2Fsoftware%3FprojectId%3D10003&atlOrigin=eyJpIjoiMTI5NzY4NTNhZDg2NGY1MGI3YmYzZmRmZWNhNWRmZDgiLCJwIjoiamlyYS1zb2Z0d2FyZSJ9
 
   Link do doc com as histórias - https://docs.google.com/document/d/1Jix1gRe9eh50jNPTEm3Tdhtesbc-pbFatJFWIbshlzs/edit?usp=sharing 
 
@@ -44,7 +44,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
   <summary><b>Entrega 2</b></summary>
   <br>
 
-  Link do Jira - https://brncluis.atlassian.net/jira/software/projects/FP/boards/3/backlog?atlOrigin=eyJwIjoiaiIsImkiOiI2MzgxM2Y3MzhmMTk0MGFkOTU1YTcxMjlmYzQ1NWE5YiJ9&cloudId=6667f141-24e7-42aa-8d15-3ede3e8d3b08&selectedIssue=FP-18
+  Link do Jira - https://cesar-team-y9y8vgfm.atlassian.net/?continue=https%3A%2F%2Fcesar-team-y9y8vgfm.atlassian.net%2Fwelcome%2Fsoftware%3FprojectId%3D10003&atlOrigin=eyJpIjoiMTI5NzY4NTNhZDg2NGY1MGI3YmYzZmRmZWNhNWRmZDgiLCJwIjoiamlyYS1zb2Z0d2FyZSJ9
 
   Relate Programação em Par - https://docs.google.com/document/d/1fdD-QaiXSmVtaeB57ypChtCTnbF1S1TEWM8AG5SRYdY/edit?usp=sharing
 
