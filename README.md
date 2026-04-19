@@ -71,7 +71,8 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
   <br>
 
 -Issues/Bug : 
-<img width="1912" height="630" alt="Captura de tela 2026-04-18 224722" src="https://github.com/user-attachments/assets/8091aab4-ed29-4947-8608-649cd17eaa75" />
+<img width="1902" height="918" alt="image" src="https://github.com/user-attachments/assets/14b67224-59a4-4ebd-81ff-c5fada3d1221" />
+
 
 - Sprint 03:
 <img width="1917" height="1128" alt="image" src="https://github.com/user-attachments/assets/f9f453ea-bfa7-4607-84fa-cfee362d5e59" />
