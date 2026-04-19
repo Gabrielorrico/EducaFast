@@ -62,7 +62,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
 - Bug Tracker (Entrega 2)
 
-## Segunda Entrega 3️⃣
+## Terceira Entrega 3️⃣
 
 <details>
   <summary><b>Entrega 3</b></summary>
