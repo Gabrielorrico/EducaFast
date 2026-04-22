@@ -39,13 +39,12 @@ class DashboardSeleniumTest(LiveServerTestCase):
         )
 
         options = webdriver.ChromeOptions()
+        options.add_argument('--headless')  
+        options.add_argument('--no-sandbox')
 
         options.add_argument('--start-maximized')
 
-        self.browser = webdriver.Chrome(
-            service=Service(ChromeDriverManager().install()),
-            options=options
-        )
+        self.browser = webdriver.Chrome(options=options)
 
     def tearDown(self):
         """fecha o chrome depois de cada test"""
