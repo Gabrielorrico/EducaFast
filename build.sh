@@ -6,6 +6,7 @@ python manage.py migrate
 python manage.py loaddata inicial.json
 python manage.py loaddata materias_iniciais.json
 python manage.py importar_provas
-python manage.py collectstatic --noinput
+rm -rf staticfiles/
+python manage.py collectstatic --noinput --verbosity 2
 python manage.py popular_flashcards
 python manage.py loaddata inicial-data.json
