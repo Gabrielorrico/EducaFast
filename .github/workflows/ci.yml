@@ -22,6 +22,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Instalar Chrome
+        uses: browser-actions/setup-chrome@v1
+
       - name: Instalar dependências
         run: pip install -r requirements.txt
 
