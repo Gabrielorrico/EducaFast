@@ -43,11 +43,9 @@
     </a>
 
     <div class="sidebar-footer">
-
-    <a href="{% url 'perfil:perfil' %}" class="nav-item">
-      <span class="nav-icone">👤</span> Perfil
-    </a>
-
+      <a href="{% url 'perfil:perfil' %}" class="nav-item">
+        <span class="nav-icone">👤</span> Perfil
+      </a>
       <a href="{% url 'logout' %}" class="btn-sair">
         <span>🚪</span> Sair
       </a>
@@ -55,7 +53,6 @@
   </aside>
 
   <main class="main">
-
     <div id="page-dashboard" class="page active">
       <div class="main-header">
         <h1>Dashboard</h1>
@@ -69,82 +66,71 @@
           <div class="estats-label">Tempo total estudado</div>
         </div>
         <div class="estats-card">
-          <div class="estats-icon">📊</div>
-          <div class="estats-dados">0</div>
-          <div class="estats-label">Simulados Registrados</div>
+          <div class="estats-icon">🚀</div>
+          <div class="estats-dados">{{ ultimas_sessoes|length }}</div>
+          <div class="estats-label">Sessões realizadas</div>
         </div>
         <div class="estats-card">
-          <div class="estats-icon">🎯</div>
-          <div class="estats-dados">0%</div>
-          <div class="estats-label">Média nos simulados</div>
-        </div>
+        <div class="estats-icon">🃏</div>
+        <div class="estats-dados">{{ flashcards_estudados }}</div>
+        <div class="estats-label">Flashcards Estudados</div>
+  </div>
       </div>
 
-      <div class="sessao-titulo">🚀 Acesso Rápido</div>
+      <div class="sessao-titulo">⚡ Atalhos de Estudo</div>
       <div class="btns-rapidos">
-        <div class="btn-rpd" onclick="navigate(document.querySelector('[data-page=flashcards]'), 'flashcards')">
-          <h4>Flashcards</h4>
-          <p>Técnica de repetição espaçada</p>
-        </div>
+        <a href="{% url 'sessaodeestudos:cronometro' %}" class="btn-rpd">
+          <h4>⏱️ Cronômetro</h4>
+          <p>Iniciar foco agora</p>
+        </a>
         
-        <div class="btn-rpd" onclick="window.location.href='/estudos/cronometro/'">
-  <h4>Cronômetro</h4>
-  <p>Acompanhar cronômetro</p>
-</div>
+        <a href="{% url 'flashcards:index' %}" class="btn-rpd">
+          <h4>🃏 Flashcards</h4>
+          <p>Repetição espaçada</p>
+        </a>
         
-        <div class="btn-rpd" onclick="navigate(document.querySelector('[data-page=desempenho]'), 'desempenho')">
-          <h4>Desempenho</h4>
-          <p>Acompanhe seu desempenho</p>
-        </div>
+        <a href="{% url 'provas_antigas:index' %}" class="btn-rpd">
+          <h4>📚 Provas</h4>
+          <p>Praticar anos anteriores</p>
+        </a>
+
+        <a href="{% url 'cronograma:listar' %}" class="btn-rpd">
+          <h4>📅 Cronograma</h4>
+          <p>Ver metas do dia</p>
+        </a>
       </div>
 
       <div class="infos-bloco">
         <div class="card-info">
-          <h4>🕐 Últimas sessões</h4>
+          <h4>🕐 Histórico Recente</h4>
           <ul style="list-style: none; padding: 0; margin-top: 10px;">
             {% for sessao in ultimas_sessoes %}
-          <li style="margin-bottom: 8px;">
-            {{ sessao.materia.icone }} {{ sessao.materia.nome }} 
-            — <strong>{{ sessao.duracao_formatada }}</strong> 
-            — <small>{{ sessao.iniciada_em|date:"d/m/Y H:i" }}</small>
-          </li>
-          {% empty %}
-          <li>Nenhuma sessão ainda.</li>
-          {% endfor %}
-      </ul>
-      </div>
+              <li style="margin-bottom: 12px; border-bottom: 1px solid #e0e0e0; padding-bottom: 8px;">
+                <strong>{{ sessao.materia.icone }} {{ sessao.materia.nome }}</strong><br>
+                <small style="color: #666;">Duração: {{ sessao.duracao_formatada }} — {{ sessao.iniciada_em|date:"d/m" }}</small>
+              </li>
+            {% empty %}
+              <li style="color: #888;">Nenhuma sessão registrada.</li>
+            {% endfor %}
+          </ul>
+        </div>
+        
         <div class="card-info">
-          <h4>🃏 Últimos flashcards</h4>
-          <p>Nenhum flashcard revisado ainda.</p>
+          <h4>📌 Lembretes</h4>
+          <p style="margin-top: 10px; line-height: 1.4;">
+            Não esqueça de revisar os <strong>assuntos recorrentes</strong> para otimizar seu tempo de estudo para o ENEM.
+          </p>
+          <div style="margin-top: 15px; font-size: 0.8rem; background: #fff; padding: 10px; border-radius: 8px;">
+             💡 Dica: Sessões de 25-50 min aumentam a retenção!
+          </div>
         </div>
       </div>
-    </div>
-
-    <div id="page-flashcards" class="page">
-      <div class="main-header"><h1>Flashcards</h1></div>
-      <div class="centro-tela"><span>🃏</span><p>Seus flashcards aparecerão aqui</p></div>
     </div>
 
     <div id="page-desempenho" class="page">
       <div class="main-header"><h1>Desempenho</h1></div>
       <div class="centro-tela"><span>📊</span><p>Seus gráficos de desempenho aparecerão aqui</p></div>
     </div>
-
-    <div id="page-cronograma" class="page">
-      <div class="main-header"><h1>Cronograma</h1></div>
-      <div class="centro-tela"><span>📅</span><p>Seu cronograma de estudos aparecerá aqui</p></div>
-    </div>
-
-    <div id="page-assuntos" class="page">
-      <div class="main-header"><h1>Assuntos Recorrentes</h1></div>
-      <div class="centro-tela"><span>📌</span><p>Os assuntos mais estudados aparecerão aqui</p></div>
-    </div>
-
-    <div id="page-cronometro" class="page">
-      <div class="main-header"><h1>Cronômetro</h1></div>
-      <div class="centro-tela"><span>⏱️</span><p>O cronômetro de estudos aparecerá aqui</p></div>
-    </div>
-
   </main>
 </div>
 

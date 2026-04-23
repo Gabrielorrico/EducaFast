@@ -744,3 +744,25 @@ html, body {
   .assuntos-header { gap: 10px; }
   .busca-wrap { max-width: 100%; min-width: 0; }
 }
+
+.flash-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.btn-proximo-acao {
+  min-width: 44px;
+  transition: all 0.2s ease;
+}
+
+.btn-proximo-acao.btn-finalizado {
+  background: #4caf50;
+  color: #fff;
+  border-color: #4caf50;
+}
+
+.btn-proximo-acao.btn-finalizado:hover {
+  transform: none;
+  opacity: 1;
+}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Assunto(models.Model):
@@ -54,6 +55,7 @@ class Flashcard(models.Model):
     )
     ordem = models.PositiveIntegerField(default=0, verbose_name='Ordem')
 
+    usuarios_que_estudaram = models.ManyToManyField(User, blank=True, related_name='flashcards_estudados')
     class Meta:
         ordering = ['ordem']
         verbose_name = 'Flashcard'
