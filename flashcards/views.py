@@ -57,13 +57,32 @@ def api_flashcards(request, assunto_id):
     """
     API: retorna o resumo e todos os flashcards de um assunto.
     GET /flashcards/api/flashcards/<assunto_id>/
+
+    ✅ FIX 3: cada card agora inclui o campo 'estudado' indicando se o
+    usuário logado já o marcou como estudado anteriormente.
     """
     try:
         assunto = Assunto.objects.select_related('materia').prefetch_related('flashcards').get(pk=assunto_id)
     except Assunto.DoesNotExist:
         return JsonResponse({'erro': 'Assunto não encontrado.'}, status=404)
 
-    cards = list(assunto.flashcards.values('id', 'frente', 'verso', 'ordem'))
+    # IDs que o usuário atual já estudou neste assunto
+    ids_estudados = set(
+        assunto.flashcards
+        .filter(usuarios_que_estudaram=request.user)
+        .values_list('id', flat=True)
+    )
+
+    cards = [
+        {
+            'id': c.id,
+            'frente': c.frente,
+            'verso': c.verso,
+            'ordem': c.ordem,
+            'estudado': c.id in ids_estudados,  # ✅ novo campo consumido pelo JS
+        }
+        for c in assunto.flashcards.all()
+    ]
 
     if not cards:
         return JsonResponse(
@@ -84,3 +103,13 @@ def api_flashcards(request, assunto_id):
         },
         'flashcards': cards,
     })
+
+
+@login_required
+def marcar_estudado(request, card_id):
+    try:
+        flashcard = Flashcard.objects.get(id=card_id)
+        flashcard.usuarios_que_estudaram.add(request.user)
+        return JsonResponse({'status': 'sucesso'})
+    except Flashcard.DoesNotExist:
+        return JsonResponse({'status': 'erro', 'mensagem': 'Card não encontrado'}, status=404)

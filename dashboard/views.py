@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.db.models import Sum
 from sessaodeestudos.models import SessaoDeEstudos
 from django.contrib.auth.decorators import login_required
+from flashcards.models import Flashcard  
 
 @login_required
 def dashboard(request):
@@ -18,9 +19,12 @@ def dashboard(request):
 
     tempo_formatado = f"{horas}h {minutos}m"
 
+    flashcards_estudados = request.user.flashcards_estudados.count()
+
     context = {
         'ultimas_sessoes': ultimas_sessoes,
         'tempo_total': tempo_formatado,
+        'flashcards_estudados': flashcards_estudados,
     }
 
     return render(request, 'dashboard/index.html', context)

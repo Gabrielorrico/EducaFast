@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{% static 'flashcards/flashcards.css' %}" />
+  <meta name="csrf-token" content="{{ csrf_token }}">
 </head>
 <body>
 
@@ -130,6 +131,7 @@
   // Substitui o ID 0 pelo ID real em runtime
   const URL_API_ASSUNTOS   = "{% url 'flashcards:api_assuntos' 0 %}";
   const URL_API_FLASHCARDS = "{% url 'flashcards:api_flashcards' 0 %}";
+  const URL_MARCAR_ESTUDADO = "{% url 'flashcards:marcar_estudado' 0 %}";
 </script>
 
 <script src="{% static 'flashcards/flashcards.js' %}"></script>
