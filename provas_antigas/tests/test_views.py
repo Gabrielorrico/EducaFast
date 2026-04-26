@@ -9,8 +9,8 @@ class ProvasAntigasViewTest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.usuario = User.objects.create_user(username='aluno', password='senha123')
-        self.client.login(username='aluno', password='senha123')
+        self.usuario = User.objects.create_user(username='aluno', password='senhaSegura@123!')
+        self.client.login(username='aluno', password='senhaSegura@123!')
         self.prova = Prova.objects.create(
             ano=2023,
             edicao="2° DIA",
@@ -41,7 +41,7 @@ class ProvasAntigasSeleniumTest(LiveServerTestCase):
         """Cria usuário, prova e abre o Chrome antes de cada teste."""
         self.usuario = User.objects.create_user(
             username='aluno',
-            password='senha123'
+            password='senhaSegura@123!'
         )
         self.prova = Prova.objects.create(
             ano=2023,
@@ -68,7 +68,7 @@ class ProvasAntigasSeleniumTest(LiveServerTestCase):
         self.browser.find_element(By.NAME, 'username').send_keys('aluno')
         time.sleep(1)
 
-        self.browser.find_element(By.NAME, 'password').send_keys('senha123')
+        self.browser.find_element(By.NAME, 'password').send_keys('senhaSegura@123!')
         time.sleep(1)
 
         self.browser.find_element(By.NAME, 'password').submit()

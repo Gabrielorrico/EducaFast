@@ -22,7 +22,7 @@ class SessaoDeEstudosModelTest(TestCase):
 
     def setUp(self):
         """cria usuario e materia falsos"""
-        self.usuario = User.objects.create_user(username='aluno', password='senha123')
+        self.usuario = User.objects.create_user(username='aluno', password='senhaSegura@123!')
         self.materia = Materia.objects.create(nome='Física')
 
     def test_criar_sessao(self):

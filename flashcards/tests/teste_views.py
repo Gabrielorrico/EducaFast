@@ -8,8 +8,8 @@ class FlashcardViewTest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.usuario = User.objects.create_user(username='aluno', password='senha123')
-        self.client.login(username='aluno', password='senha123')
+        self.usuario = User.objects.create_user(username='aluno', password='senhaSegura@123!')
+        self.client.login(username='aluno', password='senhaSegura@123!')
 
         self.materia = Materia.objects.create(
             nome='Matemática',

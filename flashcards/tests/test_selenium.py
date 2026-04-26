@@ -11,7 +11,7 @@ class FlashcardSeleniumTest(LiveServerTestCase):
     def setUp(self):
         self.usuario = User.objects.create_user(
             username='aluno',
-            password='senha123'
+            password='senhaSegura@123!'
         )
 
         options = webdriver.ChromeOptions()
@@ -32,7 +32,7 @@ class FlashcardSeleniumTest(LiveServerTestCase):
         time.sleep(2)
 
         self.browser.find_element(By.NAME, 'username').send_keys('aluno')
-        self.browser.find_element(By.NAME, 'password').send_keys('senha123')
+        self.browser.find_element(By.NAME, 'password').send_keys('senhaSegura@123!')
         self.browser.find_element(By.NAME, 'password').submit()
         time.sleep(2)
 

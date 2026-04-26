@@ -14,7 +14,7 @@ class CronogramaSeleniumTest(LiveServerTestCase):
         """Cria usuário e inicia navegador"""
         self.usuario = User.objects.create_user(
             username='aluno',
-            password='senha123'
+            password='senhaSegura@123!'
         )
 
         options = webdriver.ChromeOptions()
@@ -45,7 +45,7 @@ class CronogramaSeleniumTest(LiveServerTestCase):
         self.browser.find_element(By.NAME, 'username').send_keys('aluno')
         time.sleep(1)
 
-        self.browser.find_element(By.NAME, 'password').send_keys('senha123')
+        self.browser.find_element(By.NAME, 'password').send_keys('senhaSegura@123!')
         time.sleep(1)
 
         self.browser.find_element(By.NAME, 'password').submit()
