@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import time
+import os
 
 
 class DashboardViewTest(TestCase):
@@ -42,6 +43,11 @@ class DashboardSeleniumTest(LiveServerTestCase):
         options.add_argument('--no-sandbox')
 
         options.add_argument('--start-maximized')
+
+        if os.environ.get("CI"):
+            options.add_argument("--headless")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--disable-gpu")
 
         self.browser = webdriver.Chrome(options=options)
 

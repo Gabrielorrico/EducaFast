@@ -3,6 +3,7 @@ from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
+import os
 
 
 class FlashcardSeleniumTest(LiveServerTestCase):
@@ -15,6 +16,11 @@ class FlashcardSeleniumTest(LiveServerTestCase):
 
         options = webdriver.ChromeOptions()
         options.add_argument('--no-sandbox')
+
+        if os.environ.get("CI"):
+            options.add_argument("--headless")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--disable-gpu")
 
         self.browser = webdriver.Chrome(options=options)
 
