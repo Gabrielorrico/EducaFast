@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import time
+import os
 
 
 class DashboardViewTest(TestCase):
@@ -12,8 +13,8 @@ class DashboardViewTest(TestCase):
     def setUp(self):
         """Cria usuário logado antes"""
         self.client = Client()
-        self.usuario = User.objects.create_user(username='aluno', password='senha123')
-        self.client.login(username='aluno', password='senha123')
+        self.usuario = User.objects.create_user(username='aluno', password='senhaSegura@123!')
+        self.client.login(username='aluno', password='senhaSegura@123!')
 
     def test_dashboard_carrega(self):
         """verifica se o dashboard carrega com sucesso para usuario logado"""
@@ -35,13 +36,18 @@ class DashboardSeleniumTest(LiveServerTestCase):
         """cria o usuario e abre o chrome antes de cada teste"""
         self.usuario = User.objects.create_user(
             username='aluno',
-            password='senha123'
+            password='senhaSegura@123!'
         )
 
         options = webdriver.ChromeOptions()
         options.add_argument('--no-sandbox')
 
         options.add_argument('--start-maximized')
+
+        if os.environ.get("CI"):
+            options.add_argument("--headless")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--disable-gpu")
 
         self.browser = webdriver.Chrome(options=options)
 
@@ -64,7 +70,7 @@ class DashboardSeleniumTest(LiveServerTestCase):
 
         campo_senha = self.browser.find_element(By.NAME, 'password')
 
-        campo_senha.send_keys('senha123')
+        campo_senha.send_keys('senhaSegura@123!')
         time.sleep(1)
 
         campo_senha.submit()

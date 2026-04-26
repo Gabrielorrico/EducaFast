@@ -3,6 +3,7 @@ from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
+import os
 
 
 class FlashcardSeleniumTest(LiveServerTestCase):
@@ -10,11 +11,16 @@ class FlashcardSeleniumTest(LiveServerTestCase):
     def setUp(self):
         self.usuario = User.objects.create_user(
             username='aluno',
-            password='senha123'
+            password='senhaSegura@123!'
         )
 
         options = webdriver.ChromeOptions()
         options.add_argument('--no-sandbox')
+
+        if os.environ.get("CI"):
+            options.add_argument("--headless")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--disable-gpu")
 
         self.browser = webdriver.Chrome(options=options)
 
@@ -26,7 +32,7 @@ class FlashcardSeleniumTest(LiveServerTestCase):
         time.sleep(2)
 
         self.browser.find_element(By.NAME, 'username').send_keys('aluno')
-        self.browser.find_element(By.NAME, 'password').send_keys('senha123')
+        self.browser.find_element(By.NAME, 'password').send_keys('senhaSegura@123!')
         self.browser.find_element(By.NAME, 'password').submit()
         time.sleep(2)
 

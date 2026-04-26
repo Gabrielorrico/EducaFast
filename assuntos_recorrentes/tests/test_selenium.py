@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import time
+import os
 
 
 class AssuntosRecorrentesSeleniumTest(LiveServerTestCase):
@@ -13,11 +14,16 @@ class AssuntosRecorrentesSeleniumTest(LiveServerTestCase):
         """Cria usuário e inicia navegador"""
         self.usuario = User.objects.create_user(
             username='aluno',
-            password='senha123'
+            password='senhaSegura@123!'
         )
 
         options = webdriver.ChromeOptions()
         options.add_argument('--no-sandbox')
+
+        if os.environ.get("CI"):
+            options.add_argument("--headless")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--disable-gpu")
 
         self.browser = webdriver.Chrome(
             service=Service(ChromeDriverManager().install()),
@@ -39,7 +45,7 @@ class AssuntosRecorrentesSeleniumTest(LiveServerTestCase):
         self.browser.find_element(By.NAME, 'username').send_keys('aluno')
         time.sleep(1)
 
-        self.browser.find_element(By.NAME, 'password').send_keys('senha123')
+        self.browser.find_element(By.NAME, 'password').send_keys('senhaSegura@123!')
         time.sleep(1)
 
         self.browser.find_element(By.NAME, 'password').submit()

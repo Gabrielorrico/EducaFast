@@ -16,7 +16,7 @@ class CronogramaModelTest(TestCase):
 
     def setUp(self):
         """cria um user falso antes de cada teste """
-        self.usuario = User.objects.create_user(username='aluno', password='senha123')
+        self.usuario = User.objects.create_user(username='aluno', password='senhaSegura@123!')
 
     def test_cronograma_criado_para_usuario(self):
         """verifica se o cronograma criado é salvo atrelado ao usuario correto"""
@@ -34,7 +34,7 @@ class SessaoEstudoModelTest(TestCase):
 
     def setUp(self):
         """Cria usuario disciplina e cronograma falsos antes de cada teste"""
-        self.usuario = User.objects.create_user(username='aluno', password='senha123')
+        self.usuario = User.objects.create_user(username='aluno', password='senhaSegura@123!')
         self.disciplina = Disciplina.objects.create(nome='Física', area='exatas')
         self.cronograma = Cronograma.objects.create(
             aluno=self.usuario,

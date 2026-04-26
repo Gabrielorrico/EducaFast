@@ -42,7 +42,7 @@ class AssuntoModelTest(TestCase):
 class FlashcardModelTest(TestCase):
 
     def setUp(self):
-        self.usuario = User.objects.create_user(username='aluno', password='senha123')
+        self.usuario = User.objects.create_user(username='aluno', password='senhaSegura@123!')
 
         self.materia = Materia.objects.create(nome='Física')
 

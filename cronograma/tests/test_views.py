@@ -9,8 +9,8 @@ class CronogramaViewTest(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.usuario = User.objects.create_user(username='aluno', password='senha123')
-        self.client.login(username='aluno', password='senha123')
+        self.usuario = User.objects.create_user(username='aluno', password='senhaSegura@123!')
+        self.client.login(username='aluno', password='senhaSegura@123!')
         self.disciplina = Disciplina.objects.create(nome='Química', area='exatas')
         self.cronograma = Cronograma.objects.create(
             aluno=self.usuario,
