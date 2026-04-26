@@ -73,6 +73,11 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 -Issues/Bug : 
 <img width="1902" height="918" alt="image" src="https://github.com/user-attachments/assets/14b67224-59a4-4ebd-81ff-c5fada3d1221" />
 
+- Screencast novas implementações: https://youtu.be/C9kI2JaLh0I
+
+-Screencast Testes automatizados: 
+
+- Pair programming: https://docs.google.com/document/d/1fdD-QaiXSmVtaeB57ypChtCTnbF1S1TEWM8AG5SRYdY/edit?usp=sharing
 
 - Sprint 03:
 <img width="1917" height="1128" alt="image" src="https://github.com/user-attachments/assets/f9f453ea-bfa7-4607-84fa-cfee362d5e59" />
