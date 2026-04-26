@@ -40,7 +40,6 @@ class DashboardSeleniumTest(LiveServerTestCase):
 
         options = webdriver.ChromeOptions()
         options.add_argument('--no-sandbox')
-
         options.add_argument('--start-maximized')
 
         self.browser = webdriver.Chrome(options=options)
