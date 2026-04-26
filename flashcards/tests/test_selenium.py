@@ -14,7 +14,6 @@ class FlashcardSeleniumTest(LiveServerTestCase):
         )
 
         options = webdriver.ChromeOptions()
-        options.add_argument('--headless')
         options.add_argument('--no-sandbox')
 
         self.browser = webdriver.Chrome(options=options)
