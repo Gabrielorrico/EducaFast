@@ -80,7 +80,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 - Pair programming: https://docs.google.com/document/d/1fdD-QaiXSmVtaeB57ypChtCTnbF1S1TEWM8AG5SRYdY/edit?usp=sharing
 
 - Sprint 03:
-<img width="1917" height="1128" alt="image" src="https://github.com/user-attachments/assets/f9f453ea-bfa7-4607-84fa-cfee362d5e59" />
+<img width="1643" height="960" alt="image" src="https://github.com/user-attachments/assets/279bcd2e-1eae-45e7-8259-3461c7ed6631" />
 
 <img width="1692" height="979" alt="image" src="https://github.com/user-attachments/assets/3a8f26dc-2bfb-4fbf-ba18-2d37385809b3" />
 
