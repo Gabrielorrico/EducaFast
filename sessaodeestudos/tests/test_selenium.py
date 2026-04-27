@@ -9,7 +9,7 @@ import os
 
 
 
-class SessaoDeEstudosSeleniumTest(LiveServerTestCase):
+class SessaodeEstudosSeleniumTest(LiveServerTestCase):
 
     def setUp(self):
         """Cria usuário e inicia navegador"""
@@ -52,16 +52,14 @@ class SessaoDeEstudosSeleniumTest(LiveServerTestCase):
         time.sleep(2)
 
 
-        self.browser.get(f'{self.live_server_url}/estudos/')
+        self.browser.get(f'{self.live_server_url}/estudos/cronometro/')
         time.sleep(2)
 
 
-        self.assertIn('/estudos/', self.browser.current_url)
+        self.assertIn('/estudos/cronometro/', self.browser.current_url)
 
     def test_sem_login_redireciona_para_login(self):
-        """tenta acessar estudos sem login"""
-
-        self.browser.get(f'{self.live_server_url}/estudos/')
+        self.browser.get(f'{self.live_server_url}/estudos/cronometro/')
         time.sleep(2)
 
-        self.assertEqual(self.browser.current_url, f'{self.live_server_url}/estudos/')
+        self.assertIn('login', self.browser.current_url)
