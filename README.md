@@ -75,7 +75,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
 - Screencast novas implementações: https://youtu.be/C9kI2JaLh0I
 
-- Screencast Testes automatizados: 
+- Screencast Testes automatizados: https://youtu.be/1a1FAADqXms
 
 - Pair programming: https://docs.google.com/document/d/1fdD-QaiXSmVtaeB57ypChtCTnbF1S1TEWM8AG5SRYdY/edit?usp=sharing
 
