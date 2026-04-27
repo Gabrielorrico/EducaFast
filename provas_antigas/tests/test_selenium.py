@@ -64,3 +64,17 @@ class ProvasAntigasSeleniumTest(LiveServerTestCase):
         time.sleep(2)
 
         self.assertIn('login', self.browser.current_url)
+
+    def test_busca_prova_inexistente_exibe_mensagem(self):
+        self.browser.get(f'{self.live_server_url}/usuarios/login/')
+        time.sleep(2)
+        self.browser.find_element(By.NAME, 'username').send_keys('aluno')
+        self.browser.find_element(By.NAME, 'password').send_keys('senhaSegura@123!')
+        self.browser.find_element(By.NAME, 'password').submit()
+        time.sleep(2)
+
+        self.browser.get(f'{self.live_server_url}/provas/?ano=1800')
+        time.sleep(2)
+
+        mensagem = self.browser.find_element(By.CSS_SELECTOR, '.sem-resultado')
+        self.assertIn('Nenhuma prova encontrada', mensagem.text)
