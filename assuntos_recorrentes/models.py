@@ -32,7 +32,6 @@ class Materia(models.Model):
     @property
     def subtitulo(self):
         n = self.total_topicos
-        # "5 tópicos principais" / "5 competências" (Redação)
         sufixo = "competências" if self.nome == "Redação" else "tópicos principais"
         return f"{n} {sufixo}"
 
@@ -68,7 +67,6 @@ class TopicoMarcado(models.Model):
     marcado_em = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        # Garante que um usuário só marca um tópico uma vez
         unique_together = ("usuario", "topico")
         verbose_name = "Tópico Marcado"
         verbose_name_plural = "Tópicos Marcados"

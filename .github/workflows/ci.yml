@@ -13,6 +13,7 @@ jobs:
     env:
       SECRET_KEY: 'chave-falsa-para-testes'
       DEBUG: 'True'
+      CI: 'true'
 
     steps:
       - uses: actions/checkout@v4
@@ -29,7 +30,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Rodar testes
-        run: python manage.py test
+        run: python manage.py test --verbosity=2
 
   deploy:
     runs-on: ubuntu-latest
@@ -40,4 +41,3 @@ jobs:
     steps:
       - name: Deploy no Render
         run: curl "${{ secrets.RENDER_DEPLOY_HOOK }}"
-        
