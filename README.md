@@ -75,7 +75,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
 <img width="1902" height="918" alt="image" src="https://github.com/user-attachments/assets/14b67224-59a4-4ebd-81ff-c5fada3d1221" />
 
-- Screencast novas implementações: https://youtu.be/C9kI2JaLh0I
+- Screencast novas implementações: https://youtu.be/o7ny5nqezNk
 
 - Screencast Testes automatizados: https://youtu.be/1a1FAADqXms
 
