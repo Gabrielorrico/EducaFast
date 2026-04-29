@@ -85,7 +85,7 @@ class ProvasAntigasSeleniumTest(LiveServerTestCase):
         
 
     def test_filtro_por_ano(self):
-        """faz login e filtra por ano de provba"""
+        """faz login e filtra por ano de prova"""
         self._fazer_login()
 
         self.browser.get(f'{self.live_server_url}/provas/?ano=2022')
