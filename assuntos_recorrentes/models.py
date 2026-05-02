@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 
 
+
 class Materia(models.Model):
 
     ICONE_CHOICES = [
@@ -11,6 +12,7 @@ class Materia(models.Model):
         ("🌎", "Ciências Humanas"),
         ("🔬", "Ciências da Natureza"),
     ]
+ 
 
     nome = models.CharField(max_length=100)
     icone = models.CharField(max_length=10, choices=ICONE_CHOICES, default="📐")
