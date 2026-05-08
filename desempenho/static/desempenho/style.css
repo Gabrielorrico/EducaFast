@@ -310,3 +310,240 @@ html, body {
 }
 .desemp-vazio span { font-size: 2rem; }
 .desemp-vazio p    { font-size: 0.85rem; line-height: 1.5; }
+
+.desemp-bloco {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.95fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.desemp-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 18px;
+  min-width: 0;
+}
+
+.desemp-card--grafico,
+.desemp-card--historico {
+  min-height: 320px;
+}
+
+.desemp-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.desemp-subtitulo {
+  font-size: 0.72rem;
+  color: #666;
+  white-space: nowrap;
+}
+
+/* ── GRÁFICO ── */
+.grafico-cartesiano {
+  position: relative;
+  height: 245px;
+  padding: 18px 12px 52px 42px;
+  border-radius: 12px;
+  background: #ececec;
+  overflow: hidden;
+}
+
+.grafico-grade {
+  position: absolute;
+  left: 42px;
+  right: 12px;
+  top: 22px;
+  bottom: 54px;
+  background-image:
+    linear-gradient(to top, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 100% 25%, 25% 100%;
+  pointer-events: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.grafico-eixo-y {
+  position: absolute;
+  left: 42px;
+  top: 22px;
+  bottom: 54px;
+  width: 2px;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.grafico-eixo-x {
+  position: absolute;
+  left: 42px;
+  right: 12px;
+  bottom: 54px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.grafico-area-barras {
+  position: absolute;
+  left: 42px;
+  right: 12px;
+  top: 22px;
+  bottom: 74px;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.grafico-item {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.grafico-coluna-area {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+}
+
+.grafico-coluna {
+  width: 18px;
+  height: calc(var(--h) * 1%);
+  min-height: 10px;
+  border-radius: 8px 8px 4px 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: height 0.5s ease;
+}
+
+.grafico-valor {
+  position: absolute;
+  top: -22px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #222;
+  white-space: nowrap;
+}
+
+.grafico-area-labels {
+  position: absolute;
+  left: 42px;
+  right: 12px;
+  bottom: 10px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.grafico-nome {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+}
+
+.grafico-icone {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.grafico-nome small {
+  font-size: 0.7rem;
+  color: #444;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* ── HISTÓRICO ── */
+.desemp-sessoes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.desemp-sessao-item {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  background: #ececec;
+  border-radius: 12px;
+}
+
+.desemp-sessao-icone {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.desemp-sessao-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.desemp-sessao-info strong {
+  font-size: 0.82rem;
+}
+
+.desemp-sessao-info small {
+  font-size: 0.72rem;
+  color: #666;
+}
+
+/* ── VAZIO ── */
+.desemp-vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 28px 0;
+  color: #888;
+  text-align: center;
+}
+
+.desemp-vazio span {
+  font-size: 1.8rem;
+}
+
+.desemp-vazio p {
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 1000px) {
+  .desemp-bloco {
+    grid-template-columns: 1fr;
+  }
+
+  .grafico-cartesiano {
+    height: 230px;
+  }
+
+  .grafico-coluna {
+    width: 16px;
+  }
+
+  .grafico-nome small {
+    font-size: 0.65rem;
+  }
+}
