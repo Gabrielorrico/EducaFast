@@ -28,7 +28,7 @@
         <span class="nav-icone">🃏</span> Flashcards
       </a>
 
-      <a class="nav-item" href="#">
+      <a class="nav-item" href="{% url 'desempenho:index' %}">
         <span class="nav-icone">📊</span> Desempenho
       </a>
 
@@ -39,9 +39,7 @@
       <a class="nav-item" href="{% url 'assuntos_recorrentes:index' %}">
         <span class="nav-icone">📌</span> Assuntos recorrentes
       </a>
-
-      <div class="barra-lateral-label">Ferramentas</div>
-
+      <span class="barra-lateral-label">Ferramentas</span>
       <a class="nav-item" href="{% url 'sessaodeestudos:cronometro' %}">
         <span class="nav-icone">⏱️</span> Cronômetro
       </a>

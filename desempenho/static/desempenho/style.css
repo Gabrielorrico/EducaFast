@@ -1,0 +1,312 @@
+/* ── Reset & tokens (idênticos ao dashboard) ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --sidebar-bg: #fff;
+  --main-bg: #7f8fdc;
+  --card-bg: #f3f3f3;
+  --accent: #000;
+  --sidebar-active: #000;
+  --sidebar-active-text: #fff;
+  --text: #000;
+  --text-muted: rgba(0, 0, 0, 0.6);
+  --radius: 14px;
+  --sidebar-w: 200px;
+}
+
+html, body {
+  height: 100%;
+  background: var(--main-bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+
+/* ── Layout ── */
+.layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* ── Sidebar (igual ao dashboard e flashcards) ── */
+.barra-lateral {
+  width: var(--sidebar-w);
+  background: var(--sidebar-bg);
+  border-right: 1px solid #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 14px 20px;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.logo-barra-lat {
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: -0.3px;
+  padding-left: 8px;
+  margin-bottom: 2px;
+}
+
+.barra-lateral-tagline {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  padding-left: 8px;
+  margin-bottom: 22px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  transition: background 0.12s;
+}
+.nav-item:hover  { background: #f2f2f2; }
+.nav-item.active { background: var(--sidebar-active); color: var(--sidebar-active-text); }
+
+.nav-icone {
+  font-size: 0.95rem;
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.barra-lateral-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 14px 8px 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.sidebar-footer { margin-top: auto; }
+
+.btn-sair {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #f2f2f2;
+  border: none;
+  padding: 9px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #333;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  transition: background 0.12s;
+}
+.btn-sair:hover { background: #e4e4e4; }
+
+/* ── Conteúdo principal ── */
+.main {
+  flex: 1;
+  background: var(--main-bg);
+  padding: 36px 40px;
+  overflow-y: auto;
+}
+
+.main-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.main-header h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.main-header span {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ── Métricas (4 cards no topo) ── */
+.metricas {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.metrica-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  flex: 1;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.15s;
+}
+.metrica-card:hover { transform: translateY(-2px); }
+
+/* Variante prata (3–6 dias consecutivos) */
+.metrica-card--prata {
+  background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+  border: 1.5px solid #c0c0c0;
+}
+
+/* Variante ouro (7+ dias consecutivos) */
+.metrica-card--ouro {
+  background: linear-gradient(135deg, #fffbea 0%, #fff0b0 100%);
+  border: 1.5px solid #f0c040;
+}
+
+.metrica-icone { font-size: 1.7rem; }
+
+.metrica-valor {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.metrica-label {
+  font-size: 0.72rem;
+  color: #555;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metrica-badge {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  width: fit-content;
+  margin-top: 2px;
+}
+.metrica-card--ouro .metrica-badge {
+  background: #b8860b;
+}
+
+/* ── Bloco inferior (gráfico + histórico) ── */
+.desemp-bloco {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.desemp-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 24px 22px;
+  flex: 1;
+}
+
+.desemp-card--largo { flex: 2; }
+
+.desemp-titulo {
+  font-family: 'Sora', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* ── Barras por matéria ── */
+.desemp-materias { display: flex; flex-direction: column; gap: 14px; }
+
+.desemp-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 70px;
+  align-items: center;
+  gap: 12px;
+}
+
+.desemp-row-info {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  overflow: hidden;
+}
+
+.desemp-row-nome {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.desemp-barra-wrap {
+  height: 10px;
+  background: #e0e0e0;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.desemp-barra {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.6s ease;
+  min-width: 4px;
+}
+
+.desemp-row-tempo {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #444;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ── Últimas sessões ── */
+.desemp-sessoes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.desemp-sessao-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid #e4e4e4;
+}
+.desemp-sessao-item:last-child { border-bottom: none; }
+
+.desemp-sessao-icone { font-size: 1.3rem; flex-shrink: 0; }
+
+.desemp-sessao-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.desemp-sessao-info strong { font-size: 0.85rem; }
+.desemp-sessao-info small  { font-size: 0.75rem; color: #666; }
+
+/* ── Estado vazio ── */
+.desemp-vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 32px 0;
+  color: #888;
+  text-align: center;
+}
+.desemp-vazio span { font-size: 2rem; }
+.desemp-vazio p    { font-size: 0.85rem; line-height: 1.5; }

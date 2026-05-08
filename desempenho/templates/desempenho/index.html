@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desempenho — EDUCAFAST</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'desempenho/style.css' %}" />
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ===== BARRA LATERAL ===== -->
+  <aside class="barra-lateral">
+    <div class="logo-barra-lat">EDUCA<strong>FAST</strong></div>
+    <div class="barra-lateral-tagline">Revisão para o ENEM</div>
+
+    <nav>
+      <a class="nav-item" href="{% url 'dashboard:index' %}">
+        <span class="nav-icone">🏠</span> Dashboard
+      </a>
+      <a class="nav-item" href="{% url 'flashcards:index' %}">
+        <span class="nav-icone">🃏</span> Flashcards
+      </a>
+      <a class="nav-item active" href="{% url 'desempenho:index' %}">
+        <span class="nav-icone">📊</span> Desempenho
+      </a>
+      <a class="nav-item" href="{% url 'cronograma:listar' %}">
+        <span class="nav-icone">📅</span> Cronograma
+      </a>
+      <a class="nav-item" href="{% url 'assuntos_recorrentes:index' %}">
+        <span class="nav-icone">📌</span> Assuntos recorrentes
+      </a>
+
+      <div class="barra-lateral-label">Ferramentas</div>
+
+      <a class="nav-item" href="{% url 'sessaodeestudos:cronometro' %}">
+        <span class="nav-icone">⏱️</span> Cronômetro
+      </a>
+      <a class="nav-item" href="{% url 'provas_antigas:index' %}">
+        <span class="nav-icone">📚</span> Provas Antigas
+      </a>
+    </nav>
+
+    <footer class="sidebar-footer">
+      <a href="{% url 'perfil:perfil' %}" class="nav-item">
+        <span class="nav-icone">👤</span> Perfil
+      </a>
+      <a href="{% url 'logout' %}" class="btn-sair">
+        <span>🚪</span> Sair
+      </a>
+    </footer>
+  </aside>
+
+  <!-- ===== CONTEÚDO ===== -->
+  <main class="main">
+
+    <div class="main-header">
+      <h1>Desempenho</h1>
+      <span>Acompanhe a evolução dos seus estudos</span>
+    </div>
+
+    <!-- ── Métricas principais ── -->
+    <div class="metricas">
+
+      <div class="metrica-card">
+        <div class="metrica-icone">⏰</div>
+        <div class="metrica-valor">{{ tempo_total }}</div>
+        <div class="metrica-label">Total de horas estudadas</div>
+      </div>
+
+      <div class="metrica-card">
+        <div class="metrica-icone">📋</div>
+        <div class="metrica-valor">{{ total_sessoes }}</div>
+        <div class="metrica-label">Sessões de estudo</div>
+      </div>
+
+      <div class="metrica-card {% if dias_consecutivos >= 7 %}metrica-card--ouro{% elif dias_consecutivos >= 3 %}metrica-card--prata{% endif %}">
+        <div class="metrica-icone">🔥</div>
+        <div class="metrica-valor">{{ dias_consecutivos }} dia{{ dias_consecutivos|pluralize:"s" }}</div>
+        <div class="metrica-label">
+          Sequência atual
+          {% if dias_consecutivos >= 7 %}
+            <span class="metrica-badge">🏆 Incrível!</span>
+          {% elif dias_consecutivos >= 3 %}
+            <span class="metrica-badge">⭐ Ótimo ritmo!</span>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="metrica-card">
+        <div class="metrica-icone">🃏</div>
+        <div class="metrica-valor">{{ flashcards_estudados }}</div>
+        <div class="metrica-label">Flashcards estudados de {{ total_flashcards }} disponíveis</div>
+      </div>
+
+    </div>
+
+    <!-- ── Bloco inferior: gráfico + histórico ── -->
+    <div class="desemp-bloco">
+
+      <!-- Tempo por matéria -->
+      <div class="desemp-card desemp-card--largo">
+        <h4 class="desemp-titulo">⏱ Tempo de estudo por matéria</h4>
+
+        {% if tempo_por_materia %}
+          <div class="desemp-materias">
+            {% for m in tempo_por_materia %}
+            <div class="desemp-row">
+              <div class="desemp-row-info">
+                <span>{{ m.icone }}</span>
+                <span class="desemp-row-nome">{{ m.nome }}</span>
+              </div>
+              <div class="desemp-barra-wrap">
+                <div
+                  class="desemp-barra"
+                  style="width: {{ m.percentual }}%; background: {{ m.cor }};"
+                ></div>
+              </div>
+              <span class="desemp-row-tempo">{{ m.formatado }}</span>
+            </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="desemp-vazio">
+            <span>📭</span>
+            <p>Nenhuma sessão registrada ainda.<br>Use o cronômetro para começar!</p>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Últimas sessões -->
+      <div class="desemp-card">
+        <h4 class="desemp-titulo">🕐 Últimas sessões</h4>
+
+        {% if ultimas_sessoes %}
+          <ul class="desemp-sessoes">
+            {% for sessao in ultimas_sessoes %}
+            <li class="desemp-sessao-item">
+              <span class="desemp-sessao-icone">{{ sessao.materia.icone }}</span>
+              <div class="desemp-sessao-info">
+                <strong>{{ sessao.materia.nome }}</strong>
+                <small>{{ sessao.duracao_formatada }} — {{ sessao.iniciada_em|date:"d/m/Y" }}</small>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <div class="desemp-vazio">
+            <span>📭</span>
+            <p>Nenhuma sessão ainda.</p>
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

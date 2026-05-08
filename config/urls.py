@@ -30,4 +30,5 @@ urlpatterns = [
     path('flashcards/', include('flashcards.urls')),
     path('perfil/', include('perfil.urls')),
     path('assuntos_recorrentes/', include('assuntos_recorrentes.urls')),
+    path('desempenho/', include('desempenho.urls')),
 ]   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
