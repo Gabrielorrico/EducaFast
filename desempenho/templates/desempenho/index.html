@@ -99,66 +99,77 @@
 
     </div>
 
-    <!-- ── Bloco inferior: gráfico + histórico ── -->
-    <div class="desemp-bloco">
+      <div class="desemp-bloco">
+        <div class="desemp-card desemp-card--grafico">
+          <div class="desemp-topo">
+            <h4 class="desemp-titulo">⏱ Tempo de estudo por matéria</h4>
+            <span class="desemp-subtitulo">Distribuição das horas estudadas</span>
+          </div>
 
-      <!-- Tempo por matéria -->
-      <div class="desemp-card desemp-card--largo">
-        <h4 class="desemp-titulo">⏱ Tempo de estudo por matéria</h4>
+          {% if tempo_por_materia %}
+            <div class="grafico-cartesiano">
+              <div class="grafico-grade"></div>
+              <div class="grafico-eixo-y"></div>
+              <div class="grafico-eixo-x"></div>
 
-        {% if tempo_por_materia %}
-          <div class="desemp-materias">
-            {% for m in tempo_por_materia %}
-            <div class="desemp-row">
-              <div class="desemp-row-info">
-                <span>{{ m.icone }}</span>
-                <span class="desemp-row-nome">{{ m.nome }}</span>
+              <div class="grafico-area-barras">
+                {% for m in tempo_por_materia %}
+                  <div class="grafico-item">
+                    <div class="grafico-coluna-area">
+                      <span class="grafico-valor">{{ m.formatado }}</span>
+                      <div
+                        class="grafico-coluna"
+                        style="--h: {{ m.percentual }}; background: {{ m.cor }};"
+                        title="{{ m.nome }} — {{ m.formatado }}"
+                      ></div>
+                    </div>
+                  </div>
+                {% endfor %}
               </div>
-              <div class="desemp-barra-wrap">
-                <div
-                  class="desemp-barra"
-                  style="width: {{ m.percentual }}%; background: {{ m.cor }};"
-                ></div>
+
+              <div class="grafico-area-labels">
+                {% for m in tempo_por_materia %}
+                  <div class="grafico-nome">
+                    <span class="grafico-icone">{{ m.icone }}</span>
+                    <small>{{ m.nome }}</small>
+                  </div>
+                {% endfor %}
               </div>
-              <span class="desemp-row-tempo">{{ m.formatado }}</span>
             </div>
-            {% endfor %}
+          {% else %}
+            <div class="desemp-vazio">
+              <span>📭</span>
+              <p>Nenhuma sessão registrada ainda.<br>Use o cronômetro para começar!</p>
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="desemp-card desemp-card--historico">
+          <div class="desemp-topo">
+            <h4 class="desemp-titulo">🕐 Últimas sessões</h4>
+            <span class="desemp-subtitulo">Mais recentes primeiro</span>
           </div>
-        {% else %}
-          <div class="desemp-vazio">
-            <span>📭</span>
-            <p>Nenhuma sessão registrada ainda.<br>Use o cronômetro para começar!</p>
-          </div>
-        {% endif %}
+
+          {% if ultimas_sessoes %}
+            <ul class="desemp-sessoes">
+              {% for sessao in ultimas_sessoes %}
+                <li class="desemp-sessao-item">
+                  <span class="desemp-sessao-icone">{{ sessao.materia.icone }}</span>
+                  <div class="desemp-sessao-info">
+                    <strong>{{ sessao.materia.nome }}</strong>
+                    <small>{{ sessao.duracao_formatada }} — {{ sessao.iniciada_em|date:"d/m/Y" }}</small>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <div class="desemp-vazio">
+              <span>📭</span>
+              <p>Nenhuma sessão ainda.</p>
+            </div>
+          {% endif %}
+        </div>
       </div>
-
-      <!-- Últimas sessões -->
-      <div class="desemp-card">
-        <h4 class="desemp-titulo">🕐 Últimas sessões</h4>
-
-        {% if ultimas_sessoes %}
-          <ul class="desemp-sessoes">
-            {% for sessao in ultimas_sessoes %}
-            <li class="desemp-sessao-item">
-              <span class="desemp-sessao-icone">{{ sessao.materia.icone }}</span>
-              <div class="desemp-sessao-info">
-                <strong>{{ sessao.materia.nome }}</strong>
-                <small>{{ sessao.duracao_formatada }} — {{ sessao.iniciada_em|date:"d/m/Y" }}</small>
-              </div>
-            </li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <div class="desemp-vazio">
-            <span>📭</span>
-            <p>Nenhuma sessão ainda.</p>
-          </div>
-        {% endif %}
-      </div>
-
-    </div>
-  </main>
-</div>
-
+        
 </body>
 </html>
