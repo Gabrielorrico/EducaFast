@@ -87,3 +87,32 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 <img width="1692" height="979" alt="image" src="https://github.com/user-attachments/assets/3a8f26dc-2bfb-4fbf-ba18-2d37385809b3" />
 
 </details>
+
+## Terceira Entrega 4️⃣
+
+<details>
+  <summary><b>Entrega 4</b></summary>
+  <br>
+
+-Issues/Bug : 
+
+- Screencast novas implementações: 
+
+- Screencast Testes automatizados:
+
+- Deployment CI/CD:
+
+- Screencast CI/CD: 
+
+- Pair programming: https://docs.google.com/document/d/1fdD-QaiXSmVtaeB57ypChtCTnbF1S1TEWM8AG5SRYdY/edit?usp=sharing
+
+- Documentação CONTRIBUTING:
+
+-Figma: https://www.figma.com/site/XbaBTLUpfjHO97MmAHS4wu/Projeto-Fundamentos-de-Software?node-id=19-3&t=Dp1ap5CJf9Fxkbn0-0
+
+- Sprint 04:
+<img width="1654" height="1030" alt="image" src="https://github.com/user-attachments/assets/2df548a9-0a8d-49b4-bf63-e3b78e054bda" />
+
+
+
+</details>
