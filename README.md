@@ -70,7 +70,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
   <summary><b>Entrega 3</b></summary>
   <br>
 
--Issues/Bug : 
+- Issues/Bug : 
 <img width="1918" height="780" alt="image" src="https://github.com/user-attachments/assets/0d23b907-0757-496e-bb6a-95b563115fad" />
 
 <img width="1902" height="918" alt="image" src="https://github.com/user-attachments/assets/14b67224-59a4-4ebd-81ff-c5fada3d1221" />
@@ -94,7 +94,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
   <summary><b>Entrega 4</b></summary>
   <br>
 
--Issues/Bug : 
+- Issues/Bug : 
 
 - Screencast novas implementações: 
 
