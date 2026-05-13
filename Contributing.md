@@ -13,7 +13,8 @@ EducaFast é uma aplicação web desenvolvida para facilitar, organizar e aceler
 ## Como clonar o repositório 
 Para poder contribuir com o código você precisa clonar o repositorio
 
-git clone:
+git clone: https://github.com/Gabrielorrico/EducaFast.git
+
 ## Regras de conduta
 ## Como contribuir para o código do EducaFast
 ## Como rodar os testes automatizados
