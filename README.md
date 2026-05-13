@@ -94,13 +94,12 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
   <summary><b>Entrega 4</b></summary>
   <br>
 
-- Issues/Bug : 
+- Issues/Bug:
+
 
 - Screencast novas implementações: 
 
 - Screencast Testes automatizados:
-
-- Deployment CI/CD:
 
 - Screencast CI/CD: 
 
@@ -108,7 +107,9 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
 - Documentação CONTRIBUTING:
 
--Figma: https://www.figma.com/site/XbaBTLUpfjHO97MmAHS4wu/Projeto-Fundamentos-de-Software?node-id=19-3&t=Dp1ap5CJf9Fxkbn0-0
+- Link Deploy: https://educafast.onrender.com
+
+- Figma: https://www.figma.com/site/XbaBTLUpfjHO97MmAHS4wu/Projeto-Fundamentos-de-Software?node-id=19-3&t=Dp1ap5CJf9Fxkbn0-0
 
 - Sprint 04:
 <img width="1654" height="1030" alt="image" src="https://github.com/user-attachments/assets/2df548a9-0a8d-49b4-bf63-e3b78e054bda" />
