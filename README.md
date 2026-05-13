@@ -97,7 +97,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 - Issues/Bug:
 <img width="1900" height="947" alt="image" src="https://github.com/user-attachments/assets/79a41ea9-e970-4c70-9368-54d41cb60b9f" />
 
-
+<img width="1903" height="978" alt="image" src="https://github.com/user-attachments/assets/618151f0-5960-454b-b439-42c1cf99f62c" />
 
 - Screencast novas implementações: 
 
@@ -117,5 +117,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 <img width="1654" height="1030" alt="image" src="https://github.com/user-attachments/assets/2df548a9-0a8d-49b4-bf63-e3b78e054bda" />
 
 <img width="1691" height="975" alt="image" src="https://github.com/user-attachments/assets/4aed70bb-9e07-47c8-8e51-a13d0aef1765" />
+
+- Link da apresentação: https://canva.link/rtzx7zk89rbs681
 
 </details>
