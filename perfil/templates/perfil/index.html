@@ -8,6 +8,25 @@
   <title>Perfil — EducaFast</title>
   <link rel="stylesheet" href="{% static 'perfil/style.css' %}">
 </head>
+
+<script>
+  setTimeout(() => {
+
+    const mensagens = document.querySelectorAll('.mensagem-temporaria');
+
+    mensagens.forEach(msg => {
+      msg.style.opacity = '0';
+      msg.style.transition = '0.5s';
+
+      setTimeout(() => {
+        msg.remove();
+      }, 500);
+    });
+
+  }, 3000); // 3 segundos
+</script>
+
+
 <body>
 
 <div class="layout">
@@ -78,11 +97,13 @@
         </div>
       </div>
 
-      {% if messages %}
-        {% for msg in messages %}
-          <div class="perfil-sucesso">✅ {{ msg }}</div>
-        {% endfor %}
-      {% endif %}
+        {% if messages %}
+          {% for msg in messages %}
+            <div class="perfil-sucesso mensagem-temporaria">
+              ✅ {{ msg }}
+            </div>
+          {% endfor %}
+        {% endif %}
 
       <form method="post">
         {% csrf_token %}

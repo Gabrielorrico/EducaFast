@@ -8,6 +8,7 @@ from django.views.decorators.http import require_POST
 from .models import Materia, Topico, TopicoMarcado
 
 
+
 @login_required
 def assuntos_recorrentes(request):
 
