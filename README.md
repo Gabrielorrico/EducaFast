@@ -95,6 +95,8 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
   <br>
 
 - Issues/Bug:
+<img width="1900" height="947" alt="image" src="https://github.com/user-attachments/assets/79a41ea9-e970-4c70-9368-54d41cb60b9f" />
+
 
 
 - Screencast novas implementações: 
