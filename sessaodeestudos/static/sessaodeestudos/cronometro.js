@@ -250,6 +250,13 @@ async function salvarSessao(materiaId, duracaoSegundos) {
     if (dados.sucesso) {
       mostrarFeedback(`Sessão de ${dados.sessao.materia} salva! ⏱ ${dados.sessao.duracao}`);
       adicionarSessaoNaLista(dados.sessao);
+
+      const msgXp = dados.xp_ganho > 0
+        ? `✨ +${dados.xp_ganho} XP ganhos!`
+        : `⚠️ ${dados.msg_xp}`;  // ex: "Sessão muito curta..."
+
+      // adiciona a mensagem de XP ao feedback que já existe na tela
+      document.getElementById('feedback-texto').textContent += ` ${msgXp}`;
     } else {
       mostrarFeedback(`Erro: ${dados.erro}`, true);
     }

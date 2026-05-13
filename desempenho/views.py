@@ -6,10 +6,8 @@ from datetime import date, timedelta
 from sessaodeestudos.models import SessaoDeEstudos
 from flashcards.models import Flashcard
 
+from gamificacao.models import PerfilGamificacao
 
-# ──────────────────────────────────────────
-# Helpers
-# ──────────────────────────────────────────
 
 def _formatar_tempo(segundos):
     """Converte segundos em string legível: '3h 05min' ou '45min'."""
@@ -59,6 +57,7 @@ def _calcular_dias_consecutivos(usuario):
 @login_required
 def index(request):
     usuario = request.user
+    perfil_gam, _ = PerfilGamificacao.objects.get_or_create(usuario=usuario)
 
     # ── Métricas gerais ───────────────────────────────────────────────────
     total_segundos = (
@@ -111,4 +110,7 @@ def index(request):
         'total_flashcards':     total_flashcards,
         'tempo_por_materia':    tempo_por_materia,
         'ultimas_sessoes':      ultimas_sessoes,
+        'xp_total': perfil_gam.xp_total,
+        'nivel':    perfil_gam.nivel,
+        'percentual_nivel': perfil_gam.percentual_nivel,
     })

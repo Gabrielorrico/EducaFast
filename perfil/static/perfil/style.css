@@ -155,10 +155,14 @@ html, body {
 /* ── PERFIL ─────────────────────────────────────────── */
 
 .perfil-card {
+
   background: var(--card-bg);
   border-radius: var(--radius);
   padding: 28px;
   max-width: 560px;
+  width: 100%;
+  margin: 0 auto;
+  
 }
 
 .perfil-topo {
@@ -279,4 +283,43 @@ html, body {
   padding: 9px 13px;
   font-size: 0.85rem;
   margin-bottom: 16px;
+}
+
+.perfil-nivel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.perfil-nivel-badge {
+  display: inline-block;
+  background: #f0f0f0;
+  border: 1.5px solid #ddd;
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.xp-barra-wrap {
+  width: 180px;
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.xp-barra {
+  height: 100%;
+  background: #4CAF50;
+  border-radius: 99px;
+  transition: width 0.5s ease;
+  min-width: 4px;
+}
+
+.xp-legenda {
+  font-size: 0.68rem;
+  color: var(--text-muted);
 }

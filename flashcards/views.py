@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-
-# ⚠️  Ajuste o caminho abaixo se a sua Materia estiver em outro app
+from gamificacao.services import conceder_xp_flashcard
 from sessaodeestudos.models import Materia
 from .models import Assunto, Flashcard
 
@@ -105,11 +104,16 @@ def api_flashcards(request, assunto_id):
     })
 
 
+
 @login_required
 def marcar_estudado(request, card_id):
     try:
         flashcard = Flashcard.objects.get(id=card_id)
         flashcard.usuarios_que_estudaram.add(request.user)
+
+        conceder_xp_flashcard(request.user)
+
+
         return JsonResponse({'status': 'sucesso'})
     except Flashcard.DoesNotExist:
         return JsonResponse({'status': 'erro', 'mensagem': 'Card não encontrado'}, status=404)

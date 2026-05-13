@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.db.models import Sum
 from django.utils import timezone
-
+from gamificacao.services import conceder_xp_sessao
 from .models import Materia, SessaoDeEstudos
 
 
@@ -44,11 +44,7 @@ def cronometro(request):
 @login_required
 @require_POST
 def salvar_sessao(request):
-    """
-    Endpoint AJAX que recebe os dados da sessão finalizada e salva no banco, 
-    ele espera um JSON com: materia_id (int) e duracao_segundos (int) e 
-    retorna JSON com sucesso e os dados da sessão salva.
-    """
+
     usuario = request.user
 
     try:
@@ -71,8 +67,12 @@ def salvar_sessao(request):
             iniciada_em=timezone.now(),
         )
 
+        xp_ganho, msg_xp = conceder_xp_sessao(request.user, duracao_segundos)
+
         return JsonResponse({
             'sucesso': True,
+            'xp_ganho': xp_ganho, 
+            'msg_xp': msg_xp, 
             'sessao': {
                 'id': sessao.id,
                 'materia': materia.nome,

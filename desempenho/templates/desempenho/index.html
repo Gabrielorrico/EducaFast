@@ -91,6 +91,20 @@
         </div>
       </div>
 
+      <!-- ✅ Card de XP/Nível — dentro do metrica-card como os outros -->
+      <div class="metrica-card">
+        <div class="metrica-icone">⭐</div>
+        <div class="metrica-valor">Nível {{ nivel|default:"1"}}-</div>
+        <div class="metrica-label">
+          {{ xp_total|default:"0" }} XP acumulados
+          <!-- Barra de progresso do nível -->
+          <div class="xp-barra-wrap">
+            <div class="xp-barra" style="width: {{ percentual_nivel|default:"0" }}%;"></div>
+          </div>
+          <span class="xp-legenda">{{ xp_no_nivel_atual|default:"0" }} / 100 XP para o próximo nível</span>
+        </div>
+      </div>
+
       <div class="metrica-card">
         <div class="metrica-icone">🃏</div>
         <div class="metrica-valor">{{ flashcards_estudados }}</div>
@@ -99,77 +113,81 @@
 
     </div>
 
-      <div class="desemp-bloco">
-        <div class="desemp-card desemp-card--grafico">
-          <div class="desemp-topo">
-            <h4 class="desemp-titulo">⏱ Tempo de estudo por matéria</h4>
-            <span class="desemp-subtitulo">Distribuição das horas estudadas</span>
-          </div>
-
-          {% if tempo_por_materia %}
-            <div class="grafico-cartesiano">
-              <div class="grafico-grade"></div>
-              <div class="grafico-eixo-y"></div>
-              <div class="grafico-eixo-x"></div>
-
-              <div class="grafico-area-barras">
-                {% for m in tempo_por_materia %}
-                  <div class="grafico-item">
-                    <div class="grafico-coluna-area">
-                      <span class="grafico-valor">{{ m.formatado }}</span>
-                      <div
-                        class="grafico-coluna"
-                        style="--h: {{ m.percentual }}; background: {{ m.cor }};"
-                        title="{{ m.nome }} — {{ m.formatado }}"
-                      ></div>
-                    </div>
-                  </div>
-                {% endfor %}
-              </div>
-
-              <div class="grafico-area-labels">
-                {% for m in tempo_por_materia %}
-                  <div class="grafico-nome">
-                    <span class="grafico-icone">{{ m.icone }}</span>
-                    <small>{{ m.nome }}</small>
-                  </div>
-                {% endfor %}
-              </div>
-            </div>
-          {% else %}
-            <div class="desemp-vazio">
-              <span>📭</span>
-              <p>Nenhuma sessão registrada ainda.<br>Use o cronômetro para começar!</p>
-            </div>
-          {% endif %}
+    <!-- ── Bloco gráfico + histórico ── -->
+    <div class="desemp-bloco">
+      <div class="desemp-card desemp-card--grafico">
+        <div class="desemp-topo">
+          <h4 class="desemp-titulo">⏱ Tempo de estudo por matéria</h4>
+          <span class="desemp-subtitulo">Distribuição das horas estudadas</span>
         </div>
 
-        <div class="desemp-card desemp-card--historico">
-          <div class="desemp-topo">
-            <h4 class="desemp-titulo">🕐 Últimas sessões</h4>
-            <span class="desemp-subtitulo">Mais recentes primeiro</span>
-          </div>
+        {% if tempo_por_materia %}
+          <div class="grafico-cartesiano">
+            <div class="grafico-grade"></div>
+            <div class="grafico-eixo-y"></div>
+            <div class="grafico-eixo-x"></div>
 
-          {% if ultimas_sessoes %}
-            <ul class="desemp-sessoes">
-              {% for sessao in ultimas_sessoes %}
-                <li class="desemp-sessao-item">
-                  <span class="desemp-sessao-icone">{{ sessao.materia.icone }}</span>
-                  <div class="desemp-sessao-info">
-                    <strong>{{ sessao.materia.nome }}</strong>
-                    <small>{{ sessao.duracao_formatada }} — {{ sessao.iniciada_em|date:"d/m/Y" }}</small>
+            <div class="grafico-area-barras">
+              {% for m in tempo_por_materia %}
+                <div class="grafico-item">
+                  <div class="grafico-coluna-area">
+                    <span class="grafico-valor">{{ m.formatado }}</span>
+                    <div
+                      class="grafico-coluna"
+                      style="--h: {{ m.percentual }}; background: {{ m.cor }};"
+                      title="{{ m.nome }} — {{ m.formatado }}"
+                    ></div>
                   </div>
-                </li>
+                </div>
               {% endfor %}
-            </ul>
-          {% else %}
-            <div class="desemp-vazio">
-              <span>📭</span>
-              <p>Nenhuma sessão ainda.</p>
             </div>
-          {% endif %}
-        </div>
+
+            <div class="grafico-area-labels">
+              {% for m in tempo_por_materia %}
+                <div class="grafico-nome">
+                  <span class="grafico-icone">{{ m.icone }}</span>
+                  <small>{{ m.nome }}</small>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% else %}
+          <div class="desemp-vazio">
+            <span>📭</span>
+            <p>Nenhuma sessão registrada ainda.<br>Use o cronômetro para começar!</p>
+          </div>
+        {% endif %}
       </div>
-        
+
+      <div class="desemp-card desemp-card--historico">
+        <div class="desemp-topo">
+          <h4 class="desemp-titulo">🕐 Últimas sessões</h4>
+          <span class="desemp-subtitulo">Mais recentes primeiro</span>
+        </div>
+
+        {% if ultimas_sessoes %}
+          <ul class="desemp-sessoes">
+            {% for sessao in ultimas_sessoes %}
+              <li class="desemp-sessao-item">
+                <span class="desemp-sessao-icone">{{ sessao.materia.icone }}</span>
+                <div class="desemp-sessao-info">
+                  <strong>{{ sessao.materia.nome }}</strong>
+                  <small>{{ sessao.duracao_formatada }} — {{ sessao.iniciada_em|date:"d/m/Y" }}</small>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <div class="desemp-vazio">
+            <span>📭</span>
+            <p>Nenhuma sessão ainda.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+  </main>
+</div><!-- fim .layout -->
+
 </body>
 </html>

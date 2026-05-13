@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'perfil',
     'assuntos_recorrentes',
     'desempenho',
+    'gamificacao',
 ]
 
 MIDDLEWARE = [

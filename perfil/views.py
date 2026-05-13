@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Perfil
 from .forms import PerfilForm
+from gamificacao.models import PerfilGamificacao
+
 
 
 @login_required
@@ -20,8 +22,15 @@ def perfil(request):
 
     materia_preferida = perfil_obj.get_materia_preferida()
 
+    perfil_gam, _ = PerfilGamificacao.objects.get_or_create(usuario=request.user)
+
     return render(request, 'perfil/index.html', {
         'form': form,
         'perfil': perfil_obj,
         'materia_preferida': materia_preferida,
+        'nivel':    perfil_gam.nivel,
+        'titulo':   perfil_gam.titulo,
+        'xp_total': perfil_gam.xp_total,
+        'percentual_nivel': perfil_gam.percentual_nivel,
+        'xp_no_nivel_atual': perfil_gam.xp_no_nivel_atual,
     })

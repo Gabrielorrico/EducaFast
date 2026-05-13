@@ -65,11 +65,19 @@
           <div class="estats-dados">{{ tempo_total }}</div>
           <div class="estats-label">Tempo total estudado</div>
         </div>
+
         <div class="estats-card">
-          <div class="estats-icon">🚀</div>
-          <div class="estats-dados">{{ ultimas_sessoes|length }}</div>
-          <div class="estats-label">Sessões realizadas</div>
+          <div class="estats-icon">⭐</div>
+          <div class="estats-dados">Nível {{ nivel|default:"1" }}</div>
+          <div class="estats-label">
+            {{ xp_total|default:"0" }} XP acumulados
+            <div class="xp-barra-wrap">
+              <div class="xp-barra" style="width: {{ percentual_nivel|default:"0" }}%;"></div>
+            </div>
+            <span class="xp-legenda">{{ xp_no_nivel_atual|default:"0" }} / 100 XP para o próximo nível</span>
+          </div>
         </div>
+      </div>
         <div class="estats-card">
         <div class="estats-icon">🃏</div>
         <div class="estats-dados">{{ flashcards_estudados }}</div>
