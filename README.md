@@ -113,6 +113,6 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 - Sprint 04:
 <img width="1654" height="1030" alt="image" src="https://github.com/user-attachments/assets/2df548a9-0a8d-49b4-bf63-e3b78e054bda" />
 
-
+<img width="1691" height="975" alt="image" src="https://github.com/user-attachments/assets/4aed70bb-9e07-47c8-8e51-a13d0aef1765" />
 
 </details>
