@@ -8,6 +8,8 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
+WHITENOISE_AUTOREFRESH = True
+
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [

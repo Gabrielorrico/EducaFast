@@ -284,3 +284,27 @@ html, body {
   font-size: 1rem;
   font-weight: 500;
 }
+
+.xp-barra-wrap {
+  width: 100%;
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.xp-barra {
+  height: 100%;
+  background: #4CAF50;
+  border-radius: 99px;
+  transition: width 0.5s ease;
+  min-width: 4px;
+}
+
+.xp-legenda {
+  font-size: 0.68rem;
+  color: #555;
+  margin-top: 4px;
+  display: block;
+}
