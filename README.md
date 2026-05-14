@@ -99,7 +99,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
 <img width="1903" height="978" alt="image" src="https://github.com/user-attachments/assets/618151f0-5960-454b-b439-42c1cf99f62c" />
 
-- Screencast novas implementações: 
+- Screencast novas implementações: https://youtu.be/8UwSDTUAwPw
 
 - Screencast Testes automatizados:
 
@@ -107,7 +107,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
 - Pair programming: https://docs.google.com/document/d/1fdD-QaiXSmVtaeB57ypChtCTnbF1S1TEWM8AG5SRYdY/edit?usp=sharing
 
-- Documentação CONTRIBUTING:
+- link em docs da Documentação CONTRIBUTING:
 
 - Link Deploy: https://educafast.onrender.com
 
