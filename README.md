@@ -107,7 +107,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
 - Pair programming: https://docs.google.com/document/d/1fdD-QaiXSmVtaeB57ypChtCTnbF1S1TEWM8AG5SRYdY/edit?usp=sharing
 
-- link em docs da Documentação CONTRIBUTING:
+- link em docs da Documentação CONTRIBUTING: https://docs.google.com/document/d/1jF59SHS9HuvtV5SbqFPsEmJtsc56_jzYW_CwuRdJgqY/edit?usp=sharing
 
 - Link Deploy: https://educafast.onrender.com
 
