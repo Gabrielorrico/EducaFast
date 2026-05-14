@@ -346,6 +346,7 @@ html, body {
   color: #155724;
   animation: entrar 0.3s ease;
 }
+.feedback-sessao[hidden] { display: none !important; }
 
 @keyframes entrar {
   from { opacity: 0; transform: translateY(6px); }
