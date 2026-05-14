@@ -88,7 +88,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
 </details>
 
-## Terceira Entrega 4️⃣
+## Quarta Entrega 4️⃣
 
 <details>
   <summary><b>Entrega 4</b></summary>
@@ -101,7 +101,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
 - Screencast novas implementações: https://youtu.be/8UwSDTUAwPw
 
-- Screencast Testes automatizados:
+- Screencast Testes automatizados: https://youtu.be/Vfixm2xrmNc
 
 - Screencast CI/CD: 
 
