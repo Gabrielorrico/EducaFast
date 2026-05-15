@@ -103,7 +103,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
 - Screencast Testes automatizados: https://youtu.be/Vfixm2xrmNc
 
-- Screencast CI/CD: 
+- Screencast CI/CD: https://www.youtube.com/watch?v=dTGyl9mpq64
 
 - Pair programming: https://docs.google.com/document/d/1fdD-QaiXSmVtaeB57ypChtCTnbF1S1TEWM8AG5SRYdY/edit?usp=sharing
 
