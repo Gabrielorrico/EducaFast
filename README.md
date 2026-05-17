@@ -11,7 +11,7 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 
 ## 📌 Status do Projeto
 
-🚧 Em desenvolvimento
+✅ Concluído 
 
 ---
 
@@ -114,10 +114,10 @@ Com o 💡 Diferencial de integrar diferentes métodos de estudo em uma única p
 - Figma: https://www.figma.com/site/XbaBTLUpfjHO97MmAHS4wu/Projeto-Fundamentos-de-Software?node-id=19-3&t=Dp1ap5CJf9Fxkbn0-0
 
 - Sprint 04:
-<img width="1654" height="1030" alt="image" src="https://github.com/user-attachments/assets/2df548a9-0a8d-49b4-bf63-e3b78e054bda" />
+<img width="1698" height="838" alt="image" src="https://github.com/user-attachments/assets/fd71ffc9-8ae9-4add-9c65-e3e6952d190d" />
 
 <img width="1691" height="975" alt="image" src="https://github.com/user-attachments/assets/4aed70bb-9e07-47c8-8e51-a13d0aef1765" />
 
-- Link da apresentação: https://canva.link/rtzx7zk89rbs681
+- Link da apresentação do projeto: https://canva.link/rtzx7zk89rbs681
 
 </details>
