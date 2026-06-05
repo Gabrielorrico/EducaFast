@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EducaFast</title>
 
-    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}?v=2">
 </head>
 <body>
 
@@ -15,9 +15,9 @@
     <header class="header">
         <div class="container nav">
             <div class="logo">
-                📚 EDUCAFAST
-            </div>
-
+            <div><span class="logo-educa">EDUCA</span><span class="logo-fast">FAST</span></div>
+                <span class="logo-sub">Revisão para o Enem</span>
+        </div>
             <nav>
                 <a href="#">Sobre nós</a>
                 <a href="{% url 'login' %}" class="btn-login">Login</a>

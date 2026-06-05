@@ -106,6 +106,14 @@ html, body {
   letter-spacing: 0.6px;
 }
 
+.logo-educa {
+    color: #b0b0b0;
+}
+
+.logo-fast {
+    color: #000;
+}
+
 .sidebar-footer {
   margin-top: auto;
 }
